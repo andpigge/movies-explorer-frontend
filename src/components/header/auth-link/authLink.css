@@ -1,0 +1,33 @@
+.header__auth-list {
+  display: flex;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header__auth-item {
+  max-width: 100px;
+  margin-right: 50px;
+}
+
+.header__auth-item:last-of-type {
+  margin-right: 0;
+}
+
+.header__auth-link {
+  padding: 8px 20px;
+
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: black;
+}
+
+.header__auth-link_bg_dark {
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+}

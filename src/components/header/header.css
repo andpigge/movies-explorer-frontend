@@ -1,0 +1,19 @@
+.header {
+  padding: 18px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__link-logo {
+  width: 100%;
+  max-width: 38px;
+  height: auto;
+
+  text-decoration: none;
+  color: black;
+}
+
+.header__logo {
+  object-fit: cover;
+}

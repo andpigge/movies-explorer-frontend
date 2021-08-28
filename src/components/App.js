@@ -1,11 +1,17 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './app.css';
+
+// Компоненты
+import Main from './main/Main';
 
 function App() {
   return (
-    <h1>
-      App
-    </h1>
+    <Switch >
+      <Route path='/main'>
+        <Main />
+      </Route>
+    </Switch>
   );
 }
 

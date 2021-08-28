@@ -1,11 +1,17 @@
 import React from 'react';
 import './main.css';
 
+// Компоненты
+import Header from '../header/Header';
+
 function Main() {
   return (
-    <h1>
-      Main
-    </h1>
+    <>
+      <Header />
+      <h1>
+        Main
+      </h1>
+    </>
   );
 }
 
