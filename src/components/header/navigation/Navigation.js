@@ -8,7 +8,7 @@ function Navigation() {
       <ul className='header__navigation-list'>
         <li className='header__navigation-item'>
           <NavLink
-            exact to='/'
+            exact to='/main'
             activeClassName='header__navigation-link_active'
             className='header__navigation-link'
           >

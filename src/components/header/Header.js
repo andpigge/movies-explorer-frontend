@@ -12,7 +12,7 @@ import Navigation from './navigation/Navigation';
 
 function Header() {
   return (
-    <header className='header'>
+    <header className='header page__margin-auto'>
       <Link to='/main' className='header__link-logo' >
         <img src={ logo } alt='Логотип' className='header__logo' />
       </Link>

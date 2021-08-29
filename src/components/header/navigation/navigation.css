@@ -13,6 +13,19 @@
   margin-right: 16px;
 }
 
+.header__navigation-item:last-of-type {
+  margin-right: 0;
+}
+
 .header__navigation-link {
-  
+  text-decoration: none;
+  font-family: Inter;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: black;
+}
+
+.header__navigation-link_active {
+  font-weight: 500;
 }

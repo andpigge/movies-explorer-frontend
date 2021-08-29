@@ -3,6 +3,7 @@ import './main.css';
 
 // Компоненты
 import Header from '../header/Header';
+import Footer from '../footer/Footer';
 
 function Main() {
   return (
@@ -11,6 +12,7 @@ function Main() {
       <h1>
         Main
       </h1>
+      <Footer />
     </>
   );
 }
