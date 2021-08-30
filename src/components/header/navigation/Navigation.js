@@ -1,29 +1,41 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import './navigation.css';
 
-function Navigation() {
+// Компоненты
+import NavigationItem from './navigation-item/NavigationItem';
+
+function Navigation({ textList, navLink, modifierNavigationClass = false }) {
+  const {
+    navigationClass,
+    navigationListClass,
+    navigationItemClass,
+    navigationLinkActive,
+  } = modifierNavigationClass;
+
+  const headerNavigation = navigationClass ?
+  `header__navigation ${navigationClass}` :
+  'header__navigation';
+  const headerNavigationList = navigationListClass ?
+  `header__navigation-list ${navigationListClass}` :
+  'header__navigation-list';
+  const headerNavigationItem = navigationItemClass ?
+  `header__navigation-item ${navigationItemClass}` :
+  'header__navigation-item';
+
   return (
-    <nav className='header__navigation'>
-      <ul className='header__navigation-list'>
-        <li className='header__navigation-item'>
-          <NavLink
-            exact to='/main'
-            activeClassName='header__navigation-link_active'
-            className='header__navigation-link'
-          >
-            Фильмы
-          </NavLink>
-        </li>
-        <li className='header__navigation-item'>
-          <NavLink
-            exact to='/'
-            activeClassName='header__navigation-link_active'
-            className='header__navigation-link'
-          >
-            Сохранённые фильмы
-          </NavLink>
-        </li>
+    <nav className={ headerNavigation }>
+      <ul className={ headerNavigationList }>
+        {
+          textList.map((text, i) => {
+            return <NavigationItem
+              key={ i }
+              text={ text }
+              navLink={ navLink[i] }
+              headerNavigationItem={ headerNavigationItem }
+              navigationLinkActive={ navigationLinkActive }
+            />
+          })
+        }
       </ul>
     </nav>
   );

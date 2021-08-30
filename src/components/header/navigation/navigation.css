@@ -2,6 +2,10 @@
 
 }
 
+.header__navigation_position_mobule-menu {
+  padding-top: 160px;
+}
+
 .header__navigation-list {
   display: flex;
   margin: 0;
@@ -9,23 +13,7 @@
   list-style: none;
 }
 
-.header__navigation-item {
-  margin-right: 16px;
-}
-
-.header__navigation-item:last-of-type {
-  margin-right: 0;
-}
-
-.header__navigation-link {
-  text-decoration: none;
-  font-family: Inter;
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 400;
-  color: black;
-}
-
-.header__navigation-link_active {
-  font-weight: 500;
+.header__navigation-list_position_mobule-menu {
+  flex-direction: column;
+  text-align: center;
 }
