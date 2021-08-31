@@ -5,3 +5,13 @@
 .page__margin-auto {
   margin: 0 auto;
 }
+
+.background {
+  width: 100%;
+  background-color: #F3C1F8;
+}
+
+.background-gray {
+  width: 100%;
+  background-color: #F5F5F5;;
+}

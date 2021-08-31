@@ -3,7 +3,7 @@ import './promo.css';
 
 import NavTab from './nav-tab/NavTab';
 
-function Promo() {
+function Promo({ learnMoreRef }) {
   return (
     <div className='background'>
       <section className='promo project__margin-auto'>
@@ -14,7 +14,7 @@ function Promo() {
         <p className='promo__desc'>
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
-        <NavTab />
+        <NavTab learnMoreRef={ learnMoreRef } />
       </section>
     </div>
   );

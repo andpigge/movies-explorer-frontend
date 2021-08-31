@@ -1,0 +1,18 @@
+.techs__item {
+  max-width: 90px;
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+  color: black;
+
+  background: #E8E8E8;
+  border-radius: 10px;
+}

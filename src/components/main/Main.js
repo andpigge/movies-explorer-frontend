@@ -6,6 +6,7 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Promo from './promo/Promo';
 import AboutProject from './about-project/AboutProject';
+import Techs from './techs/Techs';
 
 function Main() {
   return (
@@ -14,6 +15,7 @@ function Main() {
       <main className='project'>
         <Promo />
         <AboutProject />
+        <Techs />
       </main>
       <Footer />
     </>
