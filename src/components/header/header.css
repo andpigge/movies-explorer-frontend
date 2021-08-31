@@ -1,16 +1,16 @@
 .header {
-  padding: 18px 10px 0;
+  max-width: 1140px;
+  padding: 18px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1140px;
   box-sizing: border-box;
 }
 
 .header__link-logo {
   width: 100%;
   max-width: 38px;
-  height: auto;
+  height: 38px;
 
   text-decoration: none;
   color: black;

@@ -30,6 +30,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin-bottom: 20px;
 }
 
 .footer__year {
@@ -53,7 +55,7 @@
 }
 
 .footer__item:last-of-type {
-  margin-right: 0;
+  margin-right: 0px;
 }
 
 .footer__link {
@@ -63,4 +65,31 @@
   line-height: 16px;
   font-weight: 400;
   color: black;
+}
+
+@media screen and (max-width: 481px) {
+  .footer__container {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .footer__year {
+    order: 2;
+    color: #A0A0A0;
+  }
+
+  .footer__list {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .footer__item  {
+    margin-right: 0px;
+    margin-bottom: 12px;
+  }
+
+  .footer__item:last-of-type {
+    margin-bottom: 0px;
+  }
 }
