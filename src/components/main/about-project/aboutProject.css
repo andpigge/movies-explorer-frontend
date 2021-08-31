@@ -1,1 +1,80 @@
+.about-project {
+  max-width: 1140px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+.about-project__title-stage {
+  padding-top: 110px;
+  margin: 0;
+  margin-bottom: 70px;
+}
+
+.about-project__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+  row-gap: 26px;
+  margin-bottom: 110px;
+}
+
+.about-project__title {
+  margin: 0;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: black;
+}
+
+.about-project__desc {
+  margin: 0;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: black;
+  grid-row: 2;
+}
+
+.about-project__time-scheme {
+  display: grid;
+  grid-template-columns: minmax(100px, 228px) minmax(184px, 1fr);
+  row-gap: 14px;
+  margin-bottom: 110px;
+}
+
+.about-project__time-scheme-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 36px;
+  margin: 0;
+  background-color: black;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+}
+
+.about-project__time-scheme-title_color_light {
+  background-color: #F2F2F2;
+  color: black;
+}
+
+.about-project__time-scheme-desc {
+  text-align: center;
+  margin: 0;
+  grid-row: 2;
+  background-color: inherit;
+
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #866f6f;
+}

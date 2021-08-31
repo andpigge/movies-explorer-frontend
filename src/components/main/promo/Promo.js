@@ -6,7 +6,7 @@ import NavTab from './nav-tab/NavTab';
 function Promo() {
   return (
     <div className='background'>
-      <section className='promo page__margin-auto'>
+      <section className='promo project__margin-auto'>
         <h1 className='promo__title'>
           Учебный проект студента факультета
           <br/>Веб-разработки.
