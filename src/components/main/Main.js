@@ -8,6 +8,7 @@ import Promo from './promo/Promo';
 import AboutProject from './about-project/AboutProject';
 import Techs from './techs/Techs';
 import AboutMe from './about-me/AboutMe';
+import Portfolio from './about-me/portfolio/Portfolio';
 
 function Main() {
   return (
@@ -18,6 +19,7 @@ function Main() {
         <AboutProject />
         <Techs />
         <AboutMe />
+        <Portfolio />
       </main>
       <Footer />
     </>

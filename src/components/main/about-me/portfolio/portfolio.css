@@ -1,0 +1,15 @@
+.portfolio {
+  max-width: 1140px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.portfolio__title {
+  margin: 0;
+  margin-bottom: 50px;
+  font-family: Inter;
+  font-weight: 400;
+  color: #A0A0A0;
+  font-size: 18px;
+  line-height: 20px;
+}

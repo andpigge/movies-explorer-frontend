@@ -14,7 +14,7 @@ function AboutMe() {
     'Github',
   ];
 
-  const aboutMeLink = [
+  const aboutMeListLink = [
     'https://vk.com/uie_n',
     'https://github.com/andpigge',
   ];
@@ -33,18 +33,18 @@ function AboutMe() {
           <p className='about-me__desc'>
             Здесь должна быть моя история, но я полинился ее написать. Нету для меня оправдания, но и вы не без греха.
           </p>
-          <ul className='about-me__list'>
+        </div>
+        <ul className='about-me__list'>
             {
               aboutMeList.map((item, i) => {
                 return <LinkItem
                   key={ i }
                   text={ item }
-                  link={ aboutMeLink[i] }
+                  link={ aboutMeListLink[i] }
                 />
               })
             }
           </ul>
-        </div>
         <img alt='avatar' src={ avatar } className='about-me__avatar' />
       </div>
     </section>
