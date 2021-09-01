@@ -14,3 +14,12 @@
 .stage-title_reset_margin {
   margin: 0;
 }
+
+@media screen and (max-width: 481px) {
+  .stage-title {
+    padding-bottom: 28px;
+
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

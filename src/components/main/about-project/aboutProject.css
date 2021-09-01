@@ -1,6 +1,6 @@
 .about-project {
-  max-width: 1160px;
-  padding: 0 10px;
+  max-width: 1240px;
+  padding: 0 50px;
   box-sizing: border-box;
 }
 
@@ -76,4 +76,76 @@
   font-size: 14px;
   line-height: 17px;
   color: #866f6f;
+}
+
+@media screen and (max-width: 961px) {
+  .about-project__title-stage {
+    padding-top: 90px;
+  }
+
+  .about-project__content {
+    column-gap: 30px;
+    row-gap: 22px;
+    margin-bottom: 93px;
+  }
+
+  .about-project__desc {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__time-scheme {
+    margin-bottom: 90px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .about-project {
+    padding: 0 18px;
+  }
+
+  .about-project__title-stage {
+    padding-top: 70px;
+    margin-bottom: 60px;
+  }
+
+  .about-project__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 60px;
+  }
+
+  .about-project__title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-project__desc {
+    grid-row: none;
+    margin-bottom: 56px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__desc:last-of-type {
+    margin-bottom: 0px;
+  }
+
+  .about-project__time-scheme {
+    margin-bottom: 70px;
+  }
+
+  .about-project__time-scheme-title {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .about-project__time-scheme-desc {
+    font-size: 11px;
+    line-height: 13px;
+  }
 }

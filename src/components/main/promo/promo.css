@@ -64,19 +64,21 @@
 
 @media screen and (max-width: 415px) {
   .promo {
+    padding: 0px;
     padding-bottom: 30px;
     background-size: 210px 206px;
     background-position: center top 70px;
   }
 
   .promo__title {
-    padding-top: 320px;
+    padding: 320px 10px 0;
     font-size: 30px;
     line-height: 38px;
     margin-bottom: 24px;
+    letter-spacing: -0.04em;
   }
 
   .promo__desc {
-    margin-bottom: 80px;
+    margin: 0px 30px 80px;
   }
 }
