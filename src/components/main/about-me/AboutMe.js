@@ -23,6 +23,7 @@ function AboutMe() {
     <section className='about-me project__margin-auto'>
       <StageTitle title={ 'Студент' } elementClass={ 'about-me__title-stage' } />
       <div className='about-me__conteiner'>
+        <img alt='avatar' src={ avatar } className='about-me__avatar' />
         <div className='about-me__content'>
           <h3 className='about-me__name'>
             Рустам
@@ -45,7 +46,6 @@ function AboutMe() {
               })
             }
           </ul>
-        <img alt='avatar' src={ avatar } className='about-me__avatar' />
       </div>
     </section>
   );
