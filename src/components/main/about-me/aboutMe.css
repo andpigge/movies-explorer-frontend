@@ -1,0 +1,73 @@
+.about-me {
+  max-width: 1140px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.about-me__title-stage {
+  padding-top: 110px;
+  margin-bottom: 66px;
+}
+
+.about-me__conteiner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.about-me__content {
+
+}
+
+.about-me__name {
+  margin: 0;
+  margin-bottom: 18px;
+  max-width: 600px;
+
+  font-family: Inter;
+  font-weight: 400;
+  color: black;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.about-me__title {
+  margin: 0;
+  margin-bottom: 26px;
+  max-width: 600px;
+
+  font-family: Inter;
+  font-weight: 500;
+  color: black;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.about-me__desc {
+  margin: 0;
+  margin-bottom: 55px;
+  max-width: 600px;
+
+  font-family: Inter;
+  font-weight: 400;
+  color: black;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.about-me__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  margin-bottom: 100px;
+}
+
+.about-me__avatar {
+  max-width: 270px;
+  width: 100%;
+  max-height: 327px;
+  object-fit: cover;
+}
