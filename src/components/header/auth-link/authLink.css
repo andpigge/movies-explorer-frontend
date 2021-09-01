@@ -8,7 +8,7 @@
 
 .header__auth-item {
   max-width: 100px;
-  margin-right: 50px;
+  margin-right: 30px;
 }
 
 .header__auth-item:last-of-type {
@@ -30,4 +30,16 @@
   background-color: black;
   color: white;
   border-radius: 3px;
+}
+
+@media screen and (max-width: 361px) {
+  .header__auth-item {
+    margin-right: 14px;
+  }
+
+  .header__auth-link {
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 16px;
+  }
 }

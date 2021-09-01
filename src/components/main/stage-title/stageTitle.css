@@ -8,6 +8,7 @@
   font-weight: 400;
   color: black;
   border-bottom: 1px solid black;
+  letter-spacing: -0.04em;
 }
 
 .stage-title_reset_margin {

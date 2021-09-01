@@ -1,0 +1,26 @@
+.portfolio__item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.portfolio__item:last-of-type {
+  margin-bottom: 0px;
+  border-bottom: none;
+}
+
+.portfolio__link {
+  margin: 0;
+  display: block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: black;
+
+  background-image: url(../../../../../images/svg/main-profile-arrow.svg);
+  background-repeat: no-repeat;
+  background-position: center right 5px;
+}

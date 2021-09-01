@@ -1,11 +1,12 @@
 .about-me {
   flex-direction: column;
-  max-width: 1140px;
+  max-width: 1160px;
   padding: 0 10px;
   box-sizing: border-box;
 }
 
 .about-me__title-stage {
+  margin: 0;
   padding-top: 110px;
   margin-bottom: 66px;
 }
@@ -78,4 +79,5 @@
   width: 100%;
   max-height: 327px;
   object-fit: cover;
+  margin-left: 270px;
 }

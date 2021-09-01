@@ -1,7 +1,8 @@
 .footer {
-  max-width: 1140px;
+  max-width: 1160px;
   padding: 0 10px;
   box-sizing: border-box;
+  padding-top: 80px;
 }
 
 .footer__desc {

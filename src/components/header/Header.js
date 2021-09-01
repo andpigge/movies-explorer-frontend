@@ -6,23 +6,23 @@ import './header.css';
 import logo from '../../images/svg/logo-icon.svg';
 
 // Компоненты
-// import AuthLink from './auth-link/AuthLink';
-import ProfileLink from './profile-link/ProfileLink';
-import Navigation from './navigation/Navigation';
-import MobuleMenu from './mobule-menu/MobuleMenu';
+import AuthLink from './auth-link/AuthLink';
+// import ProfileLink from './profile-link/ProfileLink';
+// import Navigation from './navigation/Navigation';
+// import MobuleMenu from './mobule-menu/MobuleMenu';
 
 // Пользовательские хуки. HOC не подойдет
-import useMobuleMenu from '../../utils/custom-hooks/useMobuleMenu';
+// import useMobuleMenu from '../../utils/custom-hooks/useMobuleMenu';
 
 // constants
-import {
-  textList,
-  navLink,
-} from '../../utils/constants';
+// import {
+//   textList,
+//   navLink,
+// } from '../../utils/constants';
 
 function Header() {
   // Принимает минимальную ширину экрана для мобильной версии
-  const isMobuleMenu = useMobuleMenu(769);
+  // const isMobuleMenu = useMobuleMenu(769);
 
   return (
     <div className='background'>
@@ -30,8 +30,8 @@ function Header() {
         <Link to='/main' className='header__link-logo' >
           <img src={ logo } alt='Логотип' className='header__logo' />
         </Link>
-        {/* <AuthLink /> */}
-        {
+        <AuthLink />
+        {/* {
           isMobuleMenu ?
             <MobuleMenu />
           :
@@ -39,7 +39,7 @@ function Header() {
               <Navigation textList={ textList } navLink={ navLink } />
               <ProfileLink />
             </>
-        }
+        } */}
       </header>
     </div>
   );
