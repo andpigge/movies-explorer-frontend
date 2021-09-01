@@ -1,6 +1,4 @@
 .techs__item {
-  max-width: 90px;
-  width: 100%;
   min-height: 60px;
   display: flex;
   justify-content: center;
@@ -15,4 +13,11 @@
 
   background: #E8E8E8;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 961px) {
+  .techs__item {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
