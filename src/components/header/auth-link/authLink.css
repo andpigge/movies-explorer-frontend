@@ -34,11 +34,12 @@
 
 @media screen and (max-width: 361px) {
   .header__auth-item {
-    margin-right: 14px;
+    margin-right: 2px;
+    min-height: 26px;
   }
 
   .header__auth-link {
-    padding: 5px 12px;
+    padding: 7px 12px;
     font-size: 10px;
     line-height: 16px;
   }

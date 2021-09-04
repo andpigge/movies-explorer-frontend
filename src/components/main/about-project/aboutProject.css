@@ -40,7 +40,7 @@
 
 .about-project__time-scheme {
   display: grid;
-  grid-template-columns: minmax(100px, 228px) minmax(184px, 1fr);
+  grid-template-columns: minmax(20%, 40%) minmax(80%, 1fr);
   row-gap: 14px;
   margin-bottom: 110px;
 }
@@ -137,6 +137,7 @@
 
   .about-project__time-scheme {
     margin-bottom: 70px;
+    grid-template-columns: 35% 65%;
   }
 
   .about-project__time-scheme-title {

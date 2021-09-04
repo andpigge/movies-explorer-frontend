@@ -19,5 +19,6 @@
   .techs__item {
     font-size: 12px;
     line-height: 15px;
+    min-height: 57px;
   }
 }

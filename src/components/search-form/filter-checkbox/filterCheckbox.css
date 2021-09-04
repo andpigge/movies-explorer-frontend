@@ -1,0 +1,68 @@
+.search__container-filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 34px;
+  width: 100%;
+  min-height: 14px;
+  margin: 0 15px 0 29px;
+
+  background-color: #EB5757;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+
+.search__switch-filter {
+  display: block;
+  margin: 0px 2px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all .2s ease-out;
+}
+
+.search__switch-filter_active {
+  transform: translateX(20px);
+}
+
+/* Добавил анимацию вместо flex-end */
+.search__container-filter_active {
+  /* justify-content: flex-end; */
+  background-color: #2BE080;
+}
+
+.search__title {
+  margin: 0;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: black;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media screen and (max-width: 769px) {
+  .search__container-filter {
+    margin-left: 19px;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .search__container-filter {
+    grid-area: checkbox;
+    justify-self: end;
+    align-self: center;
+    margin: 0;
+  }
+
+  .search__title {
+    justify-self: start;
+    grid-area: title;
+
+    font-size: 11px;
+    line-height: 18px;
+  }
+}

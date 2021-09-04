@@ -13,7 +13,9 @@ import Portfolio from './about-me/portfolio/Portfolio';
 function Main() {
   return (
     <>
-      <Header />
+      <div className='background-container'>
+        <Header />
+      </div>
       <main className='project'>
         <Promo />
         <AboutProject />

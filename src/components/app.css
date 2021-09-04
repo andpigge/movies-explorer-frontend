@@ -6,14 +6,14 @@
   margin: 0 auto;
 }
 
-.background {
+.background-container {
   width: 100%;
   background-color: #F3C1F8;
 }
 
 .background-gray {
   width: 100%;
-  background-color: #F5F5F5;;
+  background-color: #F5F5F5;
 }
 
 @media screen and (max-width: 601px) {

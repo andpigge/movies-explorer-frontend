@@ -4,19 +4,13 @@ import './portfolio.css';
 // Компоненты
 import PortfolioLink from './portfolio-link/PortfolioLink';
 
+// constants
+import {
+  portfolioList,
+  portfolioListLink,
+ } from '../../../../utils/constants';
+
 function Portfolio() {
-  const portfolioList = [
-    'Статичный сайт',
-    'Адаптивный сайт',
-    'Одностраничное приложение',
-  ];
-
-  const portfolioListLink = [
-    'https://vk.com/uie_n',
-    'https://github.com/andpigge',
-    'https://github.com/andpigge',
-  ];
-
   return (
     <section className='portfolio project__margin-auto'>
       <h4 className='portfolio__title'>

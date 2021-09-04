@@ -96,4 +96,8 @@
     line-height: 16px;
     margin-bottom: 50px;
   }
+
+  .techs__list {
+    grid-template-columns: repeat(2, minmax(57px, 84px));
+  }
 }

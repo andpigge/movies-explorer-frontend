@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
+  min-height: 43px;
 }
 
 .header__link-logo {

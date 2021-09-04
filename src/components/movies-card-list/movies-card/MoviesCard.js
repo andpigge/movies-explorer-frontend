@@ -1,11 +1,38 @@
 import React from 'react';
 import './moviesCard.css';
 
-function MoviesCard() {
+// Компоненты
+import MovieSave from './movie-save/MovieSave';
+import MovieDelete from './movie-delete/MovieDelete';
+
+function MoviesCard({ movies, cardImg }) {
+  const {
+    duration,
+    nameRU,
+    save
+  } = movies;
+
   return (
-    <h1>
-      MoviesCard
-    </h1>
+    <div className='movie'>
+      <div className='movie__content'>
+        <h2 className='movie__title'>
+          { nameRU }
+        </h2>
+        <p className='movie__desc'>
+          { duration }
+        </p>
+        {
+          save ?
+          <MovieSave save={ save } /> :
+          <MovieDelete />
+        }
+      </div>
+      <img
+        alt='Фильм'
+        src={ cardImg }
+        className='movie__img'
+      />
+    </div>
   );
 }
 

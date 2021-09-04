@@ -8,17 +8,13 @@ import LinkItem from './link-item/LinkItem';
 // Аватар
 import avatar from '../../../images/main-avatar.jpeg';
 
+// constants
+import {
+  aboutMeList,
+  aboutMeListLink,
+ } from '../../../utils/constants';
+
 function AboutMe() {
-  const aboutMeList = [
-    'Vkontakte',
-    'Github',
-  ];
-
-  const aboutMeListLink = [
-    'https://vk.com/uie_n',
-    'https://github.com/andpigge',
-  ];
-
   return (
     <section className='about-me project__margin-auto'>
       <StageTitle title={ 'Студент' } elementClass={ 'about-me__title-stage' } />
@@ -31,8 +27,12 @@ function AboutMe() {
           <h4 className='about-me__title'>
             Фронтенд-разработчик, 23 года
           </h4>
+          {/* После поменяю. Так проще проверять */}
           <p className='about-me__desc'>
-            Здесь должна быть моя история, но я полинился ее написать. Нету для меня оправдания, но и вы не без греха.
+            Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь.
+            Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить.
+            С 2015 года работал в компании «СКБ Контур».
+            После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
         </div>
         <ul className='about-me__list'>

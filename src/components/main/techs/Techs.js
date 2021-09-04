@@ -5,17 +5,10 @@ import './techs.css';
 import StageTitle from '../stage-title/StageTitle';
 import TechsItem from './techs-item/TechsItem';
 
-function Techs() {
-  const techList = [
-    'HTML',
-    'CSS',
-    'JS',
-    'React',
-    'Git',
-    'Express.js',
-    'mongoDB',
-  ];
+// constants
+import { techList } from '../../../utils/constants';
 
+function Techs() {
   return (
     <div className='background-gray'>
       <section className='techs project__margin-auto'>

@@ -1,6 +1,7 @@
 .portfolio__item {
   margin-bottom: 20px;
   border-bottom: 1px solid #E8E8E8;
+  box-sizing: border-box;
 }
 
 .portfolio__item:last-of-type {
@@ -9,9 +10,10 @@
 }
 
 .portfolio__link {
+  display: flex;
+  justify-content: space-between;
   margin: 0;
-  display: block;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
   text-decoration: none;
   font-family: Inter;
   font-weight: 400;
@@ -19,14 +21,45 @@
   line-height: 50px;
   letter-spacing: -0.04em;
   color: black;
+}
 
-  background-image: url(../../../../../images/svg/main-profile-arrow.svg);
-  background-repeat: no-repeat;
-  background-position: center right 5px;
+.portfolio__item:last-of-type .portfolio__link {
+  margin-bottom: 0px;
+}
+
+/* Это декорация */
+.portfolio__arrow {
+  font-family: Inter;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -0.04em;
+  color: black;
+  cursor: default;
+  user-select: none;
+  z-index: -1;
+}
+
+@media screen and (max-width: 961px) {
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+
+  .portfolio__arrow {
+    font-size: 28px;
+    line-height: 60px;
+  }
 }
 
 @media screen and (max-width: 601px) {
-  .portfolio__item {
-    margin-bottom: 26px;
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__arrow {
+    font-size: 18px;
+    line-height: 28px;
   }
 }
