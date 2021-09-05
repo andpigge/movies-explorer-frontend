@@ -10,8 +10,6 @@ import HeaderToggleMenu from './header-toggle-menu/HeaderToggleMenu';
 import {
   textListMenuMobule,
   navLinkMenuMobule,
-  modifierNavigationClass,
-  modifierProfileLink,
 } from '../../../utils/constants';
 
 // utile
@@ -64,10 +62,10 @@ function MobuleMenu() {
           <div className={ mobuleMenuContentClass }>
             <Navigation
               textList={ textListMenuMobule }
-              modifierNavigationClass={ modifierNavigationClass }
               navLink={ navLinkMenuMobule }
+              activeMenu={ activeMenu }
             />
-            <ProfileLink modifierProfileLink={ modifierProfileLink } />
+            <ProfileLink activeMenu={ activeMenu } />
           </div>
         </div>
       </div>

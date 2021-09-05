@@ -17,4 +17,5 @@
 .header__navigation-list_position_mobule-menu {
   flex-direction: column;
   text-align: center;
+  margin-left: 0px;
 }

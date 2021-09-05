@@ -7,10 +7,10 @@ import ButtonSearch from './button-search/ButtonSearch';
 import FilterCheckbox from './filter-checkbox/FilterCheckbox';
 
 // Пользовательские хуки. HOC не подойдет
-import useMobuleMenu from '../../utils/custom-hooks/useMobuleMenu';
+import useSearchMobule from '../../utils/custom-hooks/useSearchMobule';
 
 function SearchForm() {
-  const isMobuleSearch = useMobuleMenu(601);
+  const isMobuleSearch = useSearchMobule(601);
 
   return (
     <section className='search movies_margin_center'>

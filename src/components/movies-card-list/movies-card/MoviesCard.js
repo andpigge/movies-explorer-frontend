@@ -22,9 +22,10 @@ function MoviesCard({ movies, cardImg }) {
           { duration }
         </p>
         {
-          save ?
-          <MovieSave save={ save } /> :
-          <MovieDelete />
+          // Пока так пусть будет
+          typeof save === 'undefined' ?
+          <MovieDelete /> :
+          <MovieSave save={ save } />
         }
       </div>
       <img

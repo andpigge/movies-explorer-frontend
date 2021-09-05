@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './profileLink.css';
 
-function ProfileLink({ modifierProfileLink = false }) {
-  const { profileLink } = modifierProfileLink;
-
-  const headerProfileLink = profileLink ?
-  `header__profile-link ${profileLink}` :
+function ProfileLink({ activeMenu }) {
+  const headerProfileLink = activeMenu ?
+  'header__profile-link header__profile-link_position_mobule-menu' :
   'header__profile-link';
 
   return (

@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
 
-// utils
-// import checkWindowWidth from '../checkWindowWidth';
-
-const useMobuleMenu = ( windowWidth ) => {
-  const [mobuleMenu, setMobuleMenu] = useState(false);
+const useSearchMobule = ( windowWidth ) => {
+  const [mobuleSearch, setMobuleSearch] = useState(false);
 
   const checkWidth = () => {
     if (window.screen.width < windowWidth) {
-      return setMobuleMenu(true);
+      return setMobuleSearch(true);
     }
-    setMobuleMenu(false);
+    setMobuleSearch(false);
   };
 
   useEffect(() => {
@@ -18,13 +15,13 @@ const useMobuleMenu = ( windowWidth ) => {
     return () => {
       window.removeEventListener('resize', checkWidth);
     };
-  }, [ windowWidth, mobuleMenu ]);
+  }, [ windowWidth, mobuleSearch ]);
 
   useEffect(() => {
     checkWidth();
   }, []);
 
-  return mobuleMenu;
+  return mobuleSearch;
 }
 
-export default useMobuleMenu;
+export default useSearchMobule;

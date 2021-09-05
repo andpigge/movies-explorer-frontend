@@ -1,10 +1,11 @@
 .movie__delete {
-  height: 14px;
-  width: 12px;
+  width: 14px;
+  height: 12px;
   object-fit: cover;
 
   cursor: pointer;
   background-color: inherit;
   border: none;
   background-image: url(../../../../images/svg/movies-delete-icon.svg);
+  background-repeat: no-repeat;
 }

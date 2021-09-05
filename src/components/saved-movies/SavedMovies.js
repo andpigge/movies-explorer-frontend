@@ -8,7 +8,7 @@ import SearchForm from '../search-form/SearchForm';
 import MoviesCardList from '../movies-card-list/MoviesCardList';
 
 // Контекст
-import { MovieListContext } from '../../context/movieListContext';
+import { SaveMovieListContext } from '../../context/saveMovieListContext';
 
 // utils. Преобразует минуты в часы
 import convertMinutes from '../../utils/convertMinutes';
@@ -18,7 +18,7 @@ function SavedMovies() {
   const [ moviesList, setMoviesList ] = useState([]);
 
   // Контекст
-  const { result } = useContext(MovieListContext);
+  const { result } = useContext(SaveMovieListContext);
 
   // Создаю обьект с нужными данными. Данные одинаковые
   useEffect(() => {
@@ -36,7 +36,7 @@ function SavedMovies() {
   return (
     <>
       <Header />
-      <main className='movies'>
+      <main className='saved-movies saved-movies_margin_bottom'>
         <SearchForm />
         <MoviesCardList moviesList={ moviesList } />
       </main>

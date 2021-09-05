@@ -20,7 +20,7 @@ function App() {
     <MovieListContext.Provider value={ dataMovies } >
       <SaveMovieListContext.Provider value={ saveMovieList } >
         <Switch >
-          <Route path='/main'>
+          <Route exact path='/'>
             <Main />
           </Route>
           <Route path='/movies'>

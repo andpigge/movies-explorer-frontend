@@ -4,35 +4,25 @@ import './navigation.css';
 // Компоненты
 import NavigationItem from './navigation-item/NavigationItem';
 
-function Navigation({ textList, navLink, modifierNavigationClass = false }) {
-  const {
-    navigationClass,
-    navigationListClass,
-    navigationItemClass,
-    navigationLinkActive,
-  } = modifierNavigationClass;
+function Navigation({ textList, navLink, activeMenu }) {
 
-  const headerNavigation = navigationClass ?
-  `header__navigation ${navigationClass}` :
+  const navigation = activeMenu ?
+  'header__navigation header__navigation_position_mobule-menu' :
   'header__navigation';
-  const headerNavigationList = navigationListClass ?
-  `header__navigation-list ${navigationListClass}` :
+  const navigationList = activeMenu ?
+  'header__navigation-list header__navigation-list_position_mobule-menu' :
   'header__navigation-list';
-  const headerNavigationItem = navigationItemClass ?
-  `header__navigation-item ${navigationItemClass}` :
-  'header__navigation-item';
 
   return (
-    <nav className={ headerNavigation }>
-      <ul className={ headerNavigationList }>
+    <nav className={ navigation }>
+      <ul className={ navigationList }>
         {
           textList.map((text, i) => {
             return <NavigationItem
               key={ i }
               text={ text }
               navLink={ navLink[i] }
-              headerNavigationItem={ headerNavigationItem }
-              navigationLinkActive={ navigationLinkActive }
+              activeMenu={ activeMenu }
             />
           })
         }
