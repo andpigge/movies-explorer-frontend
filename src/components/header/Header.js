@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import './header.css';
 
 // Картинка
 import logo from '../../images/svg/logo-icon.svg';
 
 // Компоненты
-// import AuthLink from './auth-link/AuthLink';
+import AuthLink from './auth-link/AuthLink';
 import ProfileLink from './profile-link/ProfileLink';
 import Navigation from './navigation/Navigation';
 import MobuleMenu from './mobule-menu/MobuleMenu';
@@ -21,6 +21,8 @@ import {
 } from '../../utils/constants';
 
 function Header() {
+  const { url } = useRouteMatch();
+
   // Принимает минимальную ширину экрана для мобильной версии
   const isMobuleMenu = useMobuleMenu(769);
 
@@ -42,14 +44,22 @@ function Header() {
     }
   };
 
+  const checkUrl = () => {
+    if (url === '/') {
+      return (
+        <AuthLink />
+      )
+    }
+    return setMenuDisplay();
+  }
+
   return (
       <header className='header page__margin-auto'>
         <Link to='/' className='header__link-logo' >
           <img src={ logo } alt='Логотип' className='header__logo' />
         </Link>
-        {/* <AuthLink /> */}
         {
-          setMenuDisplay()
+          checkUrl()
         }
       </header>
   );

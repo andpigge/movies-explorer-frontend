@@ -1,10 +1,11 @@
 .header {
-  max-width: 1200px;
+  max-width: 1140px;
   padding: 18px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 43px;
+  max-height: 74px;
+  box-sizing: border-box;
 }
 
 .header__link-logo {

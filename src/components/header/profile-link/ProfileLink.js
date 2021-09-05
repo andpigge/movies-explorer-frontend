@@ -8,7 +8,7 @@ function ProfileLink({ activeMenu }) {
   'header__profile-link';
 
   return (
-    <Link to='/' className={ headerProfileLink } >
+    <Link to='/profile' className={ headerProfileLink } >
       Аккаунт
       <span className='header__profile-link-icon'></span>
     </Link>

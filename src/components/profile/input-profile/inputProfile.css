@@ -1,0 +1,65 @@
+.user-profile__label {
+  max-width: 410px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: black;
+  align-items: center;
+}
+
+.user-profile__label:last-of-type {
+  margin-bottom: 0px;
+  margin-bottom: 214px;
+}
+
+.user-profile__field-text {
+  max-width: 122px;
+  width: 100%;
+  padding: 4px 4px 6px;
+
+  border: none;
+  background-color: inherit;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: black;
+  text-align: right;
+}
+
+.user-profile__line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #E8E8E8;
+  margin-bottom: 13px;
+}
+
+.user-profile__line:last-of-type {
+  display: none;
+}
+
+@media screen and (max-width: 769px) {
+  .user-profile__label:last-of-type {
+    margin-bottom: 204px;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .user-profile__label:last-of-type {
+    margin-bottom: 373px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .user-profile__field-text {
+    max-width: 120px;
+  }
+}

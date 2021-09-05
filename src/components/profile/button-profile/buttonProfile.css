@@ -1,0 +1,18 @@
+.user-profile__submit {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 321px) {
+  .user-profile__submit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
