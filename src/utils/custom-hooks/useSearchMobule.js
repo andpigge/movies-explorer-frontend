@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useSearchMobule = ( windowWidth ) => {
-  const [mobuleSearch, setMobuleSearch] = useState(false);
+  const [mobuleSearch, setMobuleSearch] = useState(null);
 
   const checkWidth = () => {
     if (window.screen.width < windowWidth) {

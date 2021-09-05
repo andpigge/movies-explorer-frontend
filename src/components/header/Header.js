@@ -24,6 +24,24 @@ function Header() {
   // Принимает минимальную ширину экрана для мобильной версии
   const isMobuleMenu = useMobuleMenu(769);
 
+  // По умолчанию state равен null, в случае если мобильный экран true или false,
+  // только тогда вырисовываем компоненты. Иначе будет дергающий экран.
+  const setMenuDisplay = () => {
+    if (isMobuleMenu === false) {
+      return (
+        <>
+          <Navigation textList={ textList } navLink={ navLink } />
+          <ProfileLink />
+        </>
+      );
+    }
+    if (isMobuleMenu === true) {
+      return (
+        <MobuleMenu />
+      );
+    }
+  };
+
   return (
       <header className='header page__margin-auto'>
         <Link to='/' className='header__link-logo' >
@@ -31,13 +49,7 @@ function Header() {
         </Link>
         {/* <AuthLink /> */}
         {
-          isMobuleMenu ?
-            <MobuleMenu />
-          :
-            <>
-              <Navigation textList={ textList } navLink={ navLink } />
-              <ProfileLink />
-            </>
+          setMenuDisplay()
         }
       </header>
   );

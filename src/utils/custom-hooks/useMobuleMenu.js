@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 // import checkWindowWidth from '../checkWindowWidth';
 
 const useMobuleMenu = ( windowWidth ) => {
-  const [mobuleMenu, setMobuleMenu] = useState(false);
+  const [mobuleMenu, setMobuleMenu] = useState(null);
 
   const checkWidth = () => {
     if (window.screen.width < windowWidth) {
