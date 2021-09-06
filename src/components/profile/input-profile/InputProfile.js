@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './inputProfile.css';
 
 function InputProfile({ name, text }) {
+  const [ profileValue, setProfileValue ] = useState('');
+
+  const handleChange = e => {
+    setProfileValue(e.target.value);
+  };
+
   return (
     <>
       <label className='user-profile__label'>
@@ -12,6 +18,8 @@ function InputProfile({ name, text }) {
           name={ name }
           placeholder={ text }
           className='user-profile__field-text'
+          value={ profileValue }
+          onChange={ handleChange }
         />
       </label>
       <span className='user-profile__line'></span>

@@ -1,10 +1,10 @@
 import React from 'react';
 import './buttonAuth.css';
 
-function ButtonAuth() {
+function ButtonAuth({ buttonText }) {
   return (
-    <button>
-      1
+    <button type='submit' className='auth__submit'>
+      { buttonText }
     </button>
   );
 }

@@ -15,19 +15,21 @@ function Auth({ registerProps, children }) {
   } = registerProps;
 
   return (
-    <section className='auth'>
-      <Logo />
-      <h1 className='auth__title'>
-        { title }
-      </h1>
-      { children }
-      <div className='auth__content'>
-        <p className='auth__text'>
-          { textAuth }
-        </p>
-        <Link to={ link } >
-          { textLink }
-        </Link>
+    <section className='auth auth_margin_center'>
+      <div className='auth__container'>
+        <Logo />
+        <h1 className='auth__title'>
+          { title }
+        </h1>
+        { children }
+        <div className='auth__content'>
+          <p className='auth__text'>
+            { textAuth }
+          </p>
+          <Link to={ link } className='auth__link' >
+            { textLink }
+          </Link>
+        </div>
       </div>
     </section>
   );

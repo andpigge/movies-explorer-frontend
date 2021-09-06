@@ -5,3 +5,11 @@
 .register__margin-center {
   margin: 0 auto;
 }
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 365px;
+  box-sizing: border-box;
+}

@@ -17,14 +17,14 @@ function Register() {
 
   return (
     <main className='register register__margin-center'>
-      <form>
-        <Auth registerProps={ registerProps } >
-          <InputAuth />
-          <InputAuth />
-          <InputAuth />
-          <ButtonAuth />
-        </Auth>
-      </form>
+      <Auth registerProps={ registerProps } >
+        <form className='auth__form register__form' name='register'>
+          <InputAuth textDesc={ 'Имя' } nameField={ 'registerName' } typeField={ 'text' } />
+          <InputAuth textDesc={ 'E-mail' } nameField={ 'registerEmail' } typeField={ 'email' } />
+          <InputAuth textDesc={ 'Пароль' } nameField={ 'registerPassword' } typeField={ 'password' } />
+          <ButtonAuth buttonText={ 'Зарегистрироваться' } />
+        </form>
+      </Auth>
     </main>
   );
 }

@@ -1,1 +1,52 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 30px;
+  max-width: 1280px;
+}
 
+.auth_margin_center {
+  margin: 0 auto;
+}
+
+.auth__container {
+  max-width: 400px;
+  width: 100%;
+  padding-top: 70px;
+}
+
+.auth__title {
+  margin: 37px 0 53px;
+
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: black;
+}
+
+.auth__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.auth__text {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+  margin-right: 6px;
+}
+
+.auth__link {
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: black;
+}

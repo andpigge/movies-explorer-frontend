@@ -1,19 +1,50 @@
 import React, { useState } from 'react';
 import './inputAuth.css';
 
-function InputAuth() {
-  const [ activeInput, setActiveInput ] = useState();
+function InputAuth({ textDesc, nameField, typeField }) {
+  const [ authValue, setAuthValue ] = useState('');
+
+  const handleChange = e => {
+    setAuthValue(e.target.value);
+  };
+
+  // Можно было бы анимацию сделать с помощью ref, но так понятнее
+  const [ activeInput, setActiveInput ] = useState(false);
 
   const addActiveInput = () => {
-    console.log(1)
+    setActiveInput(true);
   };
 
-  const removeActiveInput = () => {
-    console.log(2)
+  const removeActiveInput = e => {
+    if (e.target.value) {
+      return setActiveInput(true);
+    }
+    setActiveInput(false);
   };
+
+  const labelClass = activeInput ?
+  'auth__desc auth__desc_active' :
+  'auth__desc';
 
   return (
-    <input type='text' onFocus={ addActiveInput } onBlur={ removeActiveInput } />
+    <>
+      <label className='auth__label'>
+        <p className={ labelClass }>
+          { textDesc }
+        </p>
+        <input
+          type={ typeField }
+          className='auth__field-text'
+          name={ nameField }
+          value={ authValue }
+          onChange={ handleChange }
+          onFocus={ addActiveInput }
+          onBlur={ removeActiveInput }
+          required
+        />
+        <span className='auth__line'></span>
+      </label>
+    </>
   );
 }
 
