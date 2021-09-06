@@ -7,6 +7,8 @@ import Main from './main/Main';
 import Movies from './movies/Movies';
 import SavedMovies from './saved-movies/SavedMovies';
 import Profile from './profile/Profile';
+import Login from './auth/login/Login';
+import Register from './auth/register/Register';
 
 // Контекст
 import { MovieListContext } from '../context/movieListContext';
@@ -32,6 +34,12 @@ function App() {
           </Route>
           <Route path='/profile' >
             <Profile />
+          </Route>
+          <Route path='/signin' >
+            <Login />
+          </Route>
+          <Route path='/signup' >
+            <Register />
           </Route>
         </Switch>
       </SaveMovieListContext.Provider>

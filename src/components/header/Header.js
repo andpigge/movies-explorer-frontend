@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import './header.css';
-
-// Картинка
-import logo from '../../images/svg/logo-icon.svg';
 
 // Компоненты
 import AuthLink from './auth-link/AuthLink';
 import ProfileLink from './profile-link/ProfileLink';
 import Navigation from './navigation/Navigation';
 import MobuleMenu from './mobule-menu/MobuleMenu';
+import Logo from '../logo/Logo';
 
 // Пользовательские хуки. HOC не подойдет
 import useMobuleMenu from '../../utils/custom-hooks/useMobuleMenu';
@@ -55,9 +53,7 @@ function Header() {
 
   return (
       <header className='header page__margin-auto'>
-        <Link to='/' className='header__link-logo' >
-          <img src={ logo } alt='Логотип' className='header__logo' />
-        </Link>
+        <Logo />
         {
           checkUrl()
         }

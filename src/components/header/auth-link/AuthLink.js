@@ -6,12 +6,12 @@ function AuthLink() {
   return (
     <ul className='header__auth-list'>
       <li className='header__auth-item'>
-        <Link to='/' className='header__auth-link' >
+        <Link to='/signup' className='header__auth-link' >
           Регистрации
         </Link>
       </li>
       <li className='header__auth-item'>
-        <Link to='/' className='header__auth-link header__auth-link_bg_dark' >
+        <Link to='/signin' className='header__auth-link header__auth-link_bg_dark' >
           Войти
         </Link>
       </li>
