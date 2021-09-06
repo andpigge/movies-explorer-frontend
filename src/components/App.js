@@ -9,6 +9,7 @@ import SavedMovies from './saved-movies/SavedMovies';
 import Profile from './profile/Profile';
 import Login from './auth/login/Login';
 import Register from './auth/register/Register';
+import NotFound from './not-found/NotFound';
 
 // Контекст
 import { MovieListContext } from '../context/movieListContext';
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path='/signup' >
             <Register />
+          </Route>
+          <Route path='*'>
+            <NotFound />
           </Route>
         </Switch>
       </SaveMovieListContext.Provider>

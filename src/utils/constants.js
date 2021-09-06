@@ -61,6 +61,13 @@ const portfolioListLink = [
   'https://github.com/andpigge/movies-explorer-frontend',
 ];
 
+const registerProps = {
+  title: 'Добро пожаловать!',
+  textAuth: 'Уже зарегистрированы?',
+  textLink: 'Войти',
+  link: '/signin',
+};
+
 export {
   textListMenuMobule,
   navLinkMenuMobule,
@@ -71,4 +78,5 @@ export {
   aboutMeListLink,
   portfolioList,
   portfolioListLink,
+  registerProps
 };

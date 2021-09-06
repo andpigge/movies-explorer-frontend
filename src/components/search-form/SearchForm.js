@@ -19,7 +19,6 @@ function SearchForm() {
       return (
         <div className='search__container'>
           <InputSearch />
-          
           <ButtonSearch />
           <span className='search__form-line'></span>
           <FilterCheckbox />

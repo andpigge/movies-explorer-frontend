@@ -1,22 +1,39 @@
 import React, { useState } from 'react';
 import './inputAuth.css';
 
-function InputAuth({ textDesc, nameField, typeField }) {
+function InputAuth({ textDesc, nameField, typeField, validateValue }) {
+  // Валидация
+  const [ isValidField, setIsValidField ] = useState(null);
+  const [ validInfo, setValidInfo ] = useState({});
+
   const [ authValue, setAuthValue ] = useState('');
 
   const handleChange = e => {
-    setAuthValue(e.target.value);
+    const value = e.target.value;
+    const objectInput = validateValue(value);
+    setIsValidField(objectInput.isValidated);
+    setValidInfo(objectInput);
+
+    setAuthValue(value);
   };
 
   // Можно было бы анимацию сделать с помощью ref, но так понятнее
   const [ activeInput, setActiveInput ] = useState(false);
 
-  const addActiveInput = () => {
+  const addActiveInput = e => {
     setActiveInput(true);
+    e.target.className = 'auth__field-text';
   };
 
   const removeActiveInput = e => {
-    if (e.target.value) {
+    const item = e.target;
+    const value = item.value;
+    // При потере фокуса, подсвечиваю input, если есть ошибка.
+    // А то пользователь понял что есть ошибка, и исправит
+    if (validateValue(value).isValidated === false) {
+      item.classList.add('auth__field-text_type_error');
+    }
+    if (value) {
       return setActiveInput(true);
     }
     setActiveInput(false);
@@ -26,6 +43,13 @@ function InputAuth({ textDesc, nameField, typeField }) {
   'auth__desc auth__desc_active' :
   'auth__desc';
 
+  const fieldTextClass = isValidField ?
+  'auth__field-text' :
+  'auth__field-text auth__field-text_type_error';
+  const messageClass = isValidField ?
+  'auth__message' :
+  'auth__message auth__message_type_error';
+
   return (
     <>
       <label className='auth__label'>
@@ -34,7 +58,7 @@ function InputAuth({ textDesc, nameField, typeField }) {
         </p>
         <input
           type={ typeField }
-          className='auth__field-text'
+          className={ fieldTextClass }
           name={ nameField }
           value={ authValue }
           onChange={ handleChange }
@@ -43,6 +67,9 @@ function InputAuth({ textDesc, nameField, typeField }) {
           required
         />
         <span className='auth__line'></span>
+        <p className={ messageClass }>
+          { isValidField ? validInfo.message : validInfo.error }
+        </p>
       </label>
     </>
   );
