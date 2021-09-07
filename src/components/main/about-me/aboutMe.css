@@ -76,7 +76,7 @@
 
 .about-me__list {
   grid-area: links;
-  align-self: center;
+  align-self: flex-end;
   display: flex;
   margin: 0;
   padding: 0;

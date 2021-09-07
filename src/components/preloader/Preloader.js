@@ -3,10 +3,12 @@ import './preloader.css';
 
 function Preloader() {
   return (
-    <h1>
-      Preloader
-    </h1>
-  );
+    <div className="preloader">
+        <div className="preloader__container">
+            <span className="preloader__round"></span>
+        </div>
+    </div>
+  )
 }
 
 export default Preloader;

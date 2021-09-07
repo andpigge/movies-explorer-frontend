@@ -20,3 +20,12 @@
 .auth__submit:hover {
   background-color: rgba(0, 0, 0, .95);
 }
+
+.auth__submit_disabled {
+  background-color: rgba(0, 0, 0, .6);
+  cursor: default;
+}
+
+.auth__submit_disabled:hover {
+  background-color: rgba(0, 0, 0, .6);
+}

@@ -11,6 +11,8 @@ import Login from './auth/login/Login';
 import Register from './auth/register/Register';
 import NotFound from './not-found/NotFound';
 
+import Preloader from './preloader/Preloader';
+
 // Контекст
 import { MovieListContext } from '../context/movieListContext';
 import { SaveMovieListContext } from '../context/saveMovieListContext';

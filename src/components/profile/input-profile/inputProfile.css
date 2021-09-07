@@ -12,6 +12,7 @@
   line-height: 13px;
   color: black;
   align-items: center;
+  cursor: text;
 }
 
 .user-profile__label:last-of-type {
@@ -33,6 +34,10 @@
   line-height: 13px;
   color: black;
   text-align: right;
+}
+
+.user-profile__field-text_type_error {
+  color: #FF4062;
 }
 
 .user-profile__line {

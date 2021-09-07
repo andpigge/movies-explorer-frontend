@@ -1,17 +1,25 @@
 import React, { useState, useRef } from 'react';
 import './inputProfile.css';
 
-function InputProfile({ name, text, validateValue }) {
+function InputProfile(
+  {
+    name,
+    text,
+    validateValue,
+    setIsValidField,
+    isValidField
+  })
+{
   const messageRef = useRef();
 
   // Валидация
-  const [ isValidField, setIsValidField ] = useState(null);
   const [ validInfo, setValidInfo ] = useState({});
 
   const [ profileValue, setProfileValue ] = useState('');
 
   const handleChange = e => {
-    const value = e.target.value;
+    const item = e.target;
+    const value = item.value;
     const objectMessage = validateValue(value);
     setIsValidField(objectMessage.isValidated);
     setValidInfo(objectMessage);
@@ -23,6 +31,9 @@ function InputProfile({ name, text, validateValue }) {
     const item = e.target;
     const value = item.value;
     if (validateValue(value).isValidated === false) {
+      // При потере фокуса текст становится красным в input
+      item.classList.add('auth__field-text_type_error');
+
       setTimeout(() => {
         messageRef.current.textContent = '';
       }, 200);
@@ -31,10 +42,20 @@ function InputProfile({ name, text, validateValue }) {
   };
 
   const addActiveInput = e => {
+    const item = e.target;
+    // При фокусе текст перестает быть красным.
+    // Пользователь уже понял что ошибка и исправляет. Поэтому красный в поле не надо
+    item.className = 'user-profile__field-text';
+
+    // Пользователь уже понимает где ошибся, ведь это его email и имя.
+    // Поэтому всегда показывать ошибку лишнее. При заполнении достаточно.
     messageRef.current.textContent = validInfo.error;
     messageRef.current.style.opacity = '1';
   };
 
+  const fieldTextClass = isValidField ?
+  'user-profile__field-text' :
+  'user-profile__field-text user-profile__field-text_type_error';
   const messageClass = isValidField ?
   'user-profile__message' :
   'user-profile__message user-profile__message_type_error';
@@ -48,7 +69,7 @@ function InputProfile({ name, text, validateValue }) {
           required
           name={ name }
           placeholder={ text }
-          className='user-profile__field-text'
+          className={ fieldTextClass }
           value={ profileValue }
           onFocus={ addActiveInput }
           onBlur={ removeActiveInput }

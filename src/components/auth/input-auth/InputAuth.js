@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import './inputAuth.css';
 
-function InputAuth({ textDesc, nameField, typeField, validateValue }) {
+function InputAuth(
+  {
+    textDesc,
+    nameField,
+    typeField,
+    validateValue,
+    isValidField,
+    setIsValidField
+  })
+{
   // Валидация
-  const [ isValidField, setIsValidField ] = useState(null);
   const [ validInfo, setValidInfo ] = useState({});
 
   const [ authValue, setAuthValue ] = useState('');

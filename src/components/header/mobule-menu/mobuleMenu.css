@@ -5,6 +5,7 @@
   left: 0;
   bottom: 0;
   visibility: hidden;
+  z-index: 2;
 }
 
 .mobule-menu_active {

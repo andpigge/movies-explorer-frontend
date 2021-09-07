@@ -8,6 +8,12 @@
   font-size: 13px;
   line-height: 16px;
   cursor: pointer;
+  color: black;
+}
+
+.user-profile__submit_disabled {
+  color: rgba(0, 0, 0, .6);
+  cursor: default;
 }
 
 @media screen and (max-width: 321px) {

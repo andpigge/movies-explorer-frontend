@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.css';
 
 // Компоненты
@@ -14,6 +14,19 @@ import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
 function Login() {
+  // Поднял State
+  const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
+  const [ isValidFieldPassword, setIsValidFieldPassword ] = useState(null);
+
+  // Валидны ли все поля
+  const [ isValidFieldLogin, setIsValidFieldLogin ] = useState(false);
+  useEffect(() => {
+    if (isValidFieldEmail && isValidFieldPassword) {
+      return setIsValidFieldLogin(true);
+    }
+    setIsValidFieldLogin(false);
+  }, [ isValidFieldEmail, isValidFieldPassword ]);
+
   const handleValidateEmail = email => {
     return validateEmail({ email: email});
   };
@@ -31,14 +44,18 @@ function Login() {
             nameField={ 'loginEmail' }
             typeField={ 'email' }
             validateValue={ handleValidateEmail }
+            isValidField={ isValidFieldEmail }
+            setIsValidField={ setIsValidFieldEmail }
           />
           <InputAuth
             textDesc={ 'Пароль' }
             nameField={ 'loginPassword' }
             typeField={ 'password' }
             validateValue={ handleValidatePassword }
+            isValidField={ isValidFieldPassword }
+            setIsValidField={ setIsValidFieldPassword }
           />
-          <ButtonAuth buttonText={ 'Войти' } />
+          <ButtonAuth buttonText={ 'Войти' } isValidFieldLogin={ isValidFieldLogin } />
         </form>
       </Auth>
     </main>

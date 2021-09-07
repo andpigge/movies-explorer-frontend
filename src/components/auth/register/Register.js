@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './register.css';
 
 // Компоненты
@@ -15,6 +15,20 @@ import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
 function Register() {
+  // Поднял State
+  const [ isValidFieldName, setIsValidFieldName ] = useState(null);
+  const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
+  const [ isValidFieldPassword, setIsValidFieldPassword ] = useState(null);
+
+  // Валидны ли все поля
+  const [ isValidFieldRegister, setIsValidFieldRegister ] = useState(false);
+  useEffect(() => {
+    if (isValidFieldName && isValidFieldEmail && isValidFieldPassword) {
+      return setIsValidFieldRegister(true);
+    }
+    setIsValidFieldRegister(false);
+  }, [ isValidFieldName, isValidFieldEmail, isValidFieldPassword ]);
+
   const handleValidateName = name => {
     return validateString({ string: name, minLength: 1, maxLength: 30 });
   };
@@ -36,20 +50,29 @@ function Register() {
             nameField={ 'registerName' }
             typeField={ 'text' }
             validateValue={ handleValidateName }
+            isValidField={ isValidFieldName }
+            setIsValidField={ setIsValidFieldName }
           />
           <InputAuth
             textDesc={ 'E-mail' }
             nameField={ 'registerEmail' }
             typeField={ 'email' }
             validateValue={ handleValidateEmail }
+            isValidField={ isValidFieldEmail }
+            setIsValidField={ setIsValidFieldEmail }
           />
           <InputAuth
             textDesc={ 'Пароль' }
             nameField={ 'registerPassword' }
             typeField={ 'password' }
             validateValue={ handleValidatePassword }
+            isValidField={ isValidFieldPassword }
+            setIsValidField={ setIsValidFieldPassword }
           />
-          <ButtonAuth buttonText={ 'Зарегистрироваться' } />
+          <ButtonAuth
+            buttonText={ 'Зарегистрироваться' }
+            isValidFieldRegister={ isValidFieldRegister }
+          />
         </form>
       </Auth>
     </main>
