@@ -19,3 +19,9 @@
   text-align: center;
   margin-left: 0px;
 }
+
+@media screen and (max-width: 376px) {
+  .header__navigation_position_mobule-menu {
+    padding-top: 144px;
+  }
+}

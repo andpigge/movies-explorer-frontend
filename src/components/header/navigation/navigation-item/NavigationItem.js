@@ -10,6 +10,9 @@ function NavigationItem({ text, navLink, activeMenu }) {
   const navigationLinkActive = activeMenu ?
   'header__navigation-link_mobule-menu_active' :
   'header__navigation-link_active';
+  const navigationLink = activeMenu ?
+  'header__navigation-link header__navigation-link_mobule-menu' :
+  'header__navigation-link';
 
   return (
     <li className={ navigationItem }>
@@ -17,7 +20,7 @@ function NavigationItem({ text, navLink, activeMenu }) {
         exact
         to={ navLink }
         activeClassName={ navigationLinkActive }
-        className='header__navigation-link'
+        className={ navigationLink }
       >
         { text }
       </NavLink>

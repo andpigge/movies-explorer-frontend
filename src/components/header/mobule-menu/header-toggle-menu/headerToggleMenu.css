@@ -14,10 +14,11 @@
   z-index: 3;
 }
 
+/* Давольно странно в макете размещен крестик, оставил его на том же месте */
 .header__toggle-menu_active {
   position: fixed;
-  top: 15px;
-  right: 30px;
+  top: 17px;
+  right: 19px;
 }
 
 .header__toggle-menu-list {
@@ -59,13 +60,22 @@
     min-width: 22px;
     margin-bottom: 6px;
   }
+
+  .header__toggle-menu {
+    top: 8px;
+    right: 8px;
+  }
 }
 
 .header__toggle-menu-item_rotate_right {
   transform: rotate(45deg) translateX(4px) translateY(5px);
   margin: 0px;
+  min-width: 22px;
+  min-height: 3.5px;
 }
 
 .header__toggle-menu-item_rotate_left {
-  transform: rotate(-45deg) translateX(5px) translateY(-5px);
+  transform: rotate(-45deg) translateX(4px) translateY(-5px);
+  min-width: 22px;
+  min-height: 3.5px;
 }
