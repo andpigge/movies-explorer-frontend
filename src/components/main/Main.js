@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './main.css';
 
 // Компоненты
@@ -11,14 +11,16 @@ import AboutMe from './about-me/AboutMe';
 import Portfolio from './about-me/portfolio/Portfolio';
 
 function Main() {
+  const aboutProjectRef = useRef();
+
   return (
     <>
       <div className='background-container'>
         <Header />
       </div>
       <main className='project'>
-        <Promo />
-        <AboutProject />
+        <Promo aboutProjectRef={ aboutProjectRef } />
+        <AboutProject aboutProjectRef={ aboutProjectRef } />
         <Techs />
         <AboutMe />
         <Portfolio />

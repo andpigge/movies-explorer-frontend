@@ -21,6 +21,16 @@
   line-height: 50px;
   letter-spacing: -0.04em;
   color: black;
+
+  transition: color .2s ease-out;
+}
+
+.portfolio__link:hover {
+  color: rgba(0, 0, 0, .8);
+}
+
+.portfolio__link:hover .portfolio__arrow {
+  color: rgba(0, 0, 0, .8);
 }
 
 .portfolio__item:last-of-type .portfolio__link {

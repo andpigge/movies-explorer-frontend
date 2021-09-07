@@ -1,6 +1,10 @@
 .project {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
+
+/* html {
+  scroll-behavior: smooth;
+} */
 
 .project__margin-auto {
   margin: 0 auto;

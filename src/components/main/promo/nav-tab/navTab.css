@@ -7,7 +7,6 @@
   min-height: 36px;
   box-sizing: border-box;
 
-  text-decoration: none;
   background-color: inherit;
   border: 1px solid black;
   border-radius: 3px;
@@ -17,4 +16,11 @@
   font-size: 12px;
   line-height: 16px;
   color: black;
+
+  transition: background-color .3s ease-out;
+  cursor: pointer;
+}
+
+.promo__navigation:hover {
+  background-color: rgba(	255,	255,	255, .2);
 }

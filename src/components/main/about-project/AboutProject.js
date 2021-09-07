@@ -4,9 +4,9 @@ import './aboutProject.css';
 // Компоненты
 import StageTitle from '../stage-title/StageTitle';
 
-function AboutProject() {
+function AboutProject({ aboutProjectRef }) {
   return (
-    <section className='about-project project__margin-auto'>
+    <section className='about-project project__margin-auto' ref={ aboutProjectRef }>
       <StageTitle title={ 'О проекте' } elementClass={ 'about-project__title-stage' } />
       <div className='about-project__content'>
         <h3 className='about-project__title'>

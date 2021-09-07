@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './navTab.css';
 
-function NavTab({ learnMoreRef }) {
+function NavTab({ aboutProjectRef }) {
+  const learnMore = () => {
+    aboutProjectRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <Link to='/' className='promo__navigation' >
+    <button className='promo__navigation' onClick={ learnMore } >
       Узнать больше
-    </Link>
+    </button>
   );
 }
 

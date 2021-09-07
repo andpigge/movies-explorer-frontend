@@ -29,7 +29,7 @@ function Register() {
 
   return (
     <main className='register register__margin-center'>
-      <Auth registerProps={ registerProps } >
+      <Auth authProps={ registerProps } >
         <form className='auth__form register__form' name='register'>
           <InputAuth
             textDesc={ 'Имя' }

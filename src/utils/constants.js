@@ -68,6 +68,13 @@ const registerProps = {
   link: '/signin',
 };
 
+const loginProps = {
+  title: 'Рады видеть!',
+  textAuth: 'Ещё не зарегистрированы?',
+  textLink: 'Регистрация',
+  link: '/signup',
+};
+
 export {
   textListMenuMobule,
   navLinkMenuMobule,
@@ -78,5 +85,6 @@ export {
   aboutMeListLink,
   portfolioList,
   portfolioListLink,
-  registerProps
+  registerProps,
+  loginProps
 };

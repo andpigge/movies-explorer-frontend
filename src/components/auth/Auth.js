@@ -5,14 +5,14 @@ import './auth.css';
 // Компоненты
 import Logo from '../logo/Logo';
 
-function Auth({ registerProps, children }) {
+function Auth({ authProps, children }) {
 
   const {
     title,
     textAuth,
     textLink,
     link,
-  } = registerProps;
+  } = authProps;
 
   return (
     <section className='auth auth_margin_center'>

@@ -49,4 +49,10 @@
   font-size: 14px;
   line-height: 17px;
   color: black;
+
+  transition: color .1s ease-out;
+}
+
+.auth__link:hover {
+  color: rgba(0, 0, 0, .8);
 }

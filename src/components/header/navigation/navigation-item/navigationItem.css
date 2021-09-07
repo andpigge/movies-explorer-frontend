@@ -25,6 +25,21 @@
   color: black;
 }
 
+.header__navigation-link::before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: #A0A0A0;
+  transition: width .3s ease;
+}
+
+.header__navigation-link:hover::before {
+  width: 100%;
+}
+
 .header__navigation-link_active {
   font-weight: 500;
 }

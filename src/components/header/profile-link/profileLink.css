@@ -18,6 +18,12 @@
   border-radius: 40px;
   padding: 0 3px 0 11px;
   box-sizing: border-box;
+
+  transition: background-color .4s ease;
+}
+
+.header__profile-link:hover {
+  background-color: rgba(245, 245, 245, 1);
 }
 
 .header__profile-link_position_mobule-menu {

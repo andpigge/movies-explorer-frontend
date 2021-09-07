@@ -10,9 +10,9 @@ function InputAuth({ textDesc, nameField, typeField, validateValue }) {
 
   const handleChange = e => {
     const value = e.target.value;
-    const objectInput = validateValue(value);
-    setIsValidField(objectInput.isValidated);
-    setValidInfo(objectInput);
+    const objectMessage = validateValue(value);
+    setIsValidField(objectMessage.isValidated);
+    setValidInfo(objectMessage);
 
     setAuthValue(value);
   };
