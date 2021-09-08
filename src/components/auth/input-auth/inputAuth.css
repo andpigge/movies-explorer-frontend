@@ -16,7 +16,7 @@
   top: 4px;
   left: 4px;
 
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -27,7 +27,7 @@
 
 .auth__desc_active {
   top: -15px;
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -43,7 +43,7 @@
   background-color: inherit;
   box-sizing: border-box;
 
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -66,10 +66,12 @@
 
 .auth__message {
   position: absolute;
-  bottom: -15px;
+  bottom: auto;
   left: 4px;
   margin: 0;
-  font-family: Inter sans-serif;
+  transform: translateY(7px);
+
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -78,4 +80,10 @@
 
 .auth__message_type_error {
   color: #FF4062;
+}
+
+@media screen and (max-width: 481px) {
+  .auth__label {
+    margin-bottom: 46px;
+  }
 }

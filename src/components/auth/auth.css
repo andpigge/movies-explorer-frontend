@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 30px;
+  padding: 0px 26px;
   max-width: 1280px;
 }
 
@@ -11,6 +11,9 @@
 }
 
 .auth__container {
+  display: flex;
+  flex-direction: column;
+
   max-width: 400px;
   width: 100%;
   padding-top: 70px;
@@ -19,7 +22,7 @@
 .auth__title {
   margin: 37px 0 53px;
 
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
@@ -34,7 +37,9 @@
 }
 
 .auth__text {
-  font-family: Inter sans-serif;
+  margin: 0;
+  
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -44,7 +49,7 @@
 
 .auth__link {
   text-decoration: none;
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -55,4 +60,31 @@
 
 .auth__link:hover {
   color: rgba(0, 0, 0, .8);
+}
+
+@media screen and (max-width: 769px) {
+  .auth__container {
+    padding-top: 232px;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .auth__container {
+    padding-top: 56px;
+    align-items: center;
+  }
+
+  .auth__title {
+    margin: 50px 0 93px;
+  }
+
+  .auth__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .auth__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }

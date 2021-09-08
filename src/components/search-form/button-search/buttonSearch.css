@@ -10,8 +10,14 @@
   border-radius: 48px;
   margin-right: 19px;
 
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 18px;
+
+  transition: opacity .1s ease-out;
+}
+
+.search__submit:hover {
+  opacity: .8;
 }

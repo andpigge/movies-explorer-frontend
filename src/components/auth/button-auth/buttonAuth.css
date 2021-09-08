@@ -2,13 +2,14 @@
   width: 100%;
   min-height: 45px;
   margin-top: auto;
+  margin-bottom: 16px;
 
   border: none;
   background-color: black;
   cursor: pointer;
   border-radius: 3px;
 
-  font-family: Inter sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -28,4 +29,12 @@
 
 .auth__submit_disabled:hover {
   background-color: rgba(0, 0, 0, .6);
+}
+
+@media screen and (max-width: 481px) {
+  .auth__submit {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 14px;
+  }
 }
