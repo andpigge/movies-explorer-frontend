@@ -1,0 +1,9 @@
+.server-error-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 11px;
+  line-height: 13px;
+  color: #FF004C;
+}
