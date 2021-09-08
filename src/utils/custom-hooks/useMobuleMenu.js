@@ -7,7 +7,7 @@ const useMobuleMenu = ( windowWidth ) => {
   const [mobuleMenu, setMobuleMenu] = useState(null);
 
   const checkWidth = () => {
-    if (window.screen.width < windowWidth) {
+    if (window.innerWidth < windowWidth) {
       return setMobuleMenu(true);
     }
     setMobuleMenu(false);

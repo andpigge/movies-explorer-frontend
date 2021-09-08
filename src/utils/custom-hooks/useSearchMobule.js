@@ -4,7 +4,7 @@ const useSearchMobule = ( windowWidth ) => {
   const [mobuleSearch, setMobuleSearch] = useState(null);
 
   const checkWidth = () => {
-    if (window.screen.width < windowWidth) {
+    if (window.innerWidth < windowWidth) {
       return setMobuleSearch(true);
     }
     setMobuleSearch(false);

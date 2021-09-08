@@ -20,7 +20,7 @@
 
 .about-project__title {
   margin: 0;
-  font-family: Inter;
+  font-family: Inter sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -30,7 +30,7 @@
 
 .about-project__desc {
   margin: 0;
-  font-family: Inter;
+  font-family: Inter sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -53,7 +53,7 @@
   margin: 0;
   background-color: black;
 
-  font-family: Inter;
+  font-family: Inter sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -71,7 +71,7 @@
   grid-row: 2;
   background-color: inherit;
 
-  font-family: Inter;
+  font-family: Inter sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
