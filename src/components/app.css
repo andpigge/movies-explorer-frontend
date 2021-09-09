@@ -1,0 +1,23 @@
+.page {
+
+}
+
+.page__margin-auto {
+  margin: 0 auto;
+}
+
+.background-container {
+  width: 100%;
+  background-color: #F3C1F8;
+}
+
+.background-gray {
+  width: 100%;
+  background-color: #F5F5F5;
+}
+
+@media screen and (max-width: 601px) {
+  .background-gray {
+    background-color: white;
+  }
+}

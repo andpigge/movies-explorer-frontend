@@ -1,0 +1,24 @@
+.user-profile__submit {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  cursor: pointer;
+  color: black;
+}
+
+.user-profile__submit_disabled {
+  color: rgba(0, 0, 0, .6);
+  cursor: default;
+}
+
+@media screen and (max-width: 321px) {
+  .user-profile__submit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

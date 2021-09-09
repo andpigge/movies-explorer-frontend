@@ -1,0 +1,30 @@
+.more-cards {
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 0px 30px;
+  box-sizing: border-box;
+}
+
+.more-cards__button {
+  margin: 50px 0 80px;
+  max-width: 320px;
+  width: 100%;
+  min-height: 36px;
+  cursor: pointer;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  border: none;
+
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: black;
+}
+
+@media screen and (max-width: 601px) {
+  .more-cards {
+    padding: 0px 40px;
+  }
+}

@@ -1,0 +1,17 @@
+.user-profile__link {
+  display: block;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FF4062;
+  text-align: center;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 321px) {
+  .user-profile__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -1,0 +1,167 @@
+.about-me {
+  flex-direction: column;
+  max-width: 1240px;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.about-me__title-stage {
+  margin: 0;
+  padding-top: 110px;
+  margin-bottom: 66px;
+}
+
+/* Понимаю что отклонился от макета, но если добавить тот же текст, то отклонений нет */
+/* Как по мне так приличнее когда текста не много */
+.about-me__conteiner {
+  display: grid;
+  grid-template-areas:
+  'content img'
+  'links img';
+  column-gap: 20px;
+  /* display: flex;
+  justify-content: space-between;*/
+  margin-bottom: 100px;
+  justify-content: space-between;
+}
+
+.about-me__avatar {
+  grid-area: img;
+  max-width: 270px;
+  width: 100%;
+  max-height: 327px;
+  object-fit: cover;
+}
+
+.about-me__content {
+  grid-area: content;
+}
+
+.about-me__name {
+  margin: 0;
+  margin-bottom: 18px;
+  max-width: 600px;
+
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  color: black;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.about-me__title {
+  margin: 0;
+  margin-bottom: 26px;
+  max-width: 600px;
+
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  color: black;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.about-me__desc {
+  margin: 0;
+  margin-bottom: 55px;
+  max-width: 600px;
+
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  color: black;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.about-me__list {
+  grid-area: links;
+  align-self: flex-end;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (max-width: 961px) {
+  .about-me__title-stage {
+    padding-top: 90px;
+    margin-bottom: 66px;
+  }
+
+  .about-me__conteiner {
+    margin-bottom: 90px;
+  }
+
+  .about-me__avatar {
+    max-width: 255px;
+    max-height: 307px;
+  }
+
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 16px;
+    max-width: 348px;
+  }
+
+  .about-me__title {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 20px;
+    max-width: 364px;
+  }
+
+  .about-me__desc {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 87px;
+    max-width: 364px;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .about-me {
+    padding: 0 14px;
+  }
+
+  .about-me__title-stage {
+    padding-top: 70px;
+    margin-bottom: 60px;
+  }
+
+  .about-me__conteiner {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+  }
+
+  .about-me__avatar {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    max-width: 292px;
+    max-height: 352px;
+  }
+
+  .about-me__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+
+  .about-me__title {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 20px;
+  }
+
+  .about-me__desc {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 40px;
+  }
+
+  .about-me__list {
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,12 @@
+.logo {
+  width: 100%;
+  max-width: 38px;
+  height: 38px;
+
+  text-decoration: none;
+  color: black;
+}
+
+.logo__img {
+  object-fit: cover;
+}

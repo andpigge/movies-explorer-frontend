@@ -1,0 +1,23 @@
+.search__submit {
+  max-width: 60px;
+  width: 100%;
+  min-height: 34px;
+
+  background-color: black;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 48px;
+  margin-right: 19px;
+
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 18px;
+
+  transition: opacity .1s ease-out;
+}
+
+.search__submit:hover {
+  opacity: .8;
+}

@@ -1,0 +1,25 @@
+.stage-title {
+  width: 100%;
+  padding-bottom: 24px;
+
+  font-family: Inter, sans-serif;
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 400;
+  color: black;
+  border-bottom: 1px solid black;
+  letter-spacing: -0.04em;
+}
+
+.stage-title_reset_margin {
+  margin: 0;
+}
+
+@media screen and (max-width: 481px) {
+  .stage-title {
+    padding-bottom: 28px;
+
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

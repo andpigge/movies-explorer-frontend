@@ -1,0 +1,25 @@
+.about-me__item {
+  margin-right: 20px;
+}
+
+.about-me__item:last-of-type {
+  margin-right: 0px;
+}
+
+.about-me__link {
+  text-decoration: none;
+  margin: 0;
+  margin-bottom: 100px;
+
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: black;
+
+  transition: color .2s ease-out;
+}
+
+.about-me__link:hover {
+  color: rgba(0, 0, 0, .8);
+}

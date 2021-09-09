@@ -1,0 +1,21 @@
+.movie__save {
+  width: 14px;
+  height: 12px;
+  background-image: url(../../../../images/svg/movies-like-inactive-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+}
+
+.movie__save_active {
+  background-image: url(../../../../images/svg/movies-like-active-icon.svg);
+}
+
+@media screen and (max-width: 601px) {
+  .movie__save {
+    grid-area: like;
+  }
+}

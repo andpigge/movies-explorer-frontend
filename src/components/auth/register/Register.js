@@ -1,0 +1,82 @@
+import React, { useState, useEffect } from 'react';
+import './register.css';
+
+// Компоненты
+import Auth from '../Auth';
+import InputAuth from '../input-auth/InputAuth';
+import ButtonAuth from '../button-auth/ButtonAuth';
+
+// constants
+import { registerProps } from '../../../utils/constants';
+
+// utils
+import validateString from '../../../utils/validate/validateString';
+import validateEmail from '../../../utils/validate/validateEmail';
+import validatePassword from '../../../utils/validate/validatePassword';
+
+function Register() {
+  // Поднял State
+  const [ isValidFieldName, setIsValidFieldName ] = useState(null);
+  const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
+  const [ isValidFieldPassword, setIsValidFieldPassword ] = useState(null);
+
+  // Валидны ли все поля
+  const [ isValidFieldRegister, setIsValidFieldRegister ] = useState(false);
+  useEffect(() => {
+    if (isValidFieldName && isValidFieldEmail && isValidFieldPassword) {
+      return setIsValidFieldRegister(true);
+    }
+    setIsValidFieldRegister(false);
+  }, [ isValidFieldName, isValidFieldEmail, isValidFieldPassword ]);
+
+  const handleValidateName = name => {
+    return validateString({ string: name, minLength: 1, maxLength: 30 });
+  };
+
+  const handleValidateEmail = email => {
+    return validateEmail({ email: email});
+  };
+
+  const handleValidatePassword = password => {
+    return validatePassword({ password: password});
+  };
+
+  return (
+    <main className='register register__margin-center'>
+      <Auth authProps={ registerProps } >
+        <form className='auth__form register__form' name='register'>
+          <InputAuth
+            textDesc={ 'Имя' }
+            nameField={ 'registerName' }
+            typeField={ 'text' }
+            validateValue={ handleValidateName }
+            isValidField={ isValidFieldName }
+            setIsValidField={ setIsValidFieldName }
+          />
+          <InputAuth
+            textDesc={ 'E-mail' }
+            nameField={ 'registerEmail' }
+            typeField={ 'email' }
+            validateValue={ handleValidateEmail }
+            isValidField={ isValidFieldEmail }
+            setIsValidField={ setIsValidFieldEmail }
+          />
+          <InputAuth
+            textDesc={ 'Пароль' }
+            nameField={ 'registerPassword' }
+            typeField={ 'password' }
+            validateValue={ handleValidatePassword }
+            isValidField={ isValidFieldPassword }
+            setIsValidField={ setIsValidFieldPassword }
+          />
+          <ButtonAuth
+            buttonText={ 'Зарегистрироваться' }
+            isValidFieldRegister={ isValidFieldRegister }
+          />
+        </form>
+      </Auth>
+    </main>
+  );
+}
+
+export default Register;

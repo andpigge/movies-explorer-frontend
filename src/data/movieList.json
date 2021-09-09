@@ -1,0 +1,39 @@
+{
+  "result": [
+    {
+      "_id": 1,
+      "duration": 102,
+      "image": "../images/cards/movies-card-1.jpg",
+      "nameRU": "33 слова о дизайне",
+      "save": true
+    },
+    {
+      "_id": 2,
+      "duration": 102,
+      "image": "../images/cards/movies-card-2.jpg",
+      "nameRU": "Киноальманах «100 лет дизайна»",
+      "save": true
+    },
+    {
+      "_id": 3,
+      "duration": 102,
+      "image": "../images/cards/movies-card-3.jpg",
+      "nameRU": "В погоне за Бенкси",
+      "save": false
+    },
+    {
+      "_id": 4,
+      "duration": 102,
+      "image": "../images/cards/movies-card-4.jpg",
+      "nameRU": "Баския: Взрыв реальности",
+      "save": false
+    },
+    {
+      "_id": 5,
+      "duration": 102,
+      "image": "../images/cards/movies-card-5.jpg",
+      "nameRU": "Бег это свобода",
+      "save": true
+    }
+  ]
+}

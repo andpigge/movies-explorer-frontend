@@ -1,0 +1,22 @@
+.register {
+
+}
+
+.register__margin-center {
+  margin: 0 auto;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 386px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 481px) {
+  .register__form {
+    min-height: 470px;
+  }
+}

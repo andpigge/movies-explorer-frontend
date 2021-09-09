@@ -1,0 +1,81 @@
+.header__toggle-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 40px;
+  width: 100%;
+  min-height: 43px;
+
+  padding: 0;
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+
+  z-index: 3;
+}
+
+/* Давольно странно в макете размещен крестик, оставил его на том же месте */
+.header__toggle-menu_active {
+  position: fixed;
+  top: 17px;
+  right: 19px;
+}
+
+.header__toggle-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header__toggle-menu-item {
+  min-width: 28px;
+  min-height: 3.5px;
+  margin-bottom: 6.5px;
+
+  background-image: url(../../../../images/svg/header-toggle-menu-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.header__toggle-menu-item:last-of-type {
+  margin-bottom: 0px;
+  min-height: 3px;
+}
+
+.header__toggle-menu-item_active {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media screen and (max-width: 376px) {
+  .header__toggle-menu-item {
+    min-width: 22px;
+    margin-bottom: 6px;
+  }
+
+  .header__toggle-menu {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+.header__toggle-menu-item_rotate_right {
+  transform: rotate(45deg) translateX(4px) translateY(5px);
+  margin: 0px;
+  min-width: 22px;
+  min-height: 3.5px;
+}
+
+.header__toggle-menu-item_rotate_left {
+  transform: rotate(-45deg) translateX(4px) translateY(-5px);
+  min-width: 22px;
+  min-height: 3.5px;
+}

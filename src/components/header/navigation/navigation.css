@@ -1,0 +1,27 @@
+.header__navigation {
+
+}
+
+.header__navigation_position_mobule-menu {
+  padding-top: 160px;
+}
+
+.header__navigation-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: 62px;
+}
+
+.header__navigation-list_position_mobule-menu {
+  flex-direction: column;
+  text-align: center;
+  margin-left: 0px;
+}
+
+@media screen and (max-width: 376px) {
+  .header__navigation_position_mobule-menu {
+    padding-top: 144px;
+  }
+}

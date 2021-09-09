@@ -1,0 +1,45 @@
+.mobule-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  visibility: hidden;
+  z-index: 2;
+}
+
+.mobule-menu_active {
+  visibility: visible;
+}
+
+.mobule-menu__container {
+  background-color: rgba(0, 0, 0, .3);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .3s linear;
+}
+
+.mobule-menu__container_active {
+  opacity: 1;
+}
+
+.mobule-menu__content {
+  max-width: 520px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: white;
+  float: right;
+  transform: translateX(520px);
+  transition: transform .3s linear;
+}
+
+.mobule-menu__content_active {
+  transform: translateX(0px);
+}
