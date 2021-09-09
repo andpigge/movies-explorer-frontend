@@ -75,6 +75,13 @@ const loginProps = {
   link: '/signup',
 };
 
+const moviesApiUrl = {
+  CONECT_SERVER: 'https://api.nomoreparties.co/beatfilm-movies',
+  PATH_LIST: {
+    movieList: '/',
+  },
+};
+
 export {
   textListMenuMobule,
   navLinkMenuMobule,
@@ -86,5 +93,6 @@ export {
   portfolioList,
   portfolioListLink,
   registerProps,
-  loginProps
+  loginProps,
+  moviesApiUrl,
 };
