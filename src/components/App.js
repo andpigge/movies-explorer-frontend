@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './app.css';
 
@@ -10,7 +10,6 @@ import Profile from './profile/Profile';
 import Login from './auth/login/Login';
 import Register from './auth/register/Register';
 import NotFound from './not-found/NotFound';
-
 import Preloader from './preloader/Preloader';
 
 // Контекст
@@ -18,19 +17,31 @@ import { MovieListContext } from '../context/movieListContext';
 import { SaveMovieListContext } from '../context/saveMovieListContext';
 
 // Data
-import dataMovies from '../data/movieList.json';
 import saveMovieList from '../data/saveMovieList.json';
 
 function App() {
+  // Статус пользователя
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  // Фильмы
+  const [movieList, setMovieList] = useState([]);
+  const addMovieList = movieList => {
+    setMovieList(movieList);
+  }
+
   return (
-    <MovieListContext.Provider value={ dataMovies } >
+    <MovieListContext.Provider value={ movieList } >
       <SaveMovieListContext.Provider value={ saveMovieList } >
         <Switch >
           <Route exact path='/'>
             <Main />
           </Route>
           <Route path='/movies'>
-            <Movies />
+            <Movies
+              addMovieList={ addMovieList }
+              movieList={ movieList }
+              loggedIn={ loggedIn }
+            />
           </Route>
           <Route path='/saved-movies'>
             <SavedMovies />

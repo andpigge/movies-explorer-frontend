@@ -82,6 +82,15 @@ const moviesApiUrl = {
   },
 };
 
+const authApiUrl = {
+  CONECT_SERVER: 'http://movies-diploma-api.nomoredomains.monster/api',
+  // CONECT_SERVER: 'http://localhost:3000',
+  PATHS: {
+    reg: 'signup',
+    login: 'signin',
+  }
+};
+
 export {
   textListMenuMobule,
   navLinkMenuMobule,
@@ -95,4 +104,5 @@ export {
   registerProps,
   loginProps,
   moviesApiUrl,
+  authApiUrl,
 };

@@ -5,11 +5,17 @@ import './moviesCard.css';
 import MovieSave from './movie-save/MovieSave';
 import MovieDelete from './movie-delete/MovieDelete';
 
-function MoviesCard({ movies, cardImg }) {
+// Пользовательский хук
+import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
+
+function MoviesCard({ movies }) {
+  const isMobuleCards = useMobuleCards(601);
+
   const {
     duration,
+    imgDesc,
+    imgModule,
     nameRU,
-    save
   } = movies;
 
   return (
@@ -25,12 +31,12 @@ function MoviesCard({ movies, cardImg }) {
           // Пока так пусть будет
           typeof save === 'undefined' ?
           <MovieDelete /> :
-          <MovieSave save={ save } />
+          <MovieSave /* save={ save } */ />
         }
       </div>
       <img
         alt='Фильм'
-        src={ cardImg }
+        src={ isMobuleCards ? imgModule : imgDesc }
         className='movie__img'
       />
     </div>

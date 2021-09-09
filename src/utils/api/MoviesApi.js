@@ -13,17 +13,23 @@ class MoviesApi {
 
   _checkResponse(res) {
     if (res.ok) {
+      console.log(res.json())
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getmovieList() {
-    fetch(`${ this.#baseUrl }/${ this.#movieListPath }`, {
+    return fetch(`${ this.#baseUrl }${ this.#movieListPath }`, {
       method: 'GET',
       headers: this.#headers,
     })
-    .then(this._checkResponse);
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 }
 

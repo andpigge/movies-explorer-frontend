@@ -8,32 +8,40 @@ import SearchForm from '../search-form/SearchForm';
 import MoviesCardList from '../movies-card-list/MoviesCardList';
 import MoreCards from './more-cards/MoreCards';
 
-// Контекст
-import { MovieListContext } from '../../context/movieListContext';
+// Api
+import MoviesApi from '../../utils/api/MoviesApi';
 
 // utils. Преобразует минуты в часы
 import convertMinutes from '../../utils/convertMinutes';
 
-function Movies() {
+function Movies({ addMovieList, movieList, loggedIn }) {
+  useEffect(() => {
+    if (loggedIn) {
+      MoviesApi.getmovieList()
+        .then(movies => {
+          addMovieList(movies);
+        });
+    }
+  }, [ loggedIn ]);
+
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
   const [ moviesList, setMoviesList ] = useState([]);
 
-  // Контекст
-  const { result } = useContext(MovieListContext);
-
   // Создаю обьект с нужными данными. Данные одинаковые
   useEffect(() => {
-    const newMoviesList = result.map(movie => {
+    const newMoviesList = movieList.map(movie => {
+      const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
+      const imgModule = `https://api.nomoreparties.co${movie.image.url}`;
       return {
+        _id: movie.id,
         duration: convertMinutes(movie.duration),
-        image: movie.image,
+        imgDesc: imgDesc,
+        imgModule: imgModule,
         nameRU: movie.nameRU,
-        _id: movie._id,
-        save: movie.save
       };
     });
     setMoviesList(newMoviesList);
-  }, [ result ]);
+  }, [ movieList ]);
 
   return (
     <>

@@ -85,7 +85,7 @@
   }
 
   .movie__img {
-    margin: 0px;
+    margin: 0px auto;
     margin-bottom: 14px;
     order: 1;
     max-width: 300px;
