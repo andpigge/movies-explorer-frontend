@@ -21,11 +21,14 @@ import saveMovieList from '../data/saveMovieList.json';
 // Api
 import { checkTokenApi } from '../utils/api/auth';
 
+// HOC
+import ProtectedRoute from './HOC/ProtectedRoute';
+
 function App() {
   const history = useHistory();
 
   // Статус пользователя
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(null);
 
   // Информация о пользователе
   const [userInfo, setUserInfo] = useState(false);
@@ -58,22 +61,26 @@ function App() {
           <Route exact path='/'>
             <Main />
           </Route>
-          <Route path='/movies'>
+
+          <ProtectedRoute path={ '/movies' }>
             <Movies
               addMovieList={ addMovieList }
               moviesAll={ movieList }
               loggedIn={ loggedIn }
             />
-          </Route>
-          <Route path='/saved-movies'>
+          </ProtectedRoute>
+
+          <ProtectedRoute path={ '/saved-movies' }>
             <SavedMovies />
-          </Route>
-          <Route path='/profile' >
+          </ProtectedRoute>
+
+          <ProtectedRoute path={ '/profile' }>
             <Profile
               userInfo={ userInfo }
               setUserInfo={ setUserInfo }
             />
-          </Route>
+          </ProtectedRoute>
+
           <Route path='/signin' >
             <Login setLoggedIn={ setLoggedIn } />
           </Route>
