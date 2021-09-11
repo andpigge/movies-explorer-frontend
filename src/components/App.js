@@ -39,7 +39,7 @@ function App() {
           <Route path='/movies'>
             <Movies
               addMovieList={ addMovieList }
-              movieList={ movieList }
+              moviesAll={ movieList }
               loggedIn={ loggedIn }
             />
           </Route>

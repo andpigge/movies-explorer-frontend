@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './movies.css';
 
 // Компоненты
@@ -14,22 +14,67 @@ import MoviesApi from '../../utils/api/MoviesApi';
 // utils. Преобразует минуты в часы
 import convertMinutes from '../../utils/convertMinutes';
 
-function Movies({ addMovieList, movieList, loggedIn }) {
-  useEffect(() => {
-    if (loggedIn) {
-      MoviesApi.getmovieList()
-        .then(movies => {
-          addMovieList(movies);
-        });
-    }
-  }, [ loggedIn ]);
+// Пользовательский хук
+import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
 
+function Movies({ addMovieList, moviesAll, loggedIn }) {
+  // Здесь счетчик начинается с 2. Идет аналогия с массивом for, постфиксный и префексный инкремент.
+  // При первом создании компонента, state останентся 2.
+  const [ count, setCount ] = useState(null);
+  const [ amount, setAmount ] = useState(null);
+  // Активная ли кнопка
+  const [ isActiveButton, setIsActiveButton ] = useState(true);
+  // Активен ли checkbox
+  const [ checkFilter, setCheckFilter ] = useState(false);
+  // Активен ли прелоудер
+  const [ activePreloder, setActivePreloder ] = useState(false);
+
+  const [ moviesListAmount, setAmountMoviesList ] = useState([]);
+  // Найденные фильмы
+  const [ resultSearch, setResultSearch ] = useState(false);
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
   const [ moviesList, setMoviesList ] = useState([]);
 
-  // Создаю обьект с нужными данными. Данные одинаковые
+  // По умолчанию 601 ширина
+  const isMobuleCards = useMobuleCards();
+
+  // Меняю amount на мобильных устройствах.
+  // При изменении экрана, сбрасываю счетчик
   useEffect(() => {
-    const newMoviesList = movieList.map(movie => {
+    if (isMobuleCards) {
+      setAmount(5);
+      setCount(2);
+      return;
+    }
+    setAmount(7);
+    setCount(2);
+  }, [ isMobuleCards ]);
+
+  // Получаю данные карточек с фильмами
+  useEffect(() => {
+    if (loggedIn) {
+      setActivePreloder(true);
+      MoviesApi.getmovieList()
+        .then(movies => {
+          addMovieList(movies);
+        })
+        .catch(err => console.log(err))
+        .finally(() => setActivePreloder(false));
+    }
+  }, [ loggedIn ]);
+
+  // Сохраняю определенное количество карточек
+  useEffect(() => {
+    if (resultSearch) {
+      setAmountMoviesList(resultSearch.slice(0, amount));
+      return;
+    }
+    setAmountMoviesList(moviesAll.slice(0, amount));
+  }, [ amount, moviesAll, resultSearch ]);
+
+  // Создаю обьект с нужными данными.
+  useEffect(() => {
+    const newMoviesList = moviesListAmount.map(movie => {
       const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
       const imgModule = `https://api.nomoreparties.co${movie.image.url}`;
       return {
@@ -38,18 +83,36 @@ function Movies({ addMovieList, movieList, loggedIn }) {
         imgDesc: imgDesc,
         imgModule: imgModule,
         nameRU: movie.nameRU,
+        trailerLink: movie.trailerLink,
       };
     });
     setMoviesList(newMoviesList);
-  }, [ movieList ]);
+  }, [ moviesListAmount ]);
 
   return (
     <>
       <Header />
       <main className='movies'>
-        <SearchForm />
-        <MoviesCardList moviesList={ moviesList } />
-        <MoreCards />
+        <SearchForm
+          setResultSearch={ setResultSearch }
+          setIsActiveButton={ setIsActiveButton }
+          setCheckFilter={ setCheckFilter }
+          checkFilter={ checkFilter }
+        />
+        <MoviesCardList
+          moviesList={ moviesList }
+          activePreloder={ activePreloder }
+        />
+        <MoreCards
+          setAmountMoviesList={ setAmountMoviesList }
+          moviesListAmount={ moviesListAmount }
+          resultSearch={ resultSearch }
+          amount={ amount }
+          setCount={ setCount }
+          count={ count }
+          setIsActiveButton={ setIsActiveButton }
+          isActiveButton={ isActiveButton }
+        />
       </main>
       <Footer />
     </>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const useMobuleMenu = ( windowWidth ) => {
+const useMobuleCards = () => {
   const [mobuleMenu, setMobuleMenu] = useState(null);
 
   const checkWidth = () => {
-    if (window.innerWidth < windowWidth) {
+    if (window.innerWidth < 601) {
       return setMobuleMenu(true);
     }
     setMobuleMenu(false);
@@ -15,7 +15,7 @@ const useMobuleMenu = ( windowWidth ) => {
     return () => {
       window.removeEventListener('resize', checkWidth);
     };
-  }, [ windowWidth, mobuleMenu ]);
+  }, [ mobuleMenu ]);
 
   useEffect(() => {
     checkWidth();
@@ -24,4 +24,4 @@ const useMobuleMenu = ( windowWidth ) => {
   return mobuleMenu;
 }
 
-export default useMobuleMenu;
+export default useMobuleCards;

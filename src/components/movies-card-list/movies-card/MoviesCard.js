@@ -9,13 +9,14 @@ import MovieDelete from './movie-delete/MovieDelete';
 import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
 
 function MoviesCard({ movies }) {
-  const isMobuleCards = useMobuleCards(601);
+  const isMobuleCards = useMobuleCards();
 
   const {
     duration,
     imgDesc,
     imgModule,
     nameRU,
+    trailerLink,
   } = movies;
 
   return (
@@ -34,11 +35,18 @@ function MoviesCard({ movies }) {
           <MovieSave /* save={ save } */ />
         }
       </div>
-      <img
-        alt='Фильм'
-        src={ isMobuleCards ? imgModule : imgDesc }
-        className='movie__img'
-      />
+      <a
+        href={ trailerLink }
+        target='_blank'
+        rel="noreferrer"
+        className='movie__link'
+      >
+        <img
+          alt='Фильм'
+          src={ isMobuleCards ? imgModule : imgDesc }
+          className='movie__img'
+        />
+      </a>
     </div>
   );
 }

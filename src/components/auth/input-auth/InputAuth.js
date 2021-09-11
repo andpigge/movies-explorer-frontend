@@ -8,13 +8,13 @@ function InputAuth(
     typeField,
     validateValue,
     isValidField,
-    setIsValidField
+    setIsValidField,
+    authValue,
+    setAuthValue,
   })
 {
   // Валидация
   const [ validInfo, setValidInfo ] = useState({});
-
-  const [ authValue, setAuthValue ] = useState('');
 
   const handleChange = e => {
     const value = e.target.value;

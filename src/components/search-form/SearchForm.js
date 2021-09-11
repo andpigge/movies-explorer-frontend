@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './searchForm.css';
 
 // Компоненты
@@ -8,8 +8,17 @@ import FilterCheckbox from './filter-checkbox/FilterCheckbox';
 
 // Пользовательские хуки. HOC не подойдет
 import useSearchMobule from '../../utils/custom-hooks/useSearchMobule';
+import searchMovies from '../../utils/searchMovies';
 
-function SearchForm() {
+// Контекст
+import { MovieListContext } from '../../context/movieListContext';
+
+function SearchForm({ setResultSearch, setIsActiveButton, setCheckFilter, checkFilter }) {
+  const [ searchValueMovies, setSearchValueMovies ] = useState('');
+
+  // Контекст
+  const movieList = useContext(MovieListContext);
+
   const isMobuleSearch = useSearchMobule(601);
 
   // По умолчанию state равен null, в случае если мобильный экран true или false,
@@ -18,10 +27,16 @@ function SearchForm() {
     if (isMobuleSearch === false) {
       return (
         <div className='search__container'>
-          <InputSearch />
+          <InputSearch
+            setSearchValue={ setSearchValueMovies }
+            searchValue={ searchValueMovies }
+          />
           <ButtonSearch />
           <span className='search__form-line'></span>
-          <FilterCheckbox />
+          <FilterCheckbox
+            setCheckFilter={ setCheckFilter }
+            checkFilter={ checkFilter }
+          />
         </div>
       );
     }
@@ -29,18 +44,33 @@ function SearchForm() {
       return (
         <>
           <div className='search__container'>
-            <InputSearch />
+            <InputSearch
+              setSearchValue={ setSearchValueMovies }
+              searchValue={ searchValueMovies }
+            />
             <ButtonSearch />
           </div>
-          <FilterCheckbox />
+          <FilterCheckbox
+            setCheckFilter={ setCheckFilter }
+            checkFilter={ checkFilter }
+          />
         </>
       );
     }
   };
 
+  const searchMoviesClick = e => {
+    e.preventDefault();
+    const result = searchMovies(movieList, searchValueMovies, checkFilter);
+    setResultSearch(result);
+
+    // При новом поиске, кнопку еще делаю активной.
+    setIsActiveButton(true);
+  };
+
   return (
     <section className='search movies_margin_center'>
-      <form className='search__form' name='search'>
+      <form className='search__form' name='search' onSubmit={ searchMoviesClick }>
         {
           setMenuDisplay()
         }

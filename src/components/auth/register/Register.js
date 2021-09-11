@@ -15,6 +15,11 @@ import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
 function Register() {
+  // Значение полей
+  const [ authValueName, setAuthValueName ] = useState('');
+  const [ authValueEmail, setAuthValueEmail ] = useState('');
+  const [ authValuePassword, setAuthValuePassword ] = useState('');
+
   // Поднял State
   const [ isValidFieldName, setIsValidFieldName ] = useState(null);
   const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
@@ -52,6 +57,8 @@ function Register() {
             validateValue={ handleValidateName }
             isValidField={ isValidFieldName }
             setIsValidField={ setIsValidFieldName }
+            authValue={ authValueName }
+            setAuthValue={ setAuthValueName }
           />
           <InputAuth
             textDesc={ 'E-mail' }
@@ -60,6 +67,8 @@ function Register() {
             validateValue={ handleValidateEmail }
             isValidField={ isValidFieldEmail }
             setIsValidField={ setIsValidFieldEmail }
+            authValue={ authValueEmail }
+            setAuthValue={ setAuthValueEmail }
           />
           <InputAuth
             textDesc={ 'Пароль' }
@@ -68,6 +77,8 @@ function Register() {
             validateValue={ handleValidatePassword }
             isValidField={ isValidFieldPassword }
             setIsValidField={ setIsValidFieldPassword }
+            authValue={ authValuePassword }
+            setAuthValue={ setAuthValuePassword }
           />
           <ButtonAuth
             buttonText={ 'Зарегистрироваться' }
