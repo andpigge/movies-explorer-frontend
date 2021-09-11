@@ -1,5 +1,5 @@
 import { authApiUrl } from '../constants';
-const { CONECT_SERVER, PATHS: { reg, login } } = authApiUrl;
+const { CONECT_SERVER, PATHS: { reg, login, user } } = authApiUrl;
 
 const checkResponse = res => {
   if (res.ok) {
@@ -33,18 +33,20 @@ const signInApi = dataLogin => {
 }
 
 // Проверка токена
-// const checkTokenApi = token => {
-//   return fetch(`${CONECT_SERVER}/${user}`, {
-//     method: 'GET',
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Authorization": `Bearer ${token}`
-//     }
-//   })
-//   .then(checkResponse);
-// }
+// Просто получаю пользователя, и сохраняю его данные в state.
+const checkTokenApi = token => {
+  return fetch(`${CONECT_SERVER}/${user}`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  .then(checkResponse);
+}
 
 export {
   registerApi,
   signInApi,
+  checkTokenApi,
 };

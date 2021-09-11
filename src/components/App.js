@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import './app.css';
 
 // Компоненты
@@ -10,7 +10,6 @@ import Profile from './profile/Profile';
 import Login from './auth/login/Login';
 import Register from './auth/register/Register';
 import NotFound from './not-found/NotFound';
-import Preloader from './preloader/Preloader';
 
 // Контекст
 import { MovieListContext } from '../context/movieListContext';
@@ -19,15 +18,38 @@ import { SaveMovieListContext } from '../context/saveMovieListContext';
 // Data
 import saveMovieList from '../data/saveMovieList.json';
 
+// Api
+import { checkTokenApi } from '../utils/api/auth';
+
 function App() {
+  const history = useHistory();
+
   // Статус пользователя
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // Информация о пользователе
+  const [userInfo, setUserInfo] = useState(false);
 
   // Фильмы
   const [movieList, setMovieList] = useState([]);
   const addMovieList = movieList => {
     setMovieList(movieList);
   }
+
+  // Заход на сайт
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      checkTokenApi(token)
+        .then(res => {
+          // Информация о пользователе
+          setUserInfo(res);
+
+          setLoggedIn(true);
+          history.push(`/movies`);
+        });
+    }
+  }, [ loggedIn ]);
 
   return (
     <MovieListContext.Provider value={ movieList } >
@@ -47,7 +69,10 @@ function App() {
             <SavedMovies />
           </Route>
           <Route path='/profile' >
-            <Profile />
+            <Profile
+              userInfo={ userInfo }
+              setUserInfo={ setUserInfo }
+            />
           </Route>
           <Route path='/signin' >
             <Login setLoggedIn={ setLoggedIn } />

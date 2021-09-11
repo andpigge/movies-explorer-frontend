@@ -11,7 +11,7 @@ import LinkProfile from './link-profile/LinkProfile';
 import validateString from '../../utils/validate/validateString';
 import validateEmail from '../../utils/validate/validateEmail';
 
-function Profile() {
+function Profile({ userInfo, setUserInfo }) {
   // Поднял State
   const [ isValidFieldName, setIsValidFieldName ] = useState(null);
   const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
@@ -32,6 +32,15 @@ function Profile() {
   const handleValidateEmail = email => {
     return validateEmail({ email: email});
   };
+
+  // Запрос к бд
+  useEffect(() => {
+    if (userInfo === false) {
+      return;
+    }
+    // Запрос
+    // setUserInfo();
+  });
 
   return (
     <>

@@ -88,6 +88,7 @@ const authApiUrl = {
   PATHS: {
     reg: 'signup',
     login: 'signin',
+    user: 'users/me',
   }
 };
 
