@@ -14,6 +14,9 @@ import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
 function Login() {
+  const [ authValueEmail, setAuthValueEmail ] = useState('');
+  const [ authValuePassword, setAuthValuePassword ] = useState('');
+
   // Поднял State
   const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
   const [ isValidFieldPassword, setIsValidFieldPassword ] = useState(null);
@@ -46,6 +49,8 @@ function Login() {
             validateValue={ handleValidateEmail }
             isValidField={ isValidFieldEmail }
             setIsValidField={ setIsValidFieldEmail }
+            authValue={ authValueEmail }
+            setAuthValue={ setAuthValueEmail }
           />
           <InputAuth
             textDesc={ 'Пароль' }
@@ -54,6 +59,8 @@ function Login() {
             validateValue={ handleValidatePassword }
             isValidField={ isValidFieldPassword }
             setIsValidField={ setIsValidFieldPassword }
+            authValue={ authValuePassword }
+            setAuthValue={ setAuthValuePassword }
           />
           <ButtonAuth buttonText={ 'Войти' } isValidFieldLogin={ isValidFieldLogin } />
         </form>
