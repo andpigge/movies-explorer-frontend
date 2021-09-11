@@ -7,7 +7,8 @@ function InputProfile(
     text,
     validateValue,
     setIsValidField,
-    isValidField
+    isValidField,
+    defaultValue
   })
 {
   const messageRef = useRef();
@@ -15,7 +16,7 @@ function InputProfile(
   // Валидация
   const [ validInfo, setValidInfo ] = useState({});
 
-  const [ profileValue, setProfileValue ] = useState('');
+  const [ profileValue, setProfileValue ] = useState(defaultValue);
 
   const handleChange = e => {
     const item = e.target;

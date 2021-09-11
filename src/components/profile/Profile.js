@@ -11,10 +11,18 @@ import LinkProfile from './link-profile/LinkProfile';
 import validateString from '../../utils/validate/validateString';
 import validateEmail from '../../utils/validate/validateEmail';
 
+// API
+import MainApi from '../../utils/api/MainApi';
+
 function Profile({ userInfo, setUserInfo }) {
+  const {
+    name,
+    email,
+   } = userInfo;
+
   // Поднял State
-  const [ isValidFieldName, setIsValidFieldName ] = useState(null);
-  const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(null);
+  const [ isValidFieldName, setIsValidFieldName ] = useState(true);
+  const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(true);
 
   // Валидны ли все поля
   const [ isValidFieldAll, setIsValidFieldAll ] = useState(false);
@@ -35,12 +43,22 @@ function Profile({ userInfo, setUserInfo }) {
 
   // Запрос к бд
   useEffect(() => {
-    if (userInfo === false) {
+    if (userInfo) {
       return;
     }
-    // Запрос
-    // setUserInfo();
-  });
+    MainApi.getUserInfo()
+      .then(res => {
+        // Информация о пользователе
+        setUserInfo(res);
+      })
+      .catch(err => console.log(err));
+      console.log(userInfo)
+  }, [ userInfo ]);
+
+  const submitForm = e => {
+    e.preventDefault();
+    // requestRegister();
+  };
 
   return (
     <>
@@ -49,15 +67,22 @@ function Profile({ userInfo, setUserInfo }) {
         <section className='user-profile profile_margin_center'>
           <div className='user-profile__container'>
             <h1 className='user-profile__title'>
-              Привет, Виталий!
+              {
+                `Привет, ${ name ? name : 'Пользователь' }!`
+              }
             </h1>
-            <form className='user-profile__form' name='profile'>
+            <form
+              className='user-profile__form'
+              name='profile'
+              onSubmit={ submitForm }
+            >
               <InputProfile
                 name={ 'nameInput' }
                 text={ 'Имя' }
                 validateValue={ handleValidateName }
                 isValidField={ isValidFieldName }
                 setIsValidField={ setIsValidFieldName }
+                defaultValue={ name }
               />
               <InputProfile
                 name={ 'emailInput' }
@@ -65,6 +90,7 @@ function Profile({ userInfo, setUserInfo }) {
                 validateValue={ handleValidateEmail }
                 isValidField={ isValidFieldEmail }
                 setIsValidField={ setIsValidFieldEmail }
+                defaultValue={ email }
               />
               <ButtonProfile isValidFieldAll={ isValidFieldAll } />
             </form>
