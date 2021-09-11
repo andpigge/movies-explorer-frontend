@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './login.css';
 
 // Компоненты
@@ -13,7 +14,14 @@ import { loginProps } from '../../../utils/constants';
 import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
-function Login() {
+// Api
+import { signInApi } from '../../../utils/api/auth';
+
+function Login({ setLoggedIn }) {
+  // Меняет название кнопки при запросе к БД
+  const [isLoadig, setIsLoading] = useState(false);
+  const history = useHistory();
+
   const [ authValueEmail, setAuthValueEmail ] = useState('');
   const [ authValuePassword, setAuthValuePassword ] = useState('');
 
@@ -38,10 +46,40 @@ function Login() {
     return validatePassword({ password: password});
   };
 
+  const requestLogin = () => {
+    setIsLoading(true);
+    signInApi({
+      email: authValueEmail,
+      password: authValuePassword,
+    })
+    .then(res => {
+      localStorage.setItem('jwt', res.token);
+      // Меняю статус пользователя
+      setLoggedIn(true);
+
+      setAuthValueEmail('');
+      setAuthValuePassword('');
+      history.push(`/movies`);
+    })
+    .catch(err => {
+      console.log(err);
+      setIsLoading(false);
+    });
+  }
+
+  const submitForm = e => {
+    e.preventDefault();
+    requestLogin();
+  };
+
   return (
     <main className='login login__margin-center'>
       <Auth authProps={ loginProps } >
-        <form className='auth__form login__form' name='login'>
+        <form
+          className='auth__form login__form'
+          name='login'
+          onSubmit={ submitForm }
+        >
           <InputAuth
             textDesc={ 'E-mail' }
             nameField={ 'loginEmail' }
@@ -62,7 +100,11 @@ function Login() {
             authValue={ authValuePassword }
             setAuthValue={ setAuthValuePassword }
           />
-          <ButtonAuth buttonText={ 'Войти' } isValidFieldLogin={ isValidFieldLogin } />
+          <ButtonAuth
+            buttonText={ 'Войти' }
+            isValidFieldLogin={ isValidFieldLogin }
+            isLoadig={ isLoadig }
+          />
         </form>
       </Auth>
     </main>

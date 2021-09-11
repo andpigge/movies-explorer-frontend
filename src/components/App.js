@@ -21,7 +21,7 @@ import saveMovieList from '../data/saveMovieList.json';
 
 function App() {
   // Статус пользователя
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // Фильмы
   const [movieList, setMovieList] = useState([]);
@@ -50,7 +50,7 @@ function App() {
             <Profile />
           </Route>
           <Route path='/signin' >
-            <Login />
+            <Login setLoggedIn={ setLoggedIn } />
           </Route>
           <Route path='/signup' >
             <Register />

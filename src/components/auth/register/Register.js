@@ -76,9 +76,7 @@ function Register() {
 
   const submitForm = e => {
     e.preventDefault();
-
     requestRegister();
-    console.log(1)
   };
 
   return (
@@ -122,6 +120,7 @@ function Register() {
           <ButtonAuth
             buttonText={ 'Зарегистрироваться' }
             isValidFieldRegister={ isValidFieldRegister }
+            isLoadig={ isLoadig }
           />
         </form>
       </Auth>
