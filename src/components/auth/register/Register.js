@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './register.css';
 
 // Компоненты
@@ -14,7 +15,14 @@ import validateString from '../../../utils/validate/validateString';
 import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
+// Api
+import { registerApi } from '../../../utils/api/auth';
+
 function Register() {
+  // Меняет название кнопки при запросе к БД
+  const [isLoadig, setIsLoading] = useState(false);
+  const history = useHistory();
+
   // Значение полей
   const [ authValueName, setAuthValueName ] = useState('');
   const [ authValueEmail, setAuthValueEmail ] = useState('');
@@ -46,10 +54,41 @@ function Register() {
     return validatePassword({ password: password});
   };
 
+  // Запрос к серверу
+  const requestRegister = () => {
+    setIsLoading(true);
+    registerApi({
+      name: authValueName,
+      email: authValueEmail,
+      password: authValuePassword,
+    })
+    .then(res => {
+      setAuthValueName('');
+      setAuthValueEmail('');
+      setAuthValuePassword('');
+      history.push(`/signin`);
+    })
+    .catch(err => {
+      console.log(err);
+      setIsLoading(false);
+    });
+  };
+
+  const submitForm = e => {
+    e.preventDefault();
+
+    requestRegister();
+    console.log(1)
+  };
+
   return (
     <main className='register register__margin-center'>
       <Auth authProps={ registerProps } >
-        <form className='auth__form register__form' name='register'>
+        <form
+          className='auth__form register__form'
+          name='register'
+          onSubmit={ submitForm }
+        >
           <InputAuth
             textDesc={ 'Имя' }
             nameField={ 'registerName' }

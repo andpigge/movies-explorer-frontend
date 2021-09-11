@@ -83,8 +83,8 @@ const moviesApiUrl = {
 };
 
 const authApiUrl = {
-  CONECT_SERVER: 'http://movies-diploma-api.nomoredomains.monster/api',
-  // CONECT_SERVER: 'http://localhost:3000',
+  // CONECT_SERVER: 'http://movies-diploma-api.nomoredomains.monster/api',
+  CONECT_SERVER: 'http://localhost:3000/api',
   PATHS: {
     reg: 'signup',
     login: 'signin',
