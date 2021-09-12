@@ -20,8 +20,12 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
     email,
    } = userInfo;
 
-  const [ profileValueName, setProfileValueName ] = useState();
-  const [ profileValueEmail, setProfileValueEmail ] = useState();
+  const [ profileValueName, setProfileValueName ] = useState('');
+  const [ profileValueEmail, setProfileValueEmail ] = useState('');
+  useEffect(() => {
+    setProfileValueName(name);
+    setProfileValueEmail(email);
+  }, [ name, email ]);
 
   // Поднял State
   const [ isValidFieldName, setIsValidFieldName ] = useState(true);
@@ -80,7 +84,6 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
                 validateValue={ handleValidateName }
                 isValidField={ isValidFieldName }
                 setIsValidField={ setIsValidFieldName }
-                defaultValue={ name }
                 setProfileValue={ setProfileValueName }
                 profileValue={ profileValueName }
               />
@@ -90,7 +93,6 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
                 validateValue={ handleValidateEmail }
                 isValidField={ isValidFieldEmail }
                 setIsValidField={ setIsValidFieldEmail }
-                defaultValue={ email }
                 setProfileValue={ setProfileValueEmail }
                 profileValue={ profileValueEmail }
               />

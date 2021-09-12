@@ -6,6 +6,6 @@
   cursor: pointer;
   background-color: inherit;
   border: none;
-  background-image: url(../../../../images/svg/movies-delete-icon.svg);
+  background-image: url(../../../images/svg/movies-delete-icon.svg);
   background-repeat: no-repeat;
 }

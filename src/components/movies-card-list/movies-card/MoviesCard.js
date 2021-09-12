@@ -1,14 +1,10 @@
 import React from 'react';
 import './moviesCard.css';
 
-// Компоненты
-import MovieSave from './movie-save/MovieSave';
-import MovieDelete from './movie-delete/MovieDelete';
-
 // Пользовательский хук
 import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
 
-function MoviesCard({ movies }) {
+function MoviesCard({ movies, children }) {
   const isMobuleCards = useMobuleCards();
 
   const {
@@ -29,10 +25,7 @@ function MoviesCard({ movies }) {
           { duration }
         </p>
         {
-          // Пока так пусть будет
-          typeof save === 'undefined' ?
-          <MovieDelete /> :
-          <MovieSave /* save={ save } */ />
+          children
         }
       </div>
       <a

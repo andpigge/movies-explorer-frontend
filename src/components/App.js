@@ -15,9 +15,6 @@ import NotFound from './not-found/NotFound';
 import { MovieListContext } from '../context/movieListContext';
 import { SaveMovieListContext } from '../context/saveMovieListContext';
 
-// Data
-import saveMovieList from '../data/saveMovieList.json';
-
 // Api
 import { checkTokenApi } from '../utils/api/auth';
 
@@ -40,6 +37,12 @@ function App() {
     setMovieList(movieList);
   }
 
+  // Сохраненные фильмы
+  const [movieListSaved, setMovieListSaved] = useState([]);
+  const addMovieListSaved = movieListSaved => {
+    setMovieListSaved(movieListSaved);
+  }
+
   // Заход на сайт
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -54,7 +57,7 @@ function App() {
 
   return (
     <MovieListContext.Provider value={ movieList } >
-      <SaveMovieListContext.Provider value={ saveMovieList } >
+      <SaveMovieListContext.Provider value={ movieListSaved } >
         <Switch >
           <Route exact path='/'>
             <Main />
@@ -69,7 +72,11 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute path={ '/saved-movies' }>
-            <SavedMovies />
+            <SavedMovies
+              addMovieListSaved={ addMovieListSaved }
+              moviesAllSaved={ movieListSaved }
+              loggedIn={ loggedIn }
+            />
           </ProtectedRoute>
 
           <ProtectedRoute path={ '/profile' }>

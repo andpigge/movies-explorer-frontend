@@ -6,11 +6,24 @@ class MainApi {
   #headers
   #pathGetProfile
   #pathUpdateProfile
-  constructor({ baseUrl, headers, paths: { get, update } }) {
+  #getMovies
+  #createMovies
+  #deleteMovies
+  constructor({ baseUrl, headers, paths: {
+    getMe,
+    updateMe,
+    getMovies,
+    createMovies,
+    deleteMovies
+  }})
+  {
     this.#baseUrl = baseUrl;
     this.#headers = headers;
-    this.#pathGetProfile = get;
-    this.#pathUpdateProfile = update;
+    this.#pathGetProfile = getMe;
+    this.#pathUpdateProfile = updateMe;
+    this.#getMovies = getMovies;
+    this.#createMovies = createMovies;
+    this.#deleteMovies = deleteMovies;
   }
 
   _checkResponse = res => {
@@ -42,6 +55,16 @@ class MainApi {
       method: 'PATCH',
       headers: this.#headers,
       body: JSON.stringify(dataUsers),
+    })
+    .then(this._checkResponse);
+  }
+
+  // Обновление данных пользователя
+  getMovies = () => {
+    this._updateToken();
+    return fetch(`${this.#baseUrl}/${this.#getMovies}`, {
+      method: 'GET',
+      headers: this.#headers,
     })
     .then(this._checkResponse);
   }

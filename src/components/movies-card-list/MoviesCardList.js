@@ -5,7 +5,7 @@ import './moviesCardList.css';
 import MoviesCard from './movies-card/MoviesCard';
 import Preloader from '../preloader/Preloader';
 
-function MoviesCardList({ moviesList, activePreloder }) {
+function MoviesCardList({ moviesList, activePreloder, children }) {
   return (
     <section className='movies-card movies_margin_center'>
       <ul className='movies-card__list'>
@@ -20,7 +20,7 @@ function MoviesCardList({ moviesList, activePreloder }) {
             moviesList.map((movie, i) => {
               return (
                 <li key={ movie._id } className='movies-card__item'>
-                  <MoviesCard movies={ movie } />
+                  <MoviesCard movies={ movie } children={ children } />
                 </li>
               )
             })

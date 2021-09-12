@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './savedMovies.css';
 
 // Компоненты
@@ -6,39 +6,40 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import SearchForm from '../search-form/SearchForm';
 import MoviesCardList from '../movies-card-list/MoviesCardList';
-
-// Контекст
-import { SaveMovieListContext } from '../../context/saveMovieListContext';
+import MovieDelete from './movie-delete/MovieDelete';
 
 // utils. Преобразует минуты в часы
 import convertMinutes from '../../utils/convertMinutes';
 
-function SavedMovies() {
+function SavedMovies({ addMovieListSaved, moviesAllSaved, loggedIn }) {
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
   const [ moviesList, setMoviesList ] = useState([]);
 
-  // Контекст
-  const { result } = useContext(SaveMovieListContext);
-
   // Создаю обьект с нужными данными. Данные одинаковые
   useEffect(() => {
-    const newMoviesList = result.map(movie => {
+    const newMoviesList = moviesAllSaved.map(movie => {
+      const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
+      const imgModule = `https://api.nomoreparties.co${movie.image.url}`;
       return {
+        _id: movie.id,
         duration: convertMinutes(movie.duration),
-        image: movie.image,
+        imgDesc: imgDesc,
+        imgModule: imgModule,
         nameRU: movie.nameRU,
-        _id: movie._id,
+        trailerLink: movie.trailerLink,
       };
     });
     setMoviesList(newMoviesList);
-  }, [ result ]);
+  }, [ moviesAllSaved ]);
 
   return (
     <>
       <Header />
       <main className='saved-movies saved-movies_margin_bottom'>
         <SearchForm />
-        <MoviesCardList moviesList={ moviesList } />
+        <MoviesCardList moviesList={ moviesList } >
+          <MovieDelete />
+        </MoviesCardList >
       </main>
       <Footer />
     </>

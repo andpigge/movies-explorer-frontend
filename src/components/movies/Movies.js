@@ -7,6 +7,7 @@ import Footer from '../footer/Footer';
 import SearchForm from '../search-form/SearchForm';
 import MoviesCardList from '../movies-card-list/MoviesCardList';
 import MoreCards from './more-cards/MoreCards';
+import MovieSave from './movie-save/MovieSave';
 
 // Api
 import MoviesApi from '../../utils/api/MoviesApi';
@@ -102,7 +103,9 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
         <MoviesCardList
           moviesList={ moviesList }
           activePreloder={ activePreloder }
-        />
+        >
+          <MovieSave />
+        </MoviesCardList>
         <MoreCards
           setAmountMoviesList={ setAmountMoviesList }
           moviesListAmount={ moviesListAmount }
