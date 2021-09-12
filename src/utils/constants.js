@@ -96,8 +96,8 @@ const profileApiUrl = {
   // CONECT_SERVER: 'http://movies-diploma-api.nomoredomains.monster/api',
   CONECT_SERVER: 'http://localhost:3000/api',
   PATHS: {
-    get: '/me',
-    update: '/me',
+    get: 'users/me',
+    update: 'users/me',
   }
 };
 

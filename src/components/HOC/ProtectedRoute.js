@@ -4,7 +4,6 @@ import { Route, Redirect } from "react-router-dom";
 const ProtectedRoute = ({ children, path }) => {
   const renderChildren = () => {
     const token = localStorage.getItem('jwt');
-    console.log(path)
     if (token) {
       return (
         children

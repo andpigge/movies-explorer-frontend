@@ -14,7 +14,7 @@ import validateEmail from '../../utils/validate/validateEmail';
 // API
 import MainApi from '../../utils/api/MainApi';
 
-function Profile({ userInfo, setUserInfo }) {
+function Profile({ userInfo, addUserInfo, setLoggedIn }) {
   const {
     name,
     email,
@@ -41,23 +41,18 @@ function Profile({ userInfo, setUserInfo }) {
     return validateEmail({ email: email});
   };
 
-  // Запрос к бд
-  useEffect(() => {
-    if (userInfo) {
-      return;
-    }
-    MainApi.getUserInfo()
-      .then(res => {
-        // Информация о пользователе
-        setUserInfo(res);
-      })
+  const requestProfile = () => {
+    MainApi.updateUserInfo({
+      email: isValidFieldEmail,
+      name: isValidFieldName,
+    })
+      .then(res => addUserInfo(res))
       .catch(err => console.log(err));
-      console.log(userInfo)
-  }, [ userInfo ]);
+  };
 
   const submitForm = e => {
     e.preventDefault();
-    // requestRegister();
+    requestProfile();
   };
 
   return (
@@ -94,7 +89,7 @@ function Profile({ userInfo, setUserInfo }) {
               />
               <ButtonProfile isValidFieldAll={ isValidFieldAll } />
             </form>
-            <LinkProfile />
+            <LinkProfile setLoggedIn={ setLoggedIn } />
           </div>
         </section>
       </main>

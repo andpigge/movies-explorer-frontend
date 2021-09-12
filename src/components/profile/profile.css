@@ -13,6 +13,8 @@
 }
 
 .user-profile__container {
+  display: flex;
+  flex-direction: column;
   max-width: 410px;
   margin: 0 auto 70px;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './inputProfile.css';
 
 function InputProfile(
@@ -16,7 +16,11 @@ function InputProfile(
   // Валидация
   const [ validInfo, setValidInfo ] = useState({});
 
-  const [ profileValue, setProfileValue ] = useState(defaultValue);
+  const [ profileValue, setProfileValue ] = useState();
+
+  useEffect(() => {
+    setProfileValue(defaultValue);
+  }, [ defaultValue ]);
 
   const handleChange = e => {
     const item = e.target;

@@ -34,6 +34,17 @@ class MainApi {
     })
     .then(this._checkResponse);
   }
+
+  // Обновление данных пользователя
+  updateUserInfo = dataUsers => {
+    this._updateToken();
+    return fetch(`${this.#baseUrl}/${this.#pathUpdateProfile}`, {
+      method: 'PATCH',
+      headers: this.#headers,
+      body: JSON.stringify(dataUsers),
+    })
+    .then(this._checkResponse);
+  }
 }
 
 export default new MainApi({
@@ -43,6 +54,3 @@ export default new MainApi({
   },
   paths: PATHS
 });
-
-// Обновление данных пользователя
-

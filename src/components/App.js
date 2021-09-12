@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './app.css';
 
 // Компоненты
@@ -25,13 +25,14 @@ import { checkTokenApi } from '../utils/api/auth';
 import ProtectedRoute from './HOC/ProtectedRoute';
 
 function App() {
-  const history = useHistory();
-
   // Статус пользователя
   const [loggedIn, setLoggedIn] = useState(null);
 
   // Информация о пользователе
   const [userInfo, setUserInfo] = useState(false);
+  const addUserInfo = movieList => {
+    setUserInfo(movieList);
+  }
 
   // Фильмы
   const [movieList, setMovieList] = useState([]);
@@ -45,14 +46,11 @@ function App() {
     if (token) {
       checkTokenApi(token)
         .then(res => {
-          // Информация о пользователе
-          setUserInfo(res);
-
+          addUserInfo(res);
           setLoggedIn(true);
-          history.push(`/movies`);
         });
     }
-  }, [ loggedIn ]);
+  }, []);
 
   return (
     <MovieListContext.Provider value={ movieList } >
@@ -77,7 +75,8 @@ function App() {
           <ProtectedRoute path={ '/profile' }>
             <Profile
               userInfo={ userInfo }
-              setUserInfo={ setUserInfo }
+              addUserInfo={ addUserInfo }
+              setLoggedIn={ setLoggedIn }
             />
           </ProtectedRoute>
 
