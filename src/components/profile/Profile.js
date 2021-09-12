@@ -20,6 +20,9 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
     email,
    } = userInfo;
 
+  const [ profileValueName, setProfileValueName ] = useState();
+  const [ profileValueEmail, setProfileValueEmail ] = useState();
+
   // Поднял State
   const [ isValidFieldName, setIsValidFieldName ] = useState(true);
   const [ isValidFieldEmail, setIsValidFieldEmail ] = useState(true);
@@ -43,8 +46,8 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
 
   const requestProfile = () => {
     MainApi.updateUserInfo({
-      email: isValidFieldEmail,
-      name: isValidFieldName,
+      email: profileValueEmail,
+      name: profileValueName,
     })
       .then(res => addUserInfo(res))
       .catch(err => console.log(err));
@@ -78,6 +81,8 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
                 isValidField={ isValidFieldName }
                 setIsValidField={ setIsValidFieldName }
                 defaultValue={ name }
+                setProfileValue={ setProfileValueName }
+                profileValue={ profileValueName }
               />
               <InputProfile
                 name={ 'emailInput' }
@@ -86,6 +91,8 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
                 isValidField={ isValidFieldEmail }
                 setIsValidField={ setIsValidFieldEmail }
                 defaultValue={ email }
+                setProfileValue={ setProfileValueEmail }
+                profileValue={ profileValueEmail }
               />
               <ButtonProfile isValidFieldAll={ isValidFieldAll } />
             </form>

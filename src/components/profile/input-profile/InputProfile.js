@@ -8,15 +8,15 @@ function InputProfile(
     validateValue,
     setIsValidField,
     isValidField,
-    defaultValue
+    defaultValue,
+    setProfileValue,
+    profileValue,
   })
 {
   const messageRef = useRef();
 
   // Валидация
   const [ validInfo, setValidInfo ] = useState({});
-
-  const [ profileValue, setProfileValue ] = useState();
 
   useEffect(() => {
     setProfileValue(defaultValue);
