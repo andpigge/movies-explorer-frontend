@@ -4,15 +4,15 @@ import './moviesCard.css';
 // Пользовательский хук
 import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
 
-function MoviesCard({ movies, children }) {
+function MoviesCard({ movies, MovieSave, MovieDelete }) {
   const isMobuleCards = useMobuleCards();
 
   const {
     duration,
-    imgDesc,
-    imgModule,
+    image,
+    thumbnail,
     nameRU,
-    trailerLink,
+    trailer,
   } = movies;
 
   return (
@@ -25,18 +25,20 @@ function MoviesCard({ movies, children }) {
           { duration }
         </p>
         {
-          children
+          MovieSave ?
+          <MovieSave movies={ movies } /> :
+          <MovieDelete />
         }
       </div>
       <a
-        href={ trailerLink }
+        href={ trailer }
         target='_blank'
         rel="noreferrer"
         className='movie__link'
       >
         <img
           alt='Фильм'
-          src={ isMobuleCards ? imgModule : imgDesc }
+          src={ isMobuleCards ? image : thumbnail }
           className='movie__img'
         />
       </a>

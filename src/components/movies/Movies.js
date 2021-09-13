@@ -53,7 +53,7 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
 
   // Получаю данные карточек с фильмами
   useEffect(() => {
-    if (loggedIn) {
+    if (loggedIn && moviesAll.length === 0 ) {
       setActivePreloder(true);
       MoviesApi.getmovieList()
         .then(movies => {
@@ -62,7 +62,7 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
         .catch(err => console.log(err))
         .finally(() => setActivePreloder(false));
     }
-  }, [ loggedIn ]);
+  }, [ loggedIn, moviesAll ]);
 
   // Сохраняю определенное количество карточек
   useEffect(() => {
@@ -79,12 +79,18 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
       const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
       const imgModule = `https://api.nomoreparties.co${movie.image.url}`;
       return {
-        _id: movie.id,
-        duration: convertMinutes(movie.duration),
-        imgDesc: imgDesc,
-        imgModule: imgModule,
+        country: movie.country,
+        director: movie.director,
+        // duration: convertMinutes(movie.duration),
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: imgModule,
+        trailer: movie.trailerLink,
+        thumbnail: imgDesc,
+        movieId: movie.id,
         nameRU: movie.nameRU,
-        trailerLink: movie.trailerLink,
+        nameEN: movie.nameEN,
       };
     });
     setMoviesList(newMoviesList);
@@ -103,9 +109,8 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
         <MoviesCardList
           moviesList={ moviesList }
           activePreloder={ activePreloder }
-        >
-          <MovieSave />
-        </MoviesCardList>
+          MovieSave={ MovieSave }
+        />
         <MoreCards
           setAmountMoviesList={ setAmountMoviesList }
           moviesListAmount={ moviesListAmount }

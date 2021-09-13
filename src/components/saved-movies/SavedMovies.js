@@ -15,7 +15,7 @@ function SavedMovies({ addMovieListSaved, moviesAllSaved, loggedIn }) {
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
   const [ moviesList, setMoviesList ] = useState([]);
 
-  // Создаю обьект с нужными данными. Данные одинаковые
+  // Создаю обьект с нужными данными для вывода.
   useEffect(() => {
     const newMoviesList = moviesAllSaved.map(movie => {
       const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
@@ -37,9 +37,7 @@ function SavedMovies({ addMovieListSaved, moviesAllSaved, loggedIn }) {
       <Header />
       <main className='saved-movies saved-movies_margin_bottom'>
         <SearchForm />
-        <MoviesCardList moviesList={ moviesList } >
-          <MovieDelete />
-        </MoviesCardList >
+        <MoviesCardList moviesList={ moviesList } MovieDelete={ MovieDelete } />
       </main>
       <Footer />
     </>

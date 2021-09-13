@@ -1,13 +1,15 @@
 .movie__save {
-  width: 14px;
-  height: 12px;
+  width: 24px;
+  height: 22px;
   background-image: url(../../../images/svg/movies-like-inactive-icon.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 14px 12px;
   cursor: pointer;
   border: none;
-  background-color: inherit;
+  /* background-color: inherit; */
+  background-color: #EB5757;
+  border-radius: 50%;
 }
 
 .movie__save_active {

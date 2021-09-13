@@ -59,12 +59,23 @@ class MainApi {
     .then(this._checkResponse);
   }
 
-  // Обновление данных пользователя
+  // Получение сохраненых фильмов
   getMovies = () => {
     this._updateToken();
     return fetch(`${this.#baseUrl}/${this.#getMovies}`, {
       method: 'GET',
       headers: this.#headers,
+    })
+    .then(this._checkResponse);
+  }
+
+  // Сохранить фильм
+  saveMovie = dataMovies => {
+    this._updateToken();
+    return fetch(`${this.#baseUrl}/${this.#createMovies}`, {
+      method: 'POST',
+      headers: this.#headers,
+      body: JSON.stringify(dataMovies),
     })
     .then(this._checkResponse);
   }
