@@ -17,6 +17,8 @@ import { SaveMovieListContext } from '../context/saveMovieListContext';
 
 // Api
 import { checkTokenApi } from '../utils/api/auth';
+import MoviesApi from '../utils/api/MoviesApi';
+import MainApi from '../utils/api/MainApi';
 
 // HOC
 import ProtectedRoute from './HOC/ProtectedRoute';
@@ -24,6 +26,8 @@ import ProtectedRoute from './HOC/ProtectedRoute';
 function App() {
   // Статус пользователя
   const [loggedIn, setLoggedIn] = useState(null);
+  // Активен ли прелоудер
+  const [ activePreloder, setActivePreloder ] = useState(false);
 
   // Информация о пользователе
   const [userInfo, setUserInfo] = useState(false);
@@ -33,15 +37,29 @@ function App() {
 
   // Фильмы
   const [movieList, setMovieList] = useState([]);
-  const addMovieList = movieList => {
-    setMovieList(movieList);
-  }
-
   // Сохраненные фильмы
   const [movieListSaved, setMovieListSaved] = useState([]);
-  const addMovieListSaved = movieListSaved => {
-    setMovieListSaved(movieListSaved);
-  }
+  const pushMovieSaved = movie => {
+    setMovieListSaved(state => {
+      const previousValue = state.slice(0);
+      previousValue.push(movie);
+      return previousValue;
+    });
+  };
+
+  // Карточки связаны. Поэтому подгружаются вместе
+  useEffect(() => {
+    if (loggedIn && (movieList.length === 0 || movieListSaved.length === 0 )) {
+      setActivePreloder(true)
+      Promise.all([MoviesApi.getmovieList(), MainApi.getMovies()])
+      .then(([ movies, savedMovies ]) => {
+        setMovieList(movies);
+        setMovieListSaved(savedMovies);
+      })
+      .catch(err => console.log(err))
+      .finally(() => setActivePreloder(false));
+    }
+  }, [ loggedIn ]);
 
   // Заход на сайт
   useEffect(() => {
@@ -65,17 +83,16 @@ function App() {
 
           <ProtectedRoute path={ '/movies' }>
             <Movies
-              addMovieList={ addMovieList }
               moviesAll={ movieList }
-              loggedIn={ loggedIn }
+              activePreloder={ activePreloder }
+              pushMovieSaved={ pushMovieSaved }
             />
           </ProtectedRoute>
 
           <ProtectedRoute path={ '/saved-movies' }>
             <SavedMovies
-              addMovieListSaved={ addMovieListSaved }
               moviesAllSaved={ movieListSaved }
-              loggedIn={ loggedIn }
+              activePreloder={ activePreloder }
             />
           </ProtectedRoute>
 

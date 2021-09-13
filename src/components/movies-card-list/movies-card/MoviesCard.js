@@ -4,7 +4,10 @@ import './moviesCard.css';
 // Пользовательский хук
 import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
 
-function MoviesCard({ movies, MovieSave, MovieDelete }) {
+// utils. Преобразует минуты в часы
+import convertMinutes from '../../../utils/convertMinutes';
+
+function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved }) {
   const isMobuleCards = useMobuleCards();
 
   const {
@@ -13,7 +16,7 @@ function MoviesCard({ movies, MovieSave, MovieDelete }) {
     thumbnail,
     nameRU,
     trailer,
-  } = movies;
+  } = movie;
 
   return (
     <div className='movie'>
@@ -22,11 +25,11 @@ function MoviesCard({ movies, MovieSave, MovieDelete }) {
           { nameRU }
         </h2>
         <p className='movie__desc'>
-          { duration }
+          { convertMinutes(duration) }
         </p>
         {
           MovieSave ?
-          <MovieSave movies={ movies } /> :
+          <MovieSave movie={ movie } pushMovieSaved={ pushMovieSaved } /> :
           <MovieDelete />
         }
       </div>

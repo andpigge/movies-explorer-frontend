@@ -9,16 +9,10 @@ import MoviesCardList from '../movies-card-list/MoviesCardList';
 import MoreCards from './more-cards/MoreCards';
 import MovieSave from './movie-save/MovieSave';
 
-// Api
-import MoviesApi from '../../utils/api/MoviesApi';
-
-// utils. Преобразует минуты в часы
-import convertMinutes from '../../utils/convertMinutes';
-
 // Пользовательский хук
 import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
 
-function Movies({ addMovieList, moviesAll, loggedIn }) {
+function Movies({ moviesAll, activePreloder, pushMovieSaved }) {
   // Здесь счетчик начинается с 2. Идет аналогия с массивом for, постфиксный и префексный инкремент.
   // При первом создании компонента, state останентся 2.
   const [ count, setCount ] = useState(null);
@@ -27,8 +21,6 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
   const [ isActiveButton, setIsActiveButton ] = useState(true);
   // Активен ли checkbox
   const [ checkFilter, setCheckFilter ] = useState(false);
-  // Активен ли прелоудер
-  const [ activePreloder, setActivePreloder ] = useState(false);
 
   const [ moviesListAmount, setAmountMoviesList ] = useState([]);
   // Найденные фильмы
@@ -51,19 +43,6 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
     setCount(2);
   }, [ isMobuleCards ]);
 
-  // Получаю данные карточек с фильмами
-  useEffect(() => {
-    if (loggedIn && moviesAll.length === 0 ) {
-      setActivePreloder(true);
-      MoviesApi.getmovieList()
-        .then(movies => {
-          addMovieList(movies);
-        })
-        .catch(err => console.log(err))
-        .finally(() => setActivePreloder(false));
-    }
-  }, [ loggedIn, moviesAll ]);
-
   // Сохраняю определенное количество карточек
   useEffect(() => {
     if (resultSearch) {
@@ -81,7 +60,6 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
       return {
         country: movie.country,
         director: movie.director,
-        // duration: convertMinutes(movie.duration),
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
@@ -109,6 +87,7 @@ function Movies({ addMovieList, moviesAll, loggedIn }) {
         <MoviesCardList
           moviesList={ moviesList }
           activePreloder={ activePreloder }
+          pushMovieSaved={ pushMovieSaved }
           MovieSave={ MovieSave }
         />
         <MoreCards
