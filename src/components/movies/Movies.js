@@ -12,17 +12,17 @@ import MovieSave from './movie-save/MovieSave';
 // Пользовательский хук
 import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
 
-function Movies({ moviesAll, activePreloder, pushMovieSaved }) {
+function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }) {
   // Здесь счетчик начинается с 2. Идет аналогия с массивом for, постфиксный и префексный инкремент.
   // При первом создании компонента, state останентся 2.
-  const [ count, setCount ] = useState(null);
-  const [ amount, setAmount ] = useState(null);
-  // Активная ли кнопка
-  const [ isActiveButton, setIsActiveButton ] = useState(true);
-  // Активен ли checkbox
-  const [ checkFilter, setCheckFilter ] = useState(false);
+  // const [ count, setCount ] = useState(null);
+  // const [ amount, setAmount ] = useState(null);
+  // // Активная ли кнопка
+  // const [ isActiveButton, setIsActiveButton ] = useState(true);
+  // // Активен ли checkbox
+  // const [ checkFilter, setCheckFilter ] = useState(false);
 
-  const [ moviesListAmount, setAmountMoviesList ] = useState([]);
+  // const [ moviesListAmount, setAmountMoviesList ] = useState([]);
   // Найденные фильмы
   const [ resultSearch, setResultSearch ] = useState(false);
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
@@ -44,21 +44,22 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved }) {
   }, [ isMobuleCards ]);
 
   // Сохраняю определенное количество карточек
-  useEffect(() => {
-    if (resultSearch) {
-      setAmountMoviesList(resultSearch.slice(0, amount));
-      return;
-    }
-    setAmountMoviesList(moviesAll.slice(0, amount));
-  }, [ amount, moviesAll, resultSearch ]);
+  // useEffect(() => {
+  //   if (resultSearch) {
+  //     setAmountMoviesList(resultSearch.slice(0, amount));
+  //     return;
+  //   }
+  //   setAmountMoviesList(moviesAll.slice(0, amount));
+  // }, [ amount, moviesAll, resultSearch ]);
 
   // Создаю обьект с нужными данными.
   useEffect(() => {
     const newMoviesList = moviesListAmount.map(movie => {
       const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
       const imgModule = `https://api.nomoreparties.co${movie.image.url}`;
+      const country = movie.country || 'Неизвестно';
       return {
-        country: movie.country,
+        country: country,
         director: movie.director,
         duration: movie.duration,
         year: movie.year,
@@ -69,6 +70,7 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved }) {
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
+        _id: movie._id,
       };
     });
     setMoviesList(newMoviesList);
@@ -88,6 +90,7 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved }) {
           moviesList={ moviesList }
           activePreloder={ activePreloder }
           pushMovieSaved={ pushMovieSaved }
+          setIsLoadingCards={ setIsLoadingCards }
           MovieSave={ MovieSave }
         />
         <MoreCards

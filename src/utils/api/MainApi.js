@@ -79,6 +79,16 @@ class MainApi {
     })
     .then(this._checkResponse);
   }
+
+   // Удалить сохраненный фильм
+   deleteMovie = id => {
+    this._updateToken();
+    return fetch(`${this.#baseUrl}/${this.#deleteMovies}/${id}`, {
+      method: 'DELETE',
+      headers: this.#headers,
+    })
+    .then(this._checkResponse);
+  }
 }
 
 export default new MainApi({

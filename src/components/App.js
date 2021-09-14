@@ -28,6 +28,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(null);
   // Активен ли прелоудер
   const [ activePreloder, setActivePreloder ] = useState(false);
+  // Была ли сохранена карточка. Если да, то подгружаю данные с БД. Сбрасываю state
+  const [ isLoadingCards, setIsLoadingCards ] = useState();
 
   // Информация о пользователе
   const [userInfo, setUserInfo] = useState(false);
@@ -44,6 +46,12 @@ function App() {
       const previousValue = state.slice(0);
       previousValue.push(movie);
       return previousValue;
+    });
+  };
+  const removeMovieSaved = id => {
+    setMovieListSaved(state => {
+      const newMovieList = state.filter(movie => movie._id !== id);
+      return newMovieList;
     });
   };
 
@@ -86,6 +94,7 @@ function App() {
               moviesAll={ movieList }
               activePreloder={ activePreloder }
               pushMovieSaved={ pushMovieSaved }
+              setIsLoadingCards={ setIsLoadingCards }
             />
           </ProtectedRoute>
 
@@ -93,6 +102,10 @@ function App() {
             <SavedMovies
               moviesAllSaved={ movieListSaved }
               activePreloder={ activePreloder }
+              removeMovieSaved={ removeMovieSaved }
+              setIsLoadingCards={ setIsLoadingCards }
+              isLoadingCards={ isLoadingCards }
+              setMovieListSaved={ setMovieListSaved }
             />
           </ProtectedRoute>
 

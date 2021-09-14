@@ -8,9 +8,17 @@ import SearchForm from '../search-form/SearchForm';
 import MoviesCardList from '../movies-card-list/MoviesCardList';
 import MovieDelete from './movie-delete/MovieDelete';
 
-function SavedMovies({ moviesAllSaved, activePreloder }) {
+// Api
+import MainApi from '../../utils/api/MainApi';
+
+function SavedMovies({ moviesAllSaved, activePreloder, removeMovieSaved, setIsLoadingCards, isLoadingCards, setMovieListSaved }) {
+  // Активен ли checkbox
+  const [ checkFilter, setCheckFilter ] = useState(false);
+
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
   const [ moviesList, setMoviesList ] = useState([]);
+  // Найденные фильмы
+  const [ resultSearch, setResultSearch ] = useState(false);
 
   // Создаю обьект с нужными данными для вывода.
   useEffect(() => {
@@ -21,11 +29,23 @@ function SavedMovies({ moviesAllSaved, activePreloder }) {
         thumbnail: movie.thumbnail,
         image: movie.image,
         nameRU: movie.nameRU,
-        trailerLink: movie.trailerLink,
+        trailer: movie.trailer,
+        _id: movie._id,
       };
     });
     setMoviesList(newMoviesList);
   }, [ moviesAllSaved ]);
+
+  useEffect(() => {
+    if (isLoadingCards) {
+      MainApi.getMovies()
+      .then(res => {
+        setMovieListSaved(res);
+        setIsLoadingCards(false);
+      })
+      .catch(err => console.log(err));
+    }
+  }, [ isLoadingCards ]);
 
   return (
     <>
@@ -35,6 +55,7 @@ function SavedMovies({ moviesAllSaved, activePreloder }) {
         <MoviesCardList
           moviesList={ moviesList }
           activePreloder={ activePreloder }
+          removeMovieSaved={ removeMovieSaved }
           MovieDelete={ MovieDelete }
         />
       </main>

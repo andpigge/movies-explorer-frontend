@@ -1,9 +1,25 @@
 import React from 'react';
 import './movieDelete.css';
 
-function MovieDelete() {
+// Api
+import MainApi from '../../../utils/api/MainApi';
+
+function MovieDelete({ _id, removeMovieSaved, movie }) {
+
+  const deleteMovie = () => {
+    MainApi.deleteMovie(_id)
+    .then(res => {
+      removeMovieSaved(res._id);
+    })
+    .catch(err => console.log(err));
+  };
+
   return (
-    <button type='button' className='movie__delete'></button>
+    <button
+      type='button'
+      className='movie__delete'
+      onClick={ deleteMovie }
+    ></button>
   );
 }
 

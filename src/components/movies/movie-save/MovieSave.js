@@ -6,7 +6,7 @@ import MainApi from '../../../utils/api/MainApi';
 
 import { SaveMovieListContext } from './../../../context/saveMovieListContext';
 
-function MovieSave({ movie, pushMovieSaved }) {
+function MovieSave({ movie, pushMovieSaved, setIsLoadingCards }) {
   const saveMovieList = useContext(SaveMovieListContext);
 
   const [ existId, setExistId ] = useState(false);
@@ -22,7 +22,7 @@ function MovieSave({ movie, pushMovieSaved }) {
     setExistId(existId);
   }, [ saveMovieList, movie ]);
 
-  const saveCard = () => {
+  const saveMovie = () => {
     if (existId) {
       console.log(existId)
       return;
@@ -30,6 +30,8 @@ function MovieSave({ movie, pushMovieSaved }) {
     MainApi.saveMovie(movie)
     .then(res => {
       pushMovieSaved(movie);
+      // Карточка успешно добавлена, и нужно обновить страницу
+      setIsLoadingCards(true);
     })
     .catch(err => console.log(err));
   };
@@ -38,7 +40,7 @@ function MovieSave({ movie, pushMovieSaved }) {
     <button
       type='button'
       className={ moviesImgClass }
-      onClick={ saveCard }
+      onClick={ saveMovie }
     ></button>
   );
 }

@@ -7,7 +7,7 @@ import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
 // utils. Преобразует минуты в часы
 import convertMinutes from '../../../utils/convertMinutes';
 
-function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved }) {
+function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved, removeMovieSaved, setIsLoadingCards }) {
   const isMobuleCards = useMobuleCards();
 
   const {
@@ -16,6 +16,7 @@ function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved }) {
     thumbnail,
     nameRU,
     trailer,
+    _id,
   } = movie;
 
   return (
@@ -29,8 +30,8 @@ function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved }) {
         </p>
         {
           MovieSave ?
-          <MovieSave movie={ movie } pushMovieSaved={ pushMovieSaved } /> :
-          <MovieDelete />
+          <MovieSave movie={ movie } pushMovieSaved={ pushMovieSaved } setIsLoadingCards={ setIsLoadingCards } /> :
+          <MovieDelete _id={ _id } removeMovieSaved={ removeMovieSaved } movie={ movie } />
         }
       </div>
       <a
