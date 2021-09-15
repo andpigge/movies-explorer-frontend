@@ -10,7 +10,7 @@ function ButtonAuth({ buttonText, isValidFieldRegister, isValidFieldLogin, isLoa
     <button
       type='submit'
       className={ authSubmit }
-      // disabled={ !isValidFieldRegister || !isValidFieldLogin }
+      disabled={ !isValidFieldRegister && !isValidFieldLogin }
     >
       { isLoadig ? `${buttonText}...` : buttonText }
     </button>

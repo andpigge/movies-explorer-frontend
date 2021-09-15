@@ -15,14 +15,14 @@ import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
 function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }) {
   // Здесь счетчик начинается с 2. Идет аналогия с массивом for, постфиксный и префексный инкремент.
   // При первом создании компонента, state останентся 2.
-  // const [ count, setCount ] = useState(null);
-  // const [ amount, setAmount ] = useState(null);
-  // // Активная ли кнопка
-  // const [ isActiveButton, setIsActiveButton ] = useState(true);
-  // // Активен ли checkbox
-  // const [ checkFilter, setCheckFilter ] = useState(false);
+  const [ count, setCount ] = useState(null);
+  const [ amount, setAmount ] = useState(null);
+  // Активная ли кнопка
+  const [ isActiveButton, setIsActiveButton ] = useState(true);
+  // Активен ли checkbox
+  const [ checkFilter, setCheckFilter ] = useState(false);
 
-  // const [ moviesListAmount, setAmountMoviesList ] = useState([]);
+  const [ moviesListAmount, setAmountMoviesList ] = useState([]);
   // Найденные фильмы
   const [ resultSearch, setResultSearch ] = useState(false);
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
@@ -44,13 +44,13 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }
   }, [ isMobuleCards ]);
 
   // Сохраняю определенное количество карточек
-  // useEffect(() => {
-  //   if (resultSearch) {
-  //     setAmountMoviesList(resultSearch.slice(0, amount));
-  //     return;
-  //   }
-  //   setAmountMoviesList(moviesAll.slice(0, amount));
-  // }, [ amount, moviesAll, resultSearch ]);
+  useEffect(() => {
+    if (resultSearch) {
+      setAmountMoviesList(resultSearch.slice(0, amount));
+      return;
+    }
+    setAmountMoviesList(moviesAll.slice(0, amount));
+  }, [ amount, moviesAll, resultSearch ]);
 
   // Создаю обьект с нужными данными.
   useEffect(() => {
@@ -58,18 +58,20 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }
       const imgDesc = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
       const imgModule = `https://api.nomoreparties.co${movie.image.url}`;
       const country = movie.country || 'Неизвестно';
+      const nameEN = movie.nameEN || 'Unknown';
+      const trailer = movie.trailerLink || 'https://www.youtube.com/';
       return {
-        country: country,
+        country,
         director: movie.director,
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
         image: imgModule,
-        trailer: movie.trailerLink,
+        trailer,
         thumbnail: imgDesc,
         movieId: movie.id,
         nameRU: movie.nameRU,
-        nameEN: movie.nameEN,
+        nameEN,
         _id: movie._id,
       };
     });
@@ -85,6 +87,7 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }
           setIsActiveButton={ setIsActiveButton }
           setCheckFilter={ setCheckFilter }
           checkFilter={ checkFilter }
+          search={ moviesAll }
         />
         <MoviesCardList
           moviesList={ moviesList }
@@ -92,6 +95,7 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }
           pushMovieSaved={ pushMovieSaved }
           setIsLoadingCards={ setIsLoadingCards }
           MovieSave={ MovieSave }
+          resultSearch={ resultSearch }
         />
         <MoreCards
           setAmountMoviesList={ setAmountMoviesList }

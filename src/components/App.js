@@ -86,7 +86,7 @@ function App() {
       <SaveMovieListContext.Provider value={ movieListSaved } >
         <Switch >
           <Route exact path='/'>
-            <Main />
+            <Main loggedIn={ loggedIn } />
           </Route>
 
           <ProtectedRoute path={ '/movies' }>
@@ -114,6 +114,7 @@ function App() {
               userInfo={ userInfo }
               addUserInfo={ addUserInfo }
               setLoggedIn={ setLoggedIn }
+              loggedIn={ loggedIn }
             />
           </ProtectedRoute>
 

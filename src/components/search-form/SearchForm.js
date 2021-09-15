@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './searchForm.css';
 
 // Компоненты
@@ -10,14 +10,8 @@ import FilterCheckbox from './filter-checkbox/FilterCheckbox';
 import useSearchMobule from '../../utils/custom-hooks/useSearchMobule';
 import searchMovies from '../../utils/searchMovies';
 
-// Контекст
-import { MovieListContext } from '../../context/movieListContext';
-
-function SearchForm({ setResultSearch, setIsActiveButton, setCheckFilter, checkFilter }) {
+function SearchForm({ setResultSearch, setIsActiveButton, setCheckFilter, checkFilter, search }) {
   const [ searchValueMovies, setSearchValueMovies ] = useState('');
-
-  // Контекст
-  const movieList = useContext(MovieListContext);
 
   const isMobuleSearch = useSearchMobule(601);
 
@@ -61,11 +55,13 @@ function SearchForm({ setResultSearch, setIsActiveButton, setCheckFilter, checkF
 
   const searchMoviesClick = e => {
     e.preventDefault();
-    const result = searchMovies(movieList, searchValueMovies, checkFilter);
+    const result = searchMovies(search, searchValueMovies, checkFilter);
     setResultSearch(result);
 
     // При новом поиске, кнопку еще делаю активной.
-    setIsActiveButton(true);
+    if (setIsActiveButton) {
+      setIsActiveButton(true);
+    }
   };
 
   return (

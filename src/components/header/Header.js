@@ -18,7 +18,7 @@ import {
   navLink,
 } from '../../utils/constants';
 
-function Header() {
+function Header({ loggedIn }) {
   const { url } = useRouteMatch();
 
   // Принимает минимальную ширину экрана для мобильной версии
@@ -43,7 +43,7 @@ function Header() {
   };
 
   const checkUrl = () => {
-    if (url === '/') {
+    if (url === '/' && !loggedIn) {
       return (
         <AuthLink />
       )

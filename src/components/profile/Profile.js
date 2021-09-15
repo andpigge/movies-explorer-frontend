@@ -8,13 +8,13 @@ import ButtonProfile from './button-profile/ButtonProfile';
 import LinkProfile from './link-profile/LinkProfile';
 
 // utils
-import validateString from '../../utils/validate/validateString';
+import validateName from '../../utils/validate/validateName';
 import validateEmail from '../../utils/validate/validateEmail';
 
 // API
 import MainApi from '../../utils/api/MainApi';
 
-function Profile({ userInfo, addUserInfo, setLoggedIn }) {
+function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
   const {
     name,
     email,
@@ -25,7 +25,7 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
   useEffect(() => {
     setProfileValueName(name);
     setProfileValueEmail(email);
-  }, [ name, email ]);
+  }, [ name, email, loggedIn ]);
 
   // Поднял State
   const [ isValidFieldName, setIsValidFieldName ] = useState(true);
@@ -33,15 +33,19 @@ function Profile({ userInfo, addUserInfo, setLoggedIn }) {
 
   // Валидны ли все поля
   const [ isValidFieldAll, setIsValidFieldAll ] = useState(false);
+
   useEffect(() => {
+    if (name === profileValueName && email === profileValueEmail) {
+      return setIsValidFieldAll(false);
+    }
     if (isValidFieldName && isValidFieldEmail) {
       return setIsValidFieldAll(true);
     }
     setIsValidFieldAll(false);
-  }, [ isValidFieldName, isValidFieldEmail ]);
+  }, [ isValidFieldName, isValidFieldEmail, profileValueName, profileValueEmail, email, name ]);
 
   const handleValidateName = name => {
-    return validateString({ string: name, minLength: 1, maxLength: 30 });
+    return validateName({ string: name, minLength: 1, maxLength: 30 });
   };
 
   const handleValidateEmail = email => {

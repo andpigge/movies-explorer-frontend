@@ -12,7 +12,7 @@ const checkMaxLengthInput = (string) => {
 
 // Проверяет все ли символы латинские или кириллические
 const checkPasswordСorrect = (password) => {
-  const passwordRegex = /^[A-Za-z]+[@$!%*#?&\d]*$/gi;
+  const passwordRegex = /^[A-Za-z\d]+[@$!%*#?&\d]*$/gi;
   return passwordRegex.test(password);
 };
 

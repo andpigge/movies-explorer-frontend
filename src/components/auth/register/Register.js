@@ -6,12 +6,13 @@ import './register.css';
 import Auth from '../Auth';
 import InputAuth from '../input-auth/InputAuth';
 import ButtonAuth from '../button-auth/ButtonAuth';
+import ServerErrorMessage from '../../server-error-message/ServerErrorMessage';
 
 // constants
 import { registerProps } from '../../../utils/constants';
 
 // utils
-import validateString from '../../../utils/validate/validateString';
+import validateName from '../../../utils/validate/validateName';
 import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
 
@@ -43,7 +44,7 @@ function Register() {
   }, [ isValidFieldName, isValidFieldEmail, isValidFieldPassword ]);
 
   const handleValidateName = name => {
-    return validateString({ string: name, minLength: 1, maxLength: 30 });
+    return validateName({ string: name, minLength: 1, maxLength: 30 });
   };
 
   const handleValidateEmail = email => {
@@ -78,6 +79,8 @@ function Register() {
     e.preventDefault();
     requestRegister();
   };
+
+  const message = 'При обновлении профиля произошла ошибка.';
 
   return (
     <main className='register register__margin-center'>
@@ -117,6 +120,7 @@ function Register() {
             authValue={ authValuePassword }
             setAuthValue={ setAuthValuePassword }
           />
+          <ServerErrorMessage message={ message } />
           <ButtonAuth
             buttonText={ 'Зарегистрироваться' }
             isValidFieldRegister={ isValidFieldRegister }

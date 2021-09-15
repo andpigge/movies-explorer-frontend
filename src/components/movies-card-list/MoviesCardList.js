@@ -5,7 +5,14 @@ import './moviesCardList.css';
 import MoviesCard from './movies-card/MoviesCard';
 import Preloader from '../preloader/Preloader';
 
-function MoviesCardList({ moviesList, activePreloder, pushMovieSaved, removeMovieSaved, setIsLoadingCards, MovieSave, MovieDelete }) {
+function MoviesCardList(
+  {
+    moviesList, activePreloder,
+    pushMovieSaved, removeMovieSaved,
+    setIsLoadingCards, resultSearch,
+    MovieSave, MovieDelete
+  })
+{
   return (
     <section className='movies-card movies_margin_center'>
       <ul className='movies-card__list'>
@@ -14,7 +21,9 @@ function MoviesCardList({ moviesList, activePreloder, pushMovieSaved, removeMovi
             <Preloader />
           : moviesList.length === 0 ?
             <p className='movies-card__mesage'>
-              Пусто
+              {
+                resultSearch ? 'Ничего не нашел ...' : 'Пусто'
+              }
             </p>
           :
             moviesList.map((movie) => {

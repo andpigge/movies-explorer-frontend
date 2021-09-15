@@ -11,10 +11,17 @@ import MovieDelete from './movie-delete/MovieDelete';
 // Api
 import MainApi from '../../utils/api/MainApi';
 
-function SavedMovies({ moviesAllSaved, activePreloder, removeMovieSaved, setIsLoadingCards, isLoadingCards, setMovieListSaved }) {
+function SavedMovies(
+  {
+    moviesAllSaved, activePreloder,
+    removeMovieSaved, setIsLoadingCards,
+    isLoadingCards, setMovieListSaved
+  })
+{
   // Активен ли checkbox
   const [ checkFilter, setCheckFilter ] = useState(false);
 
+  const [ outputMoviesList, setOutputMoviesList ] = useState([]);
   // Данных может быть много, и все их передовать каждый раз не вижу смысла
   const [ moviesList, setMoviesList ] = useState([]);
   // Найденные фильмы
@@ -22,7 +29,7 @@ function SavedMovies({ moviesAllSaved, activePreloder, removeMovieSaved, setIsLo
 
   // Создаю обьект с нужными данными для вывода.
   useEffect(() => {
-    const newMoviesList = moviesAllSaved.map(movie => {
+    const newMoviesList = outputMoviesList.map(movie => {
       return {
         movieId: movie.movieId,
         duration: movie.duration,
@@ -34,7 +41,7 @@ function SavedMovies({ moviesAllSaved, activePreloder, removeMovieSaved, setIsLo
       };
     });
     setMoviesList(newMoviesList);
-  }, [ moviesAllSaved ]);
+  }, [ outputMoviesList ]);
 
   useEffect(() => {
     if (isLoadingCards) {
@@ -47,16 +54,31 @@ function SavedMovies({ moviesAllSaved, activePreloder, removeMovieSaved, setIsLo
     }
   }, [ isLoadingCards ]);
 
+  useEffect(() => {
+    console.log(resultSearch)
+    if (resultSearch) {
+      setOutputMoviesList(resultSearch);
+      return;
+    }
+    setOutputMoviesList(moviesAllSaved);
+  }, [ resultSearch, moviesAllSaved ]);
+
   return (
     <>
       <Header />
       <main className='saved-movies saved-movies_margin_bottom'>
-        <SearchForm />
+        <SearchForm
+          setResultSearch={ setResultSearch }
+          setCheckFilter={ setCheckFilter }
+          checkFilter={ checkFilter }
+          search={ moviesAllSaved }
+        />
         <MoviesCardList
           moviesList={ moviesList }
           activePreloder={ activePreloder }
           removeMovieSaved={ removeMovieSaved }
           MovieDelete={ MovieDelete }
+          resultSearch={ resultSearch }
         />
       </main>
       <Footer />
