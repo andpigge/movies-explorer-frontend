@@ -70,6 +70,7 @@ function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
 
   // Запрос к БД
   const requestProfile = () => {
+    setIsValidFieldAll(false);
     MainApi.updateUserInfo({
       email: profileValueEmail,
       name: profileValueName,
@@ -83,6 +84,7 @@ function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
         const errCode = parseInt(err.split(' ')[1]);
         checkMessageError(errCode);
         console.log(err)
+        setIsValidFieldAll(true);
       });
   };
 
