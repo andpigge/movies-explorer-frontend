@@ -8,5 +8,9 @@
 
 ### Для элементов списка используется уникальный ключ key, а не индекс массива. Там где это возможно, я использовал
 
-Front (http://movies-diploma.nomoredomains.club)
-Back (https://movies-diploma-api.nomoredomains.monster/api)
+Front 
+http://movies-diploma.nomoredomains.club
+https://movies-diploma.nomoredomains.club
+Back
+http://movies-diploma-api.nomoredomains.monster/api
+https://movies-diploma-api.nomoredomains.monster/api
