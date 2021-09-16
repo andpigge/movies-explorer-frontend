@@ -7,3 +7,6 @@
 ### Клик на картинку ведет на трейлер фильма. На всю карточку лишнее.
 
 ### Для элементов списка используется уникальный ключ key, а не индекс массива. Там где это возможно, я использовал
+
+Front (http://movies-diploma.nomoredomains.club)
+Back (https://movies-diploma-api.nomoredomains.monster/api)
