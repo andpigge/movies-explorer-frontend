@@ -33,7 +33,6 @@ const signInApi = dataLogin => {
 }
 
 // Проверка токена
-// Просто получаю пользователя, и сохраняю его данные в state.
 const checkTokenApi = token => {
   return fetch(`${CONECT_SERVER}/${user}`, {
     method: 'GET',

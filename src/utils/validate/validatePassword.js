@@ -7,9 +7,6 @@ const checkMaxLengthInput = (string) => {
   return string.length < 128 ? true : false;
 };
 
-// Готовый шаблон для пароля
-// const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]?)[A-Za-z\d@$!%*#?&]{8,}$/;
-
 // Проверяет все ли символы латинские или кириллические
 const checkPasswordСorrect = (password) => {
   const passwordRegex = /^[A-Za-z\d]+[@$!%*#?&\d]*$/gi;

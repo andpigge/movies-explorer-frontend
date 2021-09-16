@@ -44,11 +44,8 @@ function InputProfile(
   const addActiveInput = e => {
     const item = e.target;
     // При фокусе текст перестает быть красным.
-    // Пользователь уже понял что ошибка и исправляет. Поэтому красный в поле не надо
     item.className = 'user-profile__field-text';
 
-    // Пользователь уже понимает где ошибся, ведь это его email и имя.
-    // Поэтому всегда показывать ошибку лишнее. При заполнении достаточно.
     messageRef.current.textContent = validInfo.error;
     messageRef.current.style.opacity = '1';
   };

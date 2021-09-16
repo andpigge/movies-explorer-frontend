@@ -13,8 +13,6 @@ import MovieSave from './movie-save/MovieSave';
 import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
 
 function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }) {
-  // Здесь счетчик начинается с 2. Идет аналогия с массивом for, постфиксный и префексный инкремент.
-  // При первом создании компонента, state останентся 2.
   const [ count, setCount ] = useState(null);
   const [ amount, setAmount ] = useState(null);
   // Активная ли кнопка
