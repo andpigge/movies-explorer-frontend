@@ -88,6 +88,7 @@ function App() {
     const token = localStorage.getItem('jwt');
     if (token && userInfo) {
       addUserInfo(userInfo);
+      setLoggedIn(true);
       return;
     }
     if (token) {
