@@ -45,7 +45,7 @@ function InputAuth(
     setActiveInput(false);
   };
 
-  const labelClass = activeInput ?
+  const labelClass = activeInput || authValue.lenght > 0 ?
   'auth__desc auth__desc_active' :
   'auth__desc';
 
