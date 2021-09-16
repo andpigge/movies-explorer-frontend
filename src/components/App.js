@@ -32,9 +32,9 @@ function App() {
   const [ isLoadingCards, setIsLoadingCards ] = useState();
 
   // Информация о пользователе
-  const [userInfo, setUserInfo] = useState(false);
-  const addUserInfo = movieList => {
-    setUserInfo(movieList);
+  const [userInfo, setUserInfo] = useState([]);
+  const addUserInfo = userInfo => {
+    setUserInfo(userInfo);
   }
 
   // Фильмы
@@ -45,24 +45,36 @@ function App() {
     setMovieListSaved(state => {
       const previousValue = state.slice(0);
       previousValue.push(movie);
+      localStorage.setItem('savedMovies', JSON.stringify(previousValue));
       return previousValue;
     });
   };
   const removeMovieSaved = id => {
     setMovieListSaved(state => {
       const newMovieList = state.filter(movie => movie._id !== id);
+      localStorage.setItem('savedMovies', JSON.stringify(newMovieList));
       return newMovieList;
     });
   };
 
   // Карточки связаны. Поэтому подгружаются вместе
   useEffect(() => {
+    const movies = JSON.parse(localStorage.getItem('movies'));
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+    if (movies && savedMovies) {
+      setMovieList(movies);
+      setMovieListSaved(savedMovies);
+      return;
+    }
     if (loggedIn && (movieList.length === 0 || movieListSaved.length === 0 )) {
       setActivePreloder(true)
       Promise.all([MoviesApi.getmovieList(), MainApi.getMovies()])
       .then(([ movies, savedMovies ]) => {
         setMovieList(movies);
         setMovieListSaved(savedMovies);
+        // Сохраняю в localStorage
+        localStorage.setItem('movies', JSON.stringify(movies));
+        localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
       })
       .catch(err => console.log(err))
       .finally(() => setActivePreloder(false));
@@ -71,15 +83,21 @@ function App() {
 
   // Заход на сайт
   useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const token = localStorage.getItem('jwt');
+    if (token && userInfo) {
+      addUserInfo(userInfo);
+      return;
+    }
     if (token) {
       checkTokenApi(token)
         .then(res => {
           addUserInfo(res);
+          localStorage.setItem('userInfo', JSON.stringify(res));
           setLoggedIn(true);
         });
     }
-  }, []);
+  }, [ loggedIn ]);
 
   return (
     <MovieListContext.Provider value={ movieList } >

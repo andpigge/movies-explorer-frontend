@@ -6,6 +6,7 @@ import './login.css';
 import Auth from '../Auth';
 import InputAuth from '../input-auth/InputAuth';
 import ButtonAuth from '../button-auth/ButtonAuth';
+import ServerErrorMessage from '../../server-error-message/ServerErrorMessage';
 
 // constants
 import { loginProps } from '../../../utils/constants';
@@ -21,6 +22,8 @@ function Login({ setLoggedIn }) {
   // Меняет название кнопки при запросе к БД
   const [isLoadig, setIsLoading] = useState(false);
   const history = useHistory();
+  // Сообщение об ошибке для отображения
+  const [ messageError, setMessageError ] = useState('');
 
   const [ authValueEmail, setAuthValueEmail ] = useState('');
   const [ authValuePassword, setAuthValuePassword ] = useState('');
@@ -46,22 +49,39 @@ function Login({ setLoggedIn }) {
     return validatePassword({ password: password});
   };
 
+  const checkMessageError = errCode => {
+    if (errCode === 401) {
+      setMessageError(' Вы ввели неправильный логин или пароль.');
+      return;
+    }
+    if (errCode === 400) {
+      setMessageError('Ошибка валидации.');
+      return;
+    }
+    setMessageError('На сервере произошла ошибка.');
+  };
+
+  // Запрос к серверу
   const requestLogin = () => {
     setIsLoading(true);
     signInApi({
       email: authValueEmail,
       password: authValuePassword,
     })
-    .then(res => {
-      localStorage.setItem('jwt', res.token);
-      // Меняю статус пользователя
-      setLoggedIn(true);
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('jwt', data.token);
+        // Меняю статус пользователя
+        setLoggedIn(true);
 
-      setAuthValueEmail('');
-      setAuthValuePassword('');
-      history.push(`/movies`);
+        setAuthValueEmail('');
+        setAuthValuePassword('');
+        history.push(`/movies`);
+      }
     })
     .catch(err => {
+      const errCode = parseInt(err.split(' ')[1]);
+      checkMessageError(errCode);
       console.log(err);
       setIsLoading(false);
     });
@@ -100,6 +120,7 @@ function Login({ setLoggedIn }) {
             authValue={ authValuePassword }
             setAuthValue={ setAuthValuePassword }
           />
+          <ServerErrorMessage message={ messageError } />
           <ButtonAuth
             buttonText={ 'Войти' }
             isValidFieldLogin={ isValidFieldLogin }

@@ -23,6 +23,8 @@ function Register() {
   // Меняет название кнопки при запросе к БД
   const [isLoadig, setIsLoading] = useState(false);
   const history = useHistory();
+  // Сообщение об ошибке для отображения
+  const [ messageError, setMessageError ] = useState('');
 
   // Значение полей
   const [ authValueName, setAuthValueName ] = useState('');
@@ -55,6 +57,14 @@ function Register() {
     return validatePassword({ password: password});
   };
 
+  const checkMessageError = errCode => {
+    if (errCode === 409) {
+      setMessageError('Пользователь с таким email уже существует.');
+      return;
+    }
+    setMessageError('При регистрации пользователя произошла ошибка.');
+  };
+
   // Запрос к серверу
   const requestRegister = () => {
     setIsLoading(true);
@@ -70,6 +80,8 @@ function Register() {
       history.push(`/signin`);
     })
     .catch(err => {
+      const errCode = parseInt(err.split(' ')[1]);
+      checkMessageError(errCode);
       console.log(err);
       setIsLoading(false);
     });
@@ -79,8 +91,6 @@ function Register() {
     e.preventDefault();
     requestRegister();
   };
-
-  const message = 'При обновлении профиля произошла ошибка.';
 
   return (
     <main className='register register__margin-center'>
@@ -120,7 +130,7 @@ function Register() {
             authValue={ authValuePassword }
             setAuthValue={ setAuthValuePassword }
           />
-          <ServerErrorMessage message={ message } />
+          <ServerErrorMessage message={ messageError } />
           <ButtonAuth
             buttonText={ 'Зарегистрироваться' }
             isValidFieldRegister={ isValidFieldRegister }

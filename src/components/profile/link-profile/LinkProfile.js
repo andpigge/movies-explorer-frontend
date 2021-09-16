@@ -7,7 +7,10 @@ function LinkProfile({ setLoggedIn }) {
 
   const signOut = () => {
     localStorage.removeItem('jwt');
-    history.push(`/signin`);
+    localStorage.removeItem('savedMovies');
+    localStorage.removeItem('movies');
+    localStorage.removeItem('userInfo');
+    history.push(`/`);
     setLoggedIn(false);
   }
 

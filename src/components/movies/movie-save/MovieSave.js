@@ -24,7 +24,6 @@ function MovieSave({ movie, pushMovieSaved, setIsLoadingCards }) {
 
   const saveMovie = () => {
     if (existId) {
-      console.log(existId)
       return;
     }
     MainApi.saveMovie(movie)

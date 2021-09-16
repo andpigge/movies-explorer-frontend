@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children, path }) => {
       );
     }
     return (
-      <Redirect to='/signin' />
+      <Redirect to='/' />
     );
   };
 

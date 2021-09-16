@@ -33,6 +33,7 @@
 }
 
 .user-profile__form {
+  position: relative;
   margin-bottom: 16px;
 }
 

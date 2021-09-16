@@ -1,8 +1,15 @@
 .server-error-message {
   position: absolute;
-  top: 0;
+  bottom: 70px;
   left: 0;
   right: 0;
+}
+
+.server-error-message__text {
+  margin: 0;
+  text-align: center;
+
+  font-family: Inter;
   font-size: 11px;
   line-height: 13px;
   color: #FF004C;

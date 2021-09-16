@@ -25,7 +25,6 @@ function InputAuth(
     setAuthValue(value);
   };
 
-  // Можно было бы анимацию сделать с помощью ref, но так понятнее
   const [ activeInput, setActiveInput ] = useState(false);
 
   const addActiveInput = e => {
@@ -37,7 +36,6 @@ function InputAuth(
     const item = e.target;
     const value = item.value;
     // При потере фокуса, подсвечиваю input, если есть ошибка.
-    // А то пользователь понял что есть ошибка, и исправит
     if (validateValue(value).isValidated === false) {
       item.classList.add('auth__field-text_type_error');
     }

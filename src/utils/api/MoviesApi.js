@@ -13,7 +13,6 @@ class MoviesApi {
 
   _checkResponse(res) {
     if (res.ok) {
-      console.log(res.json())
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);

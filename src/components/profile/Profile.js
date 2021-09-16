@@ -6,6 +6,7 @@ import Header from '../header/Header';
 import InputProfile from './input-profile/InputProfile';
 import ButtonProfile from './button-profile/ButtonProfile';
 import LinkProfile from './link-profile/LinkProfile';
+import ServerErrorMessage from '../server-error-message/ServerErrorMessage';
 
 // utils
 import validateName from '../../utils/validate/validateName';
@@ -19,6 +20,9 @@ function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
     name,
     email,
    } = userInfo;
+
+   // Сообщение об ошибке для отображения
+  const [ messageError, setMessageError ] = useState('');
 
   const [ profileValueName, setProfileValueName ] = useState('');
   const [ profileValueEmail, setProfileValueEmail ] = useState('');
@@ -52,13 +56,34 @@ function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
     return validateEmail({ email: email});
   };
 
+  const checkMessageError = errCode => {
+    if (errCode === 409) {
+      setMessageError('Пользователь с таким email уже существует.');
+      return;
+    }
+    if (errCode === 200) {
+      setMessageError('Успешно.');
+      return;
+    }
+    setMessageError('При регистрации пользователя произошла ошибка.');
+  };
+
+  // Запрос к БД
   const requestProfile = () => {
     MainApi.updateUserInfo({
       email: profileValueEmail,
       name: profileValueName,
     })
-      .then(res => addUserInfo(res))
-      .catch(err => console.log(err));
+      .then(res => {
+        localStorage.setItem('userInfo', JSON.stringify(res));
+        addUserInfo(res);
+        checkMessageError(200);
+      })
+      .catch(err => {
+        const errCode = parseInt(err.split(' ')[1]);
+        checkMessageError(errCode);
+        console.log(err)
+      });
   };
 
   const submitForm = e => {
@@ -100,6 +125,7 @@ function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
                 setProfileValue={ setProfileValueEmail }
                 profileValue={ profileValueEmail }
               />
+              <ServerErrorMessage message={ messageError } />
               <ButtonProfile isValidFieldAll={ isValidFieldAll } />
             </form>
             <LinkProfile setLoggedIn={ setLoggedIn } />

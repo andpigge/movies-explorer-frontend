@@ -55,7 +55,6 @@ function SavedMovies(
   }, [ isLoadingCards ]);
 
   useEffect(() => {
-    console.log(resultSearch)
     if (resultSearch) {
       setOutputMoviesList(resultSearch);
       return;
