@@ -67,6 +67,7 @@ function Register() {
 
   // Запрос к серверу
   const requestRegister = () => {
+    setIsValidFieldRegister(false);
     setIsLoading(true);
     registerApi({
       name: authValueName,
@@ -84,6 +85,7 @@ function Register() {
       checkMessageError(errCode);
       console.log(err);
       setIsLoading(false);
+      setIsValidFieldRegister(true);
     });
   };
 

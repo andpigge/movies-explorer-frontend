@@ -63,6 +63,7 @@ function Login({ setLoggedIn }) {
 
   // Запрос к серверу
   const requestLogin = () => {
+    setIsValidFieldLogin(false);
     setIsLoading(true);
     signInApi({
       email: authValueEmail,
@@ -84,6 +85,7 @@ function Login({ setLoggedIn }) {
       checkMessageError(errCode);
       console.log(err);
       setIsLoading(false);
+      setIsValidFieldLogin(true);
     });
   }
 
