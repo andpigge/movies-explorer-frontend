@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './inputAuth.css';
 
 function InputAuth(
@@ -45,7 +45,7 @@ function InputAuth(
     setActiveInput(false);
   };
 
-  const labelClass = activeInput || authValue.lenght > 0 ?
+  const labelClass = activeInput ?
   'auth__desc auth__desc_active' :
   'auth__desc';
 
@@ -55,6 +55,13 @@ function InputAuth(
   const messageClass = isValidField ?
   'auth__message' :
   'auth__message auth__message_type_error';
+
+  // Для автозаполнения
+  useEffect(() => {
+    if (authValue.lenght > 0) {
+      setActiveInput(true);
+    }
+  }, []);
 
   return (
     <>
