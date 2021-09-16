@@ -14,6 +14,7 @@ import NotFound from './not-found/NotFound';
 // Контекст
 import { MovieListContext } from '../context/movieListContext';
 import { SaveMovieListContext } from '../context/saveMovieListContext';
+import { CurrentUserContext } from '../context/currentUserContext';
 
 // Api
 import { checkTokenApi } from '../utils/api/auth';
@@ -102,50 +103,52 @@ function App() {
   return (
     <MovieListContext.Provider value={ movieList } >
       <SaveMovieListContext.Provider value={ movieListSaved } >
-        <Switch >
-          <Route exact path='/'>
-            <Main loggedIn={ loggedIn } />
-          </Route>
+        <CurrentUserContext.Provider value={ userInfo } >
+          <Switch >
+            <Route exact path='/'>
+              <Main loggedIn={ loggedIn } />
+            </Route>
 
-          <ProtectedRoute path={ '/movies' }>
-            <Movies
-              moviesAll={ movieList }
-              activePreloder={ activePreloder }
-              pushMovieSaved={ pushMovieSaved }
-              setIsLoadingCards={ setIsLoadingCards }
-            />
-          </ProtectedRoute>
+            <ProtectedRoute path={ '/movies' }>
+              <Movies
+                moviesAll={ movieList }
+                activePreloder={ activePreloder }
+                pushMovieSaved={ pushMovieSaved }
+                setIsLoadingCards={ setIsLoadingCards }
+              />
+            </ProtectedRoute>
 
-          <ProtectedRoute path={ '/saved-movies' }>
-            <SavedMovies
-              moviesAllSaved={ movieListSaved }
-              activePreloder={ activePreloder }
-              removeMovieSaved={ removeMovieSaved }
-              setIsLoadingCards={ setIsLoadingCards }
-              isLoadingCards={ isLoadingCards }
-              setMovieListSaved={ setMovieListSaved }
-            />
-          </ProtectedRoute>
+            <ProtectedRoute path={ '/saved-movies' }>
+              <SavedMovies
+                moviesAllSaved={ movieListSaved }
+                activePreloder={ activePreloder }
+                removeMovieSaved={ removeMovieSaved }
+                setIsLoadingCards={ setIsLoadingCards }
+                isLoadingCards={ isLoadingCards }
+                setMovieListSaved={ setMovieListSaved }
+              />
+            </ProtectedRoute>
 
-          <ProtectedRoute path={ '/profile' }>
-            <Profile
-              userInfo={ userInfo }
-              addUserInfo={ addUserInfo }
-              setLoggedIn={ setLoggedIn }
-              loggedIn={ loggedIn }
-            />
-          </ProtectedRoute>
+            <ProtectedRoute path={ '/profile' }>
+              <Profile
+                userInfo={ userInfo }
+                addUserInfo={ addUserInfo }
+                setLoggedIn={ setLoggedIn }
+                loggedIn={ loggedIn }
+              />
+            </ProtectedRoute>
 
-          <Route path='/signin' >
-            <Login setLoggedIn={ setLoggedIn } />
-          </Route>
-          <Route path='/signup' >
-            <Register />
-          </Route>
-          <Route path='*'>
-            <NotFound />
-          </Route>
-        </Switch>
+            <Route path='/signin' >
+              <Login setLoggedIn={ setLoggedIn } />
+            </Route>
+            <Route path='/signup' >
+              <Register />
+            </Route>
+            <Route path='*'>
+              <NotFound />
+            </Route>
+          </Switch>
+        </CurrentUserContext.Provider>
       </SaveMovieListContext.Provider>
     </MovieListContext.Provider>
   );
