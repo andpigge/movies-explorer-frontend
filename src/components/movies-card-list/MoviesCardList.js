@@ -8,7 +8,7 @@ import Preloader from '../preloader/Preloader';
 function MoviesCardList(
   {
     moviesList, activePreloder,
-    pushMovieSaved, removeMovieSaved,
+    pushMovieSaved, removeMovieSavedAll,
     setIsLoadingCards, resultSearch,
     MovieSave, MovieDelete
   })
@@ -34,7 +34,7 @@ function MoviesCardList(
                     MovieSave={ MovieSave }
                     MovieDelete={ MovieDelete }
                     pushMovieSaved={ pushMovieSaved }
-                    removeMovieSaved={ removeMovieSaved }
+                    removeMovieSavedAll={ removeMovieSavedAll }
                     setIsLoadingCards={ setIsLoadingCards }
                   />
                 </li>

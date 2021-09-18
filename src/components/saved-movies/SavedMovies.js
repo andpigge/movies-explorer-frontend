@@ -30,7 +30,6 @@ function SavedMovies(
   // Создаю обьект с нужными данными для вывода.
   useEffect(() => {
     const newMoviesList = outputMoviesList.map(movie => {
-      console.log(movie)
       return {
         movieId: movie.movieId,
         duration: movie.duration,
@@ -63,6 +62,16 @@ function SavedMovies(
     setOutputMoviesList(moviesAllSaved);
   }, [ resultSearch, moviesAllSaved ]);
 
+  const removeMovieSavedAll = id => {
+    if (resultSearch) {
+      setResultSearch(state => {
+        const newMovieList = state.filter(movie => movie._id !== id);
+        return newMovieList;
+      });
+    }
+    removeMovieSaved(id);
+  };
+
   return (
     <>
       <Header />
@@ -76,7 +85,7 @@ function SavedMovies(
         <MoviesCardList
           moviesList={ moviesList }
           activePreloder={ activePreloder }
-          removeMovieSaved={ removeMovieSaved }
+          removeMovieSavedAll={ removeMovieSavedAll }
           MovieDelete={ MovieDelete }
           resultSearch={ resultSearch }
         />
