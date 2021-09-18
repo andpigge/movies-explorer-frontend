@@ -69,7 +69,7 @@ function App() {
       setMovieListSaved(savedMovies);
       return;
     }
-    if (loggedIn && (movieList.length === 0 || movieListSaved.length === 0 )) {
+    if (loggedIn) {
       setActivePreloder(true)
       Promise.all([MoviesApi.getmovieList(), MainApi.getMovies()])
       .then(([ movies, savedMovies ]) => {
