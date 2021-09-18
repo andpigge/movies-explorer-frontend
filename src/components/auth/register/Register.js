@@ -18,8 +18,9 @@ import validatePassword from '../../../utils/validate/validatePassword';
 
 // Api
 import { registerApi } from '../../../utils/api/auth';
+import { signInApi } from '../../../utils/api/auth';
 
-function Register() {
+function Register({ setLoggedIn }) {
   // Меняет название кнопки при запросе к БД
   const [isLoadig, setIsLoading] = useState(false);
   const history = useHistory();
@@ -65,6 +66,23 @@ function Register() {
     setMessageError('При регистрации пользователя произошла ошибка.');
   };
 
+  // Авторизация после регистрации
+  const signIn = (email, password) => {
+    signInApi({
+      email,
+      password,
+    })
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('jwt', data.token);
+        // Меняю статус пользователя
+        setLoggedIn(true);
+        history.push(`/movies`);
+      }
+    })
+    .catch(err => console.log(err));
+  };
+
   // Запрос к серверу
   const requestRegister = () => {
     setIsValidFieldRegister(false);
@@ -78,7 +96,8 @@ function Register() {
       setAuthValueName('');
       setAuthValueEmail('');
       setAuthValuePassword('');
-      history.push(`/signin`);
+      // Авторизирую пользователя
+      signIn(authValueEmail, authValuePassword);
     })
     .catch(err => {
       const errCode = parseInt(err.split(' ')[1]);

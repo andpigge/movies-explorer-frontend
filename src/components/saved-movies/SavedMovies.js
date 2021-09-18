@@ -30,6 +30,7 @@ function SavedMovies(
   // Создаю обьект с нужными данными для вывода.
   useEffect(() => {
     const newMoviesList = outputMoviesList.map(movie => {
+      console.log(movie)
       return {
         movieId: movie.movieId,
         duration: movie.duration,

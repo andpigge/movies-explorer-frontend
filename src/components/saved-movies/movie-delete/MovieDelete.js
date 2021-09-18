@@ -4,7 +4,7 @@ import './movieDelete.css';
 // Api
 import MainApi from '../../../utils/api/MainApi';
 
-function MovieDelete({ _id, removeMovieSaved, movie }) {
+function MovieDelete({ _id, removeMovieSaved }) {
 
   const deleteMovie = () => {
     MainApi.deleteMovie(_id)

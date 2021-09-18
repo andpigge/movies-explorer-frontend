@@ -12,7 +12,7 @@ import MovieSave from './movie-save/MovieSave';
 // Пользовательский хук
 import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
 
-function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }) {
+function Movies({ moviesAll, activePreloder, removeMovieSaved, pushMovieSaved, setIsLoadingCards }) {
   const [ count, setCount ] = useState(null);
   const [ amount, setAmount ] = useState(null);
   // Активная ли кнопка
@@ -70,7 +70,6 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN,
-        _id: movie._id,
       };
     });
     setMoviesList(newMoviesList);
@@ -92,6 +91,7 @@ function Movies({ moviesAll, activePreloder, pushMovieSaved, setIsLoadingCards }
           activePreloder={ activePreloder }
           pushMovieSaved={ pushMovieSaved }
           setIsLoadingCards={ setIsLoadingCards }
+          removeMovieSaved={ removeMovieSaved }
           MovieSave={ MovieSave }
           resultSearch={ resultSearch }
         />

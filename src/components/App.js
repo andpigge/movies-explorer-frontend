@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import './app.css';
 
 // Компоненты
@@ -25,6 +25,8 @@ import MainApi from '../utils/api/MainApi';
 import ProtectedRoute from './HOC/ProtectedRoute';
 
 function App() {
+  const history = useHistory();
+
   // Статус пользователя
   const [loggedIn, setLoggedIn] = useState(null);
   // Активен ли прелоудер
@@ -84,19 +86,23 @@ function App() {
 
   // Заход на сайт
   useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const token = localStorage.getItem('jwt');
-    if (token && userInfo) {
-      addUserInfo(userInfo);
-      setLoggedIn(true);
-      return;
-    }
     if (token) {
       checkTokenApi(token)
         .then(res => {
           addUserInfo(res);
           localStorage.setItem('userInfo', JSON.stringify(res));
           setLoggedIn(true);
+        })
+        .catch(err => {
+          // Если ощибка с токеном, происходит выход
+          console.log(err)
+          setLoggedIn(false);
+          localStorage.removeItem('jwt');
+          localStorage.removeItem('savedMovies');
+          localStorage.removeItem('movies');
+          localStorage.removeItem('userInfo');
+          history.push(`/`);
         });
     }
   }, [ loggedIn ]);
@@ -114,6 +120,7 @@ function App() {
               <Movies
                 moviesAll={ movieList }
                 activePreloder={ activePreloder }
+                removeMovieSaved={ removeMovieSaved }
                 pushMovieSaved={ pushMovieSaved }
                 setIsLoadingCards={ setIsLoadingCards }
               />
@@ -143,7 +150,7 @@ function App() {
               <Login setLoggedIn={ setLoggedIn } />
             </Route>
             <Route path='/signup' >
-              <Register />
+              <Register setLoggedIn={ setLoggedIn } />
             </Route>
             <Route path='*'>
               <NotFound />
