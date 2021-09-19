@@ -6,7 +6,7 @@ import MainApi from '../../../utils/api/MainApi';
 
 import { SaveMovieListContext } from './../../../context/saveMovieListContext';
 
-function MovieSave({ movie, removeMovieSaved, pushMovieSaved, setIsLoadingCards }) {
+function MovieSave({ movie, removeMovieSavedAll, pushMovieSaved, setIsLoadingCards }) {
   const saveMovieList = useContext(SaveMovieListContext);
 
   const [ existId, setExistId ] = useState(false);
@@ -24,25 +24,23 @@ function MovieSave({ movie, removeMovieSaved, pushMovieSaved, setIsLoadingCards 
   }, [ saveMovieList, movie ]);
 
   const saveMovie = () => {
+    console.log(saveMovieList)
     if (existId) {
       // Элемент который нужно удалить
-      console.log(saveMovieList)
-      const saveMovie = saveMovieList.find(item => {
-        console.log(item.movieId, movie.movieId)
+      const { _id } = saveMovieList.find(item => {
         return item.movieId === movie.movieId;
       });
-      console.log(saveMovie)
       // Удаление элемента
-      // MainApi.deleteMovie(_id)
-      // .then(res => {
-      //   removeMovieSaved(res._id);
-      // })
-      // .catch(err => console.log(err));
+      MainApi.deleteMovie(_id)
+      .then(res => {
+        removeMovieSavedAll(res._id);
+      })
+      .catch(err => console.log(err));
       return;
     }
     MainApi.saveMovie(movie)
     .then(res => {
-      pushMovieSaved(movie);
+      pushMovieSaved(res);
       // Карточка успешно добавлена, и нужно обновить страницу
       setIsLoadingCards(true);
     })

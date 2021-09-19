@@ -30,8 +30,16 @@ function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved, removeMovie
         </p>
         {
           MovieSave ?
-          <MovieSave movie={ movie } removeMovieSavedAll={ removeMovieSavedAll } pushMovieSaved={ pushMovieSaved } setIsLoadingCards={ setIsLoadingCards } /> :
-          <MovieDelete _id={ _id } removeMovieSavedAll={ removeMovieSavedAll } />
+          <MovieSave
+            movie={ movie }
+            removeMovieSavedAll={ removeMovieSavedAll }
+            pushMovieSaved={ pushMovieSaved }
+            setIsLoadingCards={ setIsLoadingCards }
+          /> :
+          <MovieDelete
+            _id={ _id }
+            removeMovieSavedAll={ removeMovieSavedAll }
+          />
         }
       </div>
       <a

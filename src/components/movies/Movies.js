@@ -91,7 +91,7 @@ function Movies({ moviesAll, activePreloder, removeMovieSaved, pushMovieSaved, s
           activePreloder={ activePreloder }
           pushMovieSaved={ pushMovieSaved }
           setIsLoadingCards={ setIsLoadingCards }
-          removeMovieSaved={ removeMovieSaved }
+          removeMovieSavedAll={ removeMovieSaved }
           MovieSave={ MovieSave }
           resultSearch={ resultSearch }
         />
