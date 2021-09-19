@@ -33,6 +33,16 @@ class MainApi {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
+  _checkResponseMessage = res => {
+    if (res.ok) {
+      return res.json();
+    }
+    throw {
+      message: res.json(),
+      status: `Ошибка: ${res.status}`
+    };
+  }
+
   // Беру свежий токен из localStorage
   _updateToken = () => {
     this.#headers.authorization = `Bearer ${localStorage.getItem('jwt')}`;
@@ -56,7 +66,7 @@ class MainApi {
       headers: this.#headers,
       body: JSON.stringify(dataUsers),
     })
-    .then(this._checkResponse);
+    .then(this._checkResponseMessage);
   }
 
   // Получение сохраненых фильмов

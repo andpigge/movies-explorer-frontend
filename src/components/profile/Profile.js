@@ -11,6 +11,7 @@ import ServerErrorMessage from '../server-error-message/ServerErrorMessage';
 // utils
 import validateName from '../../utils/validate/validateName';
 import validateEmail from '../../utils/validate/validateEmail';
+import checkMessageError from '../../utils/checkMessageError';
 
 // API
 import MainApi from '../../utils/api/MainApi';
@@ -20,7 +21,7 @@ import { CurrentUserContext } from '../../context/currentUserContext';
 
 function Profile({ addUserInfo, setLoggedIn, loggedIn }) {
    // Контекст
-   const userInfo = React.useContext(CurrentUserContext);
+   const userInfo = useContext(CurrentUserContext);
 
    const {
     name,
@@ -28,7 +29,7 @@ function Profile({ addUserInfo, setLoggedIn, loggedIn }) {
    } = userInfo;
 
    // Сообщение об ошибке для отображения
-  const [ messageError, setMessageError ] = useState('');
+  const [ message, setMessage ] = useState('');
 
   const [ profileValueName, setProfileValueName ] = useState('');
   const [ profileValueEmail, setProfileValueEmail ] = useState('');
@@ -62,18 +63,6 @@ function Profile({ addUserInfo, setLoggedIn, loggedIn }) {
     return validateEmail({ email: email});
   };
 
-  const checkMessageError = errCode => {
-    if (errCode === 409) {
-      setMessageError('Пользователь с таким email уже существует.');
-      return;
-    }
-    if (errCode === 200) {
-      setMessageError('Успешно.');
-      return;
-    }
-    setMessageError('При регистрации пользователя произошла ошибка.');
-  };
-
   // Запрос к БД
   const requestProfile = () => {
     setIsValidFieldAll(false);
@@ -84,11 +73,10 @@ function Profile({ addUserInfo, setLoggedIn, loggedIn }) {
       .then(res => {
         localStorage.setItem('userInfo', JSON.stringify(res));
         addUserInfo(res);
-        checkMessageError(200);
+        setMessage('Успешно.');
       })
       .catch(err => {
-        const errCode = parseInt(err.split(' ')[1]);
-        checkMessageError(errCode);
+        checkMessageError(err.message, setMessage, 'При обновлении профиля произошла ошибка.');
         console.log(err)
         setIsValidFieldAll(true);
       });
@@ -133,7 +121,7 @@ function Profile({ addUserInfo, setLoggedIn, loggedIn }) {
                 setProfileValue={ setProfileValueEmail }
                 profileValue={ profileValueEmail }
               />
-              <ServerErrorMessage message={ messageError } />
+              <ServerErrorMessage message={ message } />
               <ButtonProfile isValidFieldAll={ isValidFieldAll } />
             </form>
             <LinkProfile setLoggedIn={ setLoggedIn } />

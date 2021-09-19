@@ -14,6 +14,7 @@ import { loginProps } from '../../../utils/constants';
 // utils
 import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
+import checkMessageError from '../../../utils/checkMessageError';
 
 // Api
 import { signInApi } from '../../../utils/api/auth';
@@ -49,18 +50,6 @@ function Login({ setLoggedIn }) {
     return validatePassword({ password: password});
   };
 
-  const checkMessageError = errCode => {
-    if (errCode === 401) {
-      setMessageError(' Вы ввели неправильный логин или пароль.');
-      return;
-    }
-    if (errCode === 400) {
-      setMessageError('Ошибка валидации.');
-      return;
-    }
-    setMessageError('На сервере произошла ошибка.');
-  };
-
   // Запрос к серверу
   const requestLogin = () => {
     setIsValidFieldLogin(false);
@@ -74,16 +63,14 @@ function Login({ setLoggedIn }) {
         localStorage.setItem('jwt', data.token);
         // Меняю статус пользователя
         setLoggedIn(true);
-
         setAuthValueEmail('');
         setAuthValuePassword('');
         history.push(`/movies`);
       }
     })
     .catch(err => {
-      const errCode = parseInt(err.split(' ')[1]);
-      checkMessageError(errCode);
-      console.log(err);
+      checkMessageError(err.message, setMessageError, 'При авторизации произошла ошибка.');
+      console.log(err.status)
       setIsLoading(false);
       setIsValidFieldLogin(true);
     });

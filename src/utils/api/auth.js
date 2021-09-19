@@ -1,7 +1,7 @@
 import { authApiUrl } from '../constants';
 const { CONECT_SERVER, PATHS: { reg, login, user } } = authApiUrl;
 
-const checkResponse = res => {
+const checkResponseMessage = res => {
   if (res.ok) {
     return res.json();
   }
@@ -20,7 +20,7 @@ const registerApi = dataReg => {
     },
     body: JSON.stringify(dataReg)
   })
-    .then(checkResponse);
+    .then(checkResponseMessage);
 }
 
 // Авторизация
@@ -32,7 +32,7 @@ const signInApi = dataLogin => {
     },
     body: JSON.stringify(dataLogin)
   })
-    .then(checkResponse);
+    .then(checkResponseMessage);
 }
 
 // Проверка токена
@@ -44,7 +44,12 @@ const checkTokenApi = token => {
       "Authorization": `Bearer ${token}`
     }
   })
-  .then(checkResponse);
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  });
 }
 
 export {

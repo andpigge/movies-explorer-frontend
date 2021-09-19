@@ -15,6 +15,7 @@ import { registerProps } from '../../../utils/constants';
 import validateName from '../../../utils/validate/validateName';
 import validateEmail from '../../../utils/validate/validateEmail';
 import validatePassword from '../../../utils/validate/validatePassword';
+import checkMessageError from '../../../utils/checkMessageError';
 
 // Api
 import { registerApi } from '../../../utils/api/auth';
@@ -58,16 +59,6 @@ function Register({ setLoggedIn }) {
     return validatePassword({ password: password});
   };
 
-  const checkMessageError = message => {
-    // В случае если на сервере нет такой ошибке
-    if (!message) {
-      setMessageError('при регистрации пользователя произошла ошибка');
-    }
-    message.then(message => {
-      setMessageError(message.message);
-    });
-  };
-
   // Авторизация после регистрации
   const signIn = (email, password) => {
     signInApi({
@@ -102,7 +93,8 @@ function Register({ setLoggedIn }) {
       signIn(authValueEmail, authValuePassword);
     })
     .catch(err => {
-      checkMessageError(err.message);
+      checkMessageError(err.message, setMessageError, 'При регистрации пользователя произошла ошибка.');
+      console.log(err.status)
       setIsLoading(false);
       setIsValidFieldRegister(true);
     });
