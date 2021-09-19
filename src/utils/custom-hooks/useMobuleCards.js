@@ -1,10 +1,13 @@
+// Константы
+import { CARDS_MOBULE_SCREEN } from '../constants';
+
 import { useState, useEffect } from 'react';
 
 const useMobuleCards = () => {
   const [mobuleMenu, setMobuleMenu] = useState(null);
 
   const checkWidth = () => {
-    if (window.innerWidth < 601) {
+    if (window.innerWidth < CARDS_MOBULE_SCREEN) {
       return setMobuleMenu(true);
     }
     setMobuleMenu(false);

@@ -1,10 +1,13 @@
+// Константы
+import { SEARCH_MOBULE_SCREEN } from '../constants';
+
 import { useState, useEffect } from 'react';
 
-const useSearchMobule = ( windowWidth ) => {
+const useSearchMobule = () => {
   const [mobuleSearch, setMobuleSearch] = useState(null);
 
   const checkWidth = () => {
-    if (window.innerWidth < windowWidth) {
+    if (window.innerWidth < SEARCH_MOBULE_SCREEN) {
       return setMobuleSearch(true);
     }
     setMobuleSearch(false);
@@ -15,7 +18,7 @@ const useSearchMobule = ( windowWidth ) => {
     return () => {
       window.removeEventListener('resize', checkWidth);
     };
-  }, [ windowWidth, mobuleSearch ]);
+  }, [ mobuleSearch ]);
 
   useEffect(() => {
     checkWidth();

@@ -13,7 +13,7 @@ import searchMovies from '../../utils/searchMovies';
 function SearchForm({ setResultSearch, setIsActiveButton, setCheckFilter, checkFilter, search }) {
   const [ searchValueMovies, setSearchValueMovies ] = useState('');
 
-  const isMobuleSearch = useSearchMobule(601);
+  const isMobuleSearch = useSearchMobule();
 
   const setMenuDisplay = () => {
     if (isMobuleSearch === false) {

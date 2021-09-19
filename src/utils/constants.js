@@ -1,3 +1,10 @@
+const DURATION_SHORTS = 40;
+const AMOUNT_FILMS_DESC = 7;
+const AMOUNT_FILMS_MOBULE = 5;
+const CARDS_MOBULE_SCREEN = 601;
+const MENU_MOBULE_SCREEN = 769;
+const SEARCH_MOBULE_SCREEN = 601;
+
 // Текст ссылок для навигации для компонента navigation в мобильном меню
 const textListMenuMobule = [
   'Главная',
@@ -105,6 +112,12 @@ const profileApiUrl = {
 };
 
 export {
+  DURATION_SHORTS,
+  AMOUNT_FILMS_DESC,
+  AMOUNT_FILMS_MOBULE,
+  CARDS_MOBULE_SCREEN,
+  MENU_MOBULE_SCREEN,
+  SEARCH_MOBULE_SCREEN,
   textListMenuMobule,
   navLinkMenuMobule,
   textList,

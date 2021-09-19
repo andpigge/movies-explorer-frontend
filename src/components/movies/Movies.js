@@ -8,6 +8,7 @@ import SearchForm from '../search-form/SearchForm';
 import MoviesCardList from '../movies-card-list/MoviesCardList';
 import MoreCards from './more-cards/MoreCards';
 import MovieSave from './movie-save/MovieSave';
+import { AMOUNT_FILMS_DESC, AMOUNT_FILMS_MOBULE } from '../../utils/constants.js';
 
 // Пользовательский хук
 import useMobuleCards from '../../utils/custom-hooks/useMobuleCards';
@@ -33,11 +34,11 @@ function Movies({ moviesAll, activePreloder, removeMovieSaved, pushMovieSaved, s
   // При изменении экрана, сбрасываю счетчик
   useEffect(() => {
     if (isMobuleCards) {
-      setAmount(5);
+      setAmount(AMOUNT_FILMS_MOBULE);
       setCount(2);
       return;
     }
-    setAmount(7);
+    setAmount(AMOUNT_FILMS_DESC);
     setCount(2);
   }, [ isMobuleCards ]);
 

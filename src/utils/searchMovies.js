@@ -1,3 +1,5 @@
+import { DURATION_SHORTS } from './constants';
+
 const searchMoviesAll = (searchValue, pieceLowerCase, searchLowerCase) => {
   if (searchValue.length === 1) {
     return pieceLowerCase.startsWith(searchLowerCase);
@@ -8,7 +10,7 @@ const searchMoviesAll = (searchValue, pieceLowerCase, searchLowerCase) => {
 const searchMoviesShorts = (movies, searchValue, pieceLowerCase, searchLowerCase) => {
   const searchDuration = movies.duration;
 
-  if (searchDuration < 40) {
+  if (searchDuration < DURATION_SHORTS) {
     return searchMoviesAll(searchValue, pieceLowerCase, searchLowerCase);
   }
 };

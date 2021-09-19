@@ -1,10 +1,13 @@
+// Константы
+import { MENU_MOBULE_SCREEN } from '../constants';
+
 import { useState, useEffect } from 'react';
 
-const useMobuleMenu = ( windowWidth ) => {
+const useMobuleMenu = () => {
   const [mobuleMenu, setMobuleMenu] = useState(null);
 
   const checkWidth = () => {
-    if (window.innerWidth < windowWidth) {
+    if (window.innerWidth < MENU_MOBULE_SCREEN) {
       return setMobuleMenu(true);
     }
     setMobuleMenu(false);
@@ -15,7 +18,7 @@ const useMobuleMenu = ( windowWidth ) => {
     return () => {
       window.removeEventListener('resize', checkWidth);
     };
-  }, [ windowWidth, mobuleMenu ]);
+  }, [ mobuleMenu ]);
 
   useEffect(() => {
     checkWidth();
