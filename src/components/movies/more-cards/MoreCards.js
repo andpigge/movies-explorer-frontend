@@ -23,26 +23,27 @@ function MoreCards(
     return () => setIsActiveButton(true);
   }, []);
 
-  const loadMoreСards = e => {
-    if (resultSearch) {
-      const cardList = resultSearch.slice(0, count * amount);
-      setAmountMoviesList(cardList);
-
-      if (resultSearch.length === moviesListAmount.length) {
-        setIsActiveButton(false);
-      }
-      return;
-    }
-
-    const cardList = movieList.slice(0, count * amount);
-    setAmountMoviesList(cardList);
-
-    setCount(count + 1);
-
-    // После того как все вывелось, отменяю кнопку
-    if (cardList.length === movieList.length) {
+  // Кнопка не доступна
+  useEffect(() => {
+    if (resultSearch.length === moviesListAmount.length) {
       setIsActiveButton(false);
     }
+  }, [ resultSearch, moviesListAmount ]);
+
+  const loadMoreСards = e => {
+    if (resultSearch) {
+      setAmountMoviesList(resultSearch.slice(0, count * amount));
+    } else {
+      const cardList = movieList.slice(0, count * amount);
+      setAmountMoviesList(cardList);
+      
+      // После того как все вывелось, отменяю кнопку
+      if (cardList.length === movieList.length) {
+        setIsActiveButton(false);
+      }
+    }
+
+    setCount(count + 1);
   };
 
   const cardsButton = isActiveButton ?

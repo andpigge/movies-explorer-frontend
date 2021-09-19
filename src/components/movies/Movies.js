@@ -40,7 +40,7 @@ function Movies({ moviesAll, activePreloder, removeMovieSaved, pushMovieSaved, s
     }
     setAmount(AMOUNT_FILMS_DESC);
     setCount(2);
-  }, [ isMobuleCards ]);
+  }, [ isMobuleCards, resultSearch ]);
 
   // Сохраняю определенное количество карточек
   useEffect(() => {

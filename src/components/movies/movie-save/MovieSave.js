@@ -24,7 +24,6 @@ function MovieSave({ movie, removeMovieSavedAll, pushMovieSaved, setIsLoadingCar
   }, [ saveMovieList, movie ]);
 
   const saveMovie = () => {
-    console.log(saveMovieList)
     if (existId) {
       // Элемент который нужно удалить
       const { _id } = saveMovieList.find(item => {
