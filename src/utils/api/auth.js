@@ -5,7 +5,10 @@ const checkResponse = res => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
+  throw {
+    message: res.json(),
+    status: `Ошибка: ${res.status}`
+  };
 }
 
 // Регистрация

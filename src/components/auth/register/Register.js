@@ -58,12 +58,14 @@ function Register({ setLoggedIn }) {
     return validatePassword({ password: password});
   };
 
-  const checkMessageError = errCode => {
-    if (errCode === 409) {
-      setMessageError('Пользователь с таким email уже существует.');
-      return;
+  const checkMessageError = message => {
+    // В случае если на сервере нет такой ошибке
+    if (!message) {
+      setMessageError('при регистрации пользователя произошла ошибка');
     }
-    setMessageError('При регистрации пользователя произошла ошибка.');
+    message.then(message => {
+      setMessageError(message.message);
+    });
   };
 
   // Авторизация после регистрации
@@ -100,9 +102,7 @@ function Register({ setLoggedIn }) {
       signIn(authValueEmail, authValuePassword);
     })
     .catch(err => {
-      const errCode = parseInt(err.split(' ')[1]);
-      checkMessageError(errCode);
-      console.log(err);
+      checkMessageError(err.message);
       setIsLoading(false);
       setIsValidFieldRegister(true);
     });
