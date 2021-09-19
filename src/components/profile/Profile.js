@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './profile.css';
 
 // Компоненты
@@ -15,8 +15,14 @@ import validateEmail from '../../utils/validate/validateEmail';
 // API
 import MainApi from '../../utils/api/MainApi';
 
-function Profile({ userInfo, addUserInfo, setLoggedIn, loggedIn }) {
-  const {
+// Контекст
+import { CurrentUserContext } from '../../context/currentUserContext';
+
+function Profile({ addUserInfo, setLoggedIn, loggedIn }) {
+   // Контекст
+   const userInfo = React.useContext(CurrentUserContext);
+
+   const {
     name,
     email,
    } = userInfo;

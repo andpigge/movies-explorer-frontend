@@ -139,7 +139,6 @@ function App() {
 
             <ProtectedRoute path={ '/profile' }>
               <Profile
-                userInfo={ userInfo }
                 addUserInfo={ addUserInfo }
                 setLoggedIn={ setLoggedIn }
                 loggedIn={ loggedIn }
