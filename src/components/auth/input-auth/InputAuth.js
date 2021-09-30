@@ -8,13 +8,13 @@ function InputAuth(
     typeField,
     validateValue,
     isValidField,
-    setIsValidField
+    setIsValidField,
+    authValue,
+    setAuthValue,
   })
 {
   // Валидация
   const [ validInfo, setValidInfo ] = useState({});
-
-  const [ authValue, setAuthValue ] = useState('');
 
   const handleChange = e => {
     const value = e.target.value;
@@ -25,7 +25,6 @@ function InputAuth(
     setAuthValue(value);
   };
 
-  // Можно было бы анимацию сделать с помощью ref, но так понятнее
   const [ activeInput, setActiveInput ] = useState(false);
 
   const addActiveInput = e => {
@@ -37,7 +36,6 @@ function InputAuth(
     const item = e.target;
     const value = item.value;
     // При потере фокуса, подсвечиваю input, если есть ошибка.
-    // А то пользователь понял что есть ошибка, и исправит
     if (validateValue(value).isValidated === false) {
       item.classList.add('auth__field-text_type_error');
     }
@@ -47,7 +45,7 @@ function InputAuth(
     setActiveInput(false);
   };
 
-  const labelClass = activeInput ?
+  const labelClass = activeInput || authValue.lenght > 0 ?
   'auth__desc auth__desc_active' :
   'auth__desc';
 

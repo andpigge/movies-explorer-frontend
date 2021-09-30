@@ -1,11 +1,11 @@
 import React from 'react';
 import './serverErrorMessage.css';
 
-function ServerErrorMessage() {
+function ServerErrorMessage({ message }) {
   return (
     <section className='server-error-message'>
       <p className='server-error-message__text'>
-        При обновлении профиля произошла ошибка.
+        { message }
       </p>
     </section>
   );

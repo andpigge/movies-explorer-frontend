@@ -1,7 +1,14 @@
 import React from 'react';
 import './buttonAuth.css';
 
-function ButtonAuth({ buttonText, isValidFieldRegister, isValidFieldLogin }) {
+function ButtonAuth(
+  {
+    buttonText,
+    isValidFieldRegister,
+    isValidFieldLogin,
+    isLoadig,
+  })
+{
   const authSubmit = isValidFieldRegister || isValidFieldLogin ?
   'auth__submit' :
   'auth__submit auth__submit_disabled';
@@ -10,9 +17,9 @@ function ButtonAuth({ buttonText, isValidFieldRegister, isValidFieldLogin }) {
     <button
       type='submit'
       className={ authSubmit }
-      disabled={ !isValidFieldRegister || !isValidFieldLogin }
+      disabled={ !isValidFieldRegister && !isValidFieldLogin }
     >
-      { buttonText }
+      { isLoadig ? `${buttonText}...` : buttonText }
     </button>
   );
 }

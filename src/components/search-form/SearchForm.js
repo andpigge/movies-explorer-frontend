@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './searchForm.css';
 
 // Компоненты
@@ -8,20 +8,27 @@ import FilterCheckbox from './filter-checkbox/FilterCheckbox';
 
 // Пользовательские хуки. HOC не подойдет
 import useSearchMobule from '../../utils/custom-hooks/useSearchMobule';
+import searchMovies from '../../utils/searchMovies';
 
-function SearchForm() {
-  const isMobuleSearch = useSearchMobule(601);
+function SearchForm({ setResultSearch, setIsActiveButton, setCheckFilter, checkFilter, search }) {
+  const [ searchValueMovies, setSearchValueMovies ] = useState('');
 
-  // По умолчанию state равен null, в случае если мобильный экран true или false,
-  // только тогда вырисовываем компоненты. Иначе будет дергающий экран.
+  const isMobuleSearch = useSearchMobule();
+
   const setMenuDisplay = () => {
     if (isMobuleSearch === false) {
       return (
         <div className='search__container'>
-          <InputSearch />
+          <InputSearch
+            setSearchValue={ setSearchValueMovies }
+            searchValue={ searchValueMovies }
+          />
           <ButtonSearch />
           <span className='search__form-line'></span>
-          <FilterCheckbox />
+          <FilterCheckbox
+            setCheckFilter={ setCheckFilter }
+            checkFilter={ checkFilter }
+          />
         </div>
       );
     }
@@ -29,18 +36,35 @@ function SearchForm() {
       return (
         <>
           <div className='search__container'>
-            <InputSearch />
+            <InputSearch
+              setSearchValue={ setSearchValueMovies }
+              searchValue={ searchValueMovies }
+            />
             <ButtonSearch />
           </div>
-          <FilterCheckbox />
+          <FilterCheckbox
+            setCheckFilter={ setCheckFilter }
+            checkFilter={ checkFilter }
+          />
         </>
       );
     }
   };
 
+  const searchMoviesClick = e => {
+    e.preventDefault();
+    const result = searchMovies(search, searchValueMovies, checkFilter);
+    setResultSearch(result);
+
+    // При новом поиске, кнопку 'еще' делаю активной.
+    if (setIsActiveButton) {
+      setIsActiveButton(true);
+    }
+  };
+
   return (
     <section className='search movies_margin_center'>
-      <form className='search__form' name='search'>
+      <form className='search__form' name='search' onSubmit={ searchMoviesClick }>
         {
           setMenuDisplay()
         }

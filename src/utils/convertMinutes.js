@@ -1,7 +1,10 @@
 const convertMinutes = duration => {
-  const hours = duration / 60;
+  const hours = Math.floor(duration / 60);
   const minutes = duration % 60;
-  const time = `${Math.floor(hours)}ч ${minutes === 0 ? '00' : minutes}м`;
+  const time = `
+    ${hours === 0 ? '' : hours + 'ч'}
+    ${minutes === 0 ? '00' : minutes}м
+  `;
   return time;
 };
 

@@ -37,6 +37,10 @@
   margin-bottom: 30px;
 }
 
+.movie__link {
+  text-decoration: none;
+}
+
 .movie__img {
   margin: 6px 0px;
   max-height: 122px;
@@ -85,7 +89,7 @@
   }
 
   .movie__img {
-    margin: 0px;
+    margin: 0px auto;
     margin-bottom: 14px;
     order: 1;
     max-width: 300px;

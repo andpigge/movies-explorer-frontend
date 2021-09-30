@@ -1,13 +1,13 @@
 // Константы
-import { MENU_MOBULE_SCREEN } from '../constants';
+import { CARDS_MOBULE_SCREEN } from '../constants';
 
 import { useState, useEffect } from 'react';
 
-const useMobuleMenu = () => {
+const useMobuleCards = () => {
   const [mobuleMenu, setMobuleMenu] = useState(null);
 
   const checkWidth = () => {
-    if (window.innerWidth < MENU_MOBULE_SCREEN) {
+    if (window.innerWidth < CARDS_MOBULE_SCREEN) {
       return setMobuleMenu(true);
     }
     setMobuleMenu(false);
@@ -27,4 +27,4 @@ const useMobuleMenu = () => {
   return mobuleMenu;
 }
 
-export default useMobuleMenu;
+export default useMobuleCards;

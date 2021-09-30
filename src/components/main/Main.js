@@ -10,13 +10,13 @@ import Techs from './techs/Techs';
 import AboutMe from './about-me/AboutMe';
 import Portfolio from './about-me/portfolio/Portfolio';
 
-function Main() {
+function Main({ loggedIn }) {
   const aboutProjectRef = useRef();
 
   return (
     <>
       <div className='background-container'>
-        <Header />
+        <Header loggedIn={ loggedIn } />
       </div>
       <main className='project'>
         <Promo aboutProjectRef={ aboutProjectRef } />

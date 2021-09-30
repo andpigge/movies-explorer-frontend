@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './inputProfile.css';
 
 function InputProfile(
@@ -7,15 +7,15 @@ function InputProfile(
     text,
     validateValue,
     setIsValidField,
-    isValidField
+    isValidField,
+    setProfileValue,
+    profileValue,
   })
 {
   const messageRef = useRef();
 
   // Валидация
   const [ validInfo, setValidInfo ] = useState({});
-
-  const [ profileValue, setProfileValue ] = useState('');
 
   const handleChange = e => {
     const item = e.target;
@@ -44,11 +44,8 @@ function InputProfile(
   const addActiveInput = e => {
     const item = e.target;
     // При фокусе текст перестает быть красным.
-    // Пользователь уже понял что ошибка и исправляет. Поэтому красный в поле не надо
     item.className = 'user-profile__field-text';
 
-    // Пользователь уже понимает где ошибся, ведь это его email и имя.
-    // Поэтому всегда показывать ошибку лишнее. При заполнении достаточно.
     messageRef.current.textContent = validInfo.error;
     messageRef.current.style.opacity = '1';
   };

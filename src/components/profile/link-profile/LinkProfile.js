@@ -1,12 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './linkProfile.css';
 
-function LinkProfile() {
+function LinkProfile({ setLoggedIn }) {
+  const history = useHistory();
+
+  const signOut = () => {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('savedMovies');
+    localStorage.removeItem('movies');
+    localStorage.removeItem('userInfo');
+    history.push(`/`);
+    setLoggedIn(false);
+  }
+
   return (
-    <Link to='/signin' className='user-profile__link'>
+    <button className='user-profile__link' onClick={ signOut }>
       Выйти из аккаунта
-    </Link>
+    </button>
   );
 }
 

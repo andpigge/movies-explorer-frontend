@@ -18,11 +18,11 @@ import {
   navLink,
 } from '../../utils/constants';
 
-function Header() {
+function Header({ loggedIn }) {
   const { url } = useRouteMatch();
 
   // Принимает минимальную ширину экрана для мобильной версии
-  const isMobuleMenu = useMobuleMenu(769);
+  const isMobuleMenu = useMobuleMenu();
 
   // По умолчанию state равен null, в случае если мобильный экран true или false,
   // только тогда вырисовываем компоненты. Иначе будет дергающий экран.
@@ -43,7 +43,7 @@ function Header() {
   };
 
   const checkUrl = () => {
-    if (url === '/') {
+    if (url === '/' && !loggedIn) {
       return (
         <AuthLink />
       )

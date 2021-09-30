@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './inputSearch.css';
 
-function InputSearch() {
-  const [ searchValue, setSearchValue ] = useState('');
-
+function InputSearch({ setSearchValue, searchValue }) {
   const handleChange = e => {
     setSearchValue(e.target.value);
   };
@@ -13,7 +11,6 @@ function InputSearch() {
       type='text'
       placeholder='Фильм'
       name='searchInput'
-      required
       className='search__field-text'
       onChange={ handleChange }
       value={ searchValue }

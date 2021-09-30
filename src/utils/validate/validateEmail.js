@@ -1,5 +1,5 @@
 const checkEmailCorrect = (email) => {
-  const emailRegex = /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+@[a-z]+\.[a-z]+$/;
+  const emailRegex = /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+@[a-z]+\.[a-z]{2,}$/;
   return emailRegex.test(email);
 };
 

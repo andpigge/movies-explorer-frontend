@@ -1,3 +1,10 @@
+const DURATION_SHORTS = 40;
+const AMOUNT_FILMS_DESC = 7;
+const AMOUNT_FILMS_MOBULE = 5;
+const CARDS_MOBULE_SCREEN = 601;
+const MENU_MOBULE_SCREEN = 769;
+const SEARCH_MOBULE_SCREEN = 601;
+
 // Текст ссылок для навигации для компонента navigation в мобильном меню
 const textListMenuMobule = [
   'Главная',
@@ -75,7 +82,42 @@ const loginProps = {
   link: '/signup',
 };
 
+const moviesApiUrl = {
+  CONECT_SERVER: 'https://api.nomoreparties.co/beatfilm-movies',
+  PATH_LIST: {
+    movieList: '/',
+  },
+};
+
+const authApiUrl = {
+  CONECT_SERVER: 'https://movies-diploma-api.nomoredomains.monster/api',
+  // CONECT_SERVER: 'http://localhost:3000/api',
+  PATHS: {
+    reg: 'signup',
+    login: 'signin',
+    user: 'users/me',
+  }
+};
+
+const profileApiUrl = {
+  CONECT_SERVER: 'https://movies-diploma-api.nomoredomains.monster/api',
+  // CONECT_SERVER: 'http://localhost:3000/api',
+  PATHS: {
+    getMe: 'users/me',
+    updateMe: 'users/me',
+    getMovies: 'movies',
+    createMovies: 'movies',
+    deleteMovies: 'movies',
+  }
+};
+
 export {
+  DURATION_SHORTS,
+  AMOUNT_FILMS_DESC,
+  AMOUNT_FILMS_MOBULE,
+  CARDS_MOBULE_SCREEN,
+  MENU_MOBULE_SCREEN,
+  SEARCH_MOBULE_SCREEN,
   textListMenuMobule,
   navLinkMenuMobule,
   textList,
@@ -86,5 +128,8 @@ export {
   portfolioList,
   portfolioListLink,
   registerProps,
-  loginProps
+  loginProps,
+  moviesApiUrl,
+  authApiUrl,
+  profileApiUrl,
 };

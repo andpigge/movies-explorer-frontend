@@ -1,16 +1,23 @@
 import React from 'react';
 import './moviesCard.css';
 
-// Компоненты
-import MovieSave from './movie-save/MovieSave';
-import MovieDelete from './movie-delete/MovieDelete';
+// Пользовательский хук
+import useMobuleCards from '../../../utils/custom-hooks/useMobuleCards';
 
-function MoviesCard({ movies, cardImg }) {
+// utils. Преобразует минуты в часы
+import convertMinutes from '../../../utils/convertMinutes';
+
+function MoviesCard({ movie, MovieSave, MovieDelete, pushMovieSaved, removeMovieSavedAll, setIsLoadingCards }) {
+  const isMobuleCards = useMobuleCards();
+
   const {
     duration,
+    image,
+    thumbnail,
     nameRU,
-    save
-  } = movies;
+    trailer,
+    _id,
+  } = movie;
 
   return (
     <div className='movie'>
@@ -19,20 +26,34 @@ function MoviesCard({ movies, cardImg }) {
           { nameRU }
         </h2>
         <p className='movie__desc'>
-          { duration }
+          { convertMinutes(duration) }
         </p>
         {
-          // Пока так пусть будет
-          typeof save === 'undefined' ?
-          <MovieDelete /> :
-          <MovieSave save={ save } />
+          MovieSave ?
+          <MovieSave
+            movie={ movie }
+            removeMovieSavedAll={ removeMovieSavedAll }
+            pushMovieSaved={ pushMovieSaved }
+            setIsLoadingCards={ setIsLoadingCards }
+          /> :
+          <MovieDelete
+            _id={ _id }
+            removeMovieSavedAll={ removeMovieSavedAll }
+          />
         }
       </div>
-      <img
-        alt='Фильм'
-        src={ cardImg }
-        className='movie__img'
-      />
+      <a
+        href={ trailer }
+        target='_blank'
+        rel="noreferrer"
+        className='movie__link'
+      >
+        <img
+          alt='Фильм'
+          src={ isMobuleCards ? image : thumbnail }
+          className='movie__img'
+        />
+      </a>
     </div>
   );
 }
